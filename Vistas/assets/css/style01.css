@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap');
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/*****************************************************************************************
+******************** BARRA NAVEGACION GENERAL ***************************************/
+.container{
+    width: 100%;
+}
+.navbar{
+    display: block;
+    min-height: 80px;
+    margin-top: 10px;
+    height: relative;
+}
+
+.navbar a{
+
+    font-weight: bold;
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+
+}
+.logo-header{
+    display: block;
+    width: 33%;
+    text-align: center;
+}
+
+.nav{
+    display: block;
+    width: 33%; 
+}
+
+.nav li, .nav-derecha li{
+    margin: 0 20px 0 20px;
+    text-align: center;
+    list-style: none;
+    display: inline-block;
+}
+
+/*
+.active, .active a{
+    padding-bottom: 5px;
+    border-bottom: solid 3px #FF8A00;
+    color: #FF8A00;
+}
+*/
+
+.nav li:after {
+   display:block;
+   content: '';
+   border-bottom: solid 3px #FF8A00;  
+   transform: scaleX(0);  
+   transition: transform 250ms ease-in-out;
+}
+
+.nav li:hover:after {
+    transform: scaleX(1); 
+}
+
+.navbar a:hover{
+    text-decoration: none;
+    color: #FF8A00;
+}
+
+.nav-derecha {
+    text-align: right;
+    display: block;
+    width: 33%;
+}
+.nav-derecha a{
+    font-size: 16px;
+    color: #666666;
+}
+
+.active-tienda {
+    visibility: hidden;
+}
+
+/*****************************************************************************************
+******************** BARRA NAVEGACION TIENDA ***************************************/
+.nav-tienda{
+    background-color: #FF8A00;
+    margin-bottom: 20px;
+}
+.naranja{
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+.naranja ul{
+    height: inherit;
+    width: inherit;
+
+    text-align: center;
+}
+.naranja li{
+    display: inline-block;
+    margin: 0 1.5% 0 1.5%;
+}
+.naranja a{
+    padding: 0;
+    margin: 0 auto;
+    height: 50px;
+    display: table-cell;
+    vertical-align: middle; 
+    color: white;
+    font-weight: 300;
+
+}
+
+.naranja li:after {
+   display:block;
+   content: '';
+   border-bottom: solid 2px white;  
+   transform: scaleX(0);  
+   transition: transform 250ms ease-in-out;
+}
+.naranja li:hover:after {
+    transform: scaleX(1); 
+}
+
+.naranja a:hover{
+    text-decoration: none;
+    color: #CCCCCC;
+}
+
+
+/*****************************************************************************************
+******************** PRODUCTOS TIENDA ***************************************/
+.titulo-main{
+    text-align: center;
+    font-weight: 600;
+    margin: 25px;
+}
+
+
+
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.flex-container>div{
+    width: 250px;
+    height: 300px;
+    margin: 0 10px 25px 10px;   
+/*    background-color: #f2f2f2;*/
+}
+.container-bloque{   
+    display: block;
+    height: inherit;
+    width: inherit;
+    color: black;
+    /*box-shadow: 1px 1px 5px #f2f2f2;*/
+    margin: 0 auto;
+    text-align: center;
+}
+.container-bloque ul{
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+
+.container-bloque li{
+    font-weight: 400;
+    list-style: none;
+    font-size: 16px;
+    text-align: center;
+
+}
+.bloque img{
+    text-align: center;
+    margin: 0 auto;
+}
+.bloquefoto{
+    width: inherit;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.bloque-precio a{
+    color: #FF8A00;
+    font-weight: 300;
+}
+.tituloProducto a{
+    font-weight: 400;
+    font-size: 17px;
+}
+.boton{
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    border-radius: 25px ;
+    margin: 0 auto;
+    
+}
+.bt-comprar li{
+    display: inline-block;
+}
+.bt-comprar {
+    background-color: #cccc00;
+
+}
+.bt-comprar a{
+    width: inherit;
+    height: inherit;
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle; 
+}

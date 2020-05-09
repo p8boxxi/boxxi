@@ -1,0 +1,94 @@
+/* Footer */
+
+footer {
+  padding: 30px 0;
+  background-color: #393939;
+}
+footer .logo-footer {
+  background-image: url(../img/logo_blanco.png);
+  width: 150px;
+  height: 30px;
+  display: block;
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+footer .b {
+  font-size: 18px;
+  color: #ffffff;
+  line-height: 1.2;
+}
+footer .b a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #cccccc;
+  font-weight: normal;
+}
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+footer li {
+  display: block;
+  margin: 0 5px;
+  height: 30px;
+  float: right;
+}
+footer .social-links a {display: inline-block;}
+footer .social-links i {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: 16px;
+  background-size: 16px;
+  display: block;
+}
+footer .social-links i.icon-tw {
+  background-image: url(../img/icon-tw.png);
+}
+footer .social-links i.icon-fb {
+  background-image: url(../img/icon-fb.png);
+}
+footer .social-links i.icon-ig {
+  background-image: url(../img/icon-ig.png);
+}
+footer .social-links i.icon-in {
+  background-image: url(../img/icon-in.png);
+}
+
+
+
+
+/* Mobile screen */
+
+@media (max-width:768px) {
+  
+  footer {
+    text-align: center;
+    padding: 20px 0;
+  }
+  footer ul {
+    text-align: center;
+    margin-top: 5px;
+  }
+  footer li {
+    display: inline-block;
+    float: none;
+    margin: 0 2px;
+  }
+  footer .b {
+    margin: 15px 0;
+  }
+  footer .logo-footer {
+    width: 100%;
+    background-position: center;
+  }
+}
+
+
