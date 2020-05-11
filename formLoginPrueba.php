@@ -7,10 +7,20 @@
 <body>
 <h1>Formulario de Prueba LOGIN</h1>
 
-<?php if(!empty($_SESSION["id_usuario"])){
+<?php 
+require_once "Controladores/SesionesController.php";
+$objecteSessio = new SesionesController();
+
+
+if(!empty($_SESSION["id_usuario"])){
                session_destroy();
-    } 
-    ?>
+} 
+
+if (!(isset($_SESSION["login"])) && isset($_SESSION["mensajeResultado"])){
+        unset($_SESSION["mensajeResultado"]);
+}
+
+?>
 <form action="Controladores/UsuariosController.php?operacio=login" method="POST">
     <div class="six fields">
         <div class="field">

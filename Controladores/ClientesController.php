@@ -59,7 +59,14 @@ class ClientesController extends Cliente{
     }
 
 
+    public function BuscaIdClienteDel($usuario){
+        foreach($this->retornaIdClientedel($usuario) as $client){}
+            return $client->id_cliente;
+    }
 
+    public function buscaCliente($id){
+        return $this->buscaElCliente($id);
+    }
 
 
 }

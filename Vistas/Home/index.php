@@ -12,8 +12,7 @@ $objecteSessio = new SesionesController();
 
     <?php  
 
-    
-
+/
 
     //GP
     // if(!empty($_SESSION["id_usuario"])){
@@ -32,6 +31,7 @@ $objecteSessio = new SesionesController();
                 echo "</h1>";
                 echo "<a href='formLoginPrueba.php'>Loguearse</a>";
                 echo "</div>";
+                unset($_SESSION["mensajeLogin"]);
             }
         }else{
             if (isset($_SESSION["Denegado"])){
@@ -40,20 +40,24 @@ $objecteSessio = new SesionesController();
                 echo "</h1>";
                // echo "<a href='formLoginPrueba.php'>Loguearse de nuevo</a>";
                 echo "</div>";
+                unset($_SESSION["Denegado"]);
             }
         }
     }
     
     if (isset($_SESSION["mensajeResultado"])){
         echo $_SESSION["mensajeResultado"];
+        unset($_SESSION["mensajeResultado"]);
     }
     
-    //var_dump($_SESSION);
 
+   
     // echo "<br>";
     // echo "<a href='Controladores/SesionesController.php?operacion=cerrarSesion'>Salir de  La Sesion</a>";
 
     ?>
+
+
 
     <h1>Enlaces muestra [INSERTAR datos]</h1>
     <a href="../../Vistas/Administrador/insertarAdministrador.php">Administrador</a>

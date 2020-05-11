@@ -1,22 +1,15 @@
 <?php
 //GP
-require "../Modelos/Usuario.php";
-require "../Modelos/Administrador.php";
+require_once "../Modelos/Usuario.php";
+//require "../Modelos/Administrador.php";
 
-require "SesionesController.php";
+require_once "SesionesController.php";
 $objecteSessions = new SesionesController();
 
 class UsuariosController extends Usuario{
 
     public function LeeInfoUsuario($email, $password, $nombre, $apellidos, $telefono, $direccion){
-       $this->email = $email;
-       $this->password = $password;
-       $this->nombre = $nombre;
-       $this->apellidos = $apellidos;
-       $this->telefono = $telefono;
-       $this->direccion = $direccion;
-
-       $this->ResultadoRegistraUsuario($this->registraUsuario());
+       $this->ResultadoRegistraUsuario($this->registraUsuario($email, $password, $nombre, $apellidos, $telefono, $direccion));
     }
 
     public function ResultadoRegistraUsuario($resultat){
@@ -35,10 +28,7 @@ class UsuariosController extends Usuario{
 
     public function CheckejaUsuari($email, $paraula)
     {
-        $this->email = $email;
-        $this->password = $paraula;
-
-        $dadesUsuari = $this->BuscaUsuariPerEmail();
+        $dadesUsuari = $this->BuscaUsuariPerEmail($email, $paraula);
         if ($dadesUsuari != null){
             foreach ($dadesUsuari as $infoDelUsuari){}  //només n'hi ha 1
                 
@@ -53,40 +43,60 @@ class UsuariosController extends Usuario{
                     $_SESSION["NoPermiso"]=null;
                     //mira si es Client o Administrador:
                    
-                    if ($esAdministrador= Administrador::buscaSiExiste($infoDelUsuari->id_usuario)){
+                    require_once "AdministradoresController.php";
+                    $administrador = new AdministradoresController();
+
+                    $_SESSION["errorProceso"]=false;
+                    
+                    if ($administrador->buscaAdmin($infoDelUsuari->id_usuario)){
                         $_SESSION["rol"]="Administrador";
+                        $_SESSION["id_administrador"]=$administrador->retornaIdAdminDel($infoDelUsuari->id_usuario);
+
                     }else{
-                        $_SESSION["rol"]="Cliente";
+                        require_once "ClientesController.php";
+                        $cliente = new ClientesController();
+                        if ($cliente->buscaCliente($infoDelUsuari->id_usuario)){
+                            $_SESSION["rol"]="Cliente";
+                            $_SESSION["id_cliente"]= $cliente->BuscaIdClienteDel($infoDelUsuari->id_usuario);  
+                        }
+                        else{
+                            if ($_SESSION["rol"]!="Administrador" && $_SESSION["rol"]!="Cliente"){
+                                $_SESSION["mensajeLogin"]="<< Error al procesar la petición >>";
+                                $_SESSION["errorProceso"]=true;
+                            }
+                            
+                        }
                     }
-                    $_SESSION["login"]=true;
-                    header("location: ../index.php");
+                    if(!$_SESSION["errorProceso"]){
+                        $_SESSION["login"]=true;
+                        header("location: ../index.php");
+                    }else{
+                        $_SESSION["login"]=false;
+                        $_SESSION["mensajeLogin"]="<< Error al procesar la petición >>";
+                        header("location: ../index.php");
+                    }
+                   
+                    
                 }
                 else {
+                    $_SESSION["login"]=false;
                     $_SESSION["mensajeLogin"]="<< Contraseña incorrecta >>";
                     header("location: ../index.php");
                 }
         }else{
+            $_SESSION["login"]=false;
             $_SESSION["mensajeLogin"]="<< El usuario No existe! >>";
             header("location: ../index.php");
         }
-        
-  
     }
 
     public function MuestraModificarUsuari($id){
-
         header("location: ../Vistas/Usuario/modificarUsuario.php?id=$id"); 
     }
     public function ModificarUsuari($id, $email, $password, $nombre, $apellidos, $telefono, $direccion){
-         $this->id_usuario = $id;
-         $this->email = $email;
-         $this->password = $password;
-         $this->nombre = $nombre;
-         $this->apellidos = $apellidos;
-         $this->telefono = $telefono;
-         $this->direccion = $direccion;
-        $this->resultadoModificaUsuario($this->modificaUsuari());
+        $this->resultadoModificaUsuario($this->modificaUsuari($id, $email, $password, $nombre, $apellidos, $telefono, $direccion));
     }
+
     public function resultadoModificaUsuario($resultat){
         if ($resultat){
             $_SESSION["mensajeResultado"]="
@@ -108,8 +118,6 @@ class UsuariosController extends Usuario{
 }
 
 
-
-
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
     $Usuario = new UsuariosController();
     $Usuario->LeeInfoUsuario(
@@ -128,8 +136,16 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
 }
 
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="login"){
-    $objecte = new UsuariosController();
-    $objecte->CheckejaUsuari($_POST["email"], $_POST["password"]);
+    if (isset($_POST["email"]) && isset($_POST["password"]) && !empty($_POST["email"]) && !empty($_POST["password"])){
+        $objecte = new UsuariosController();
+        $objecte->CheckejaUsuari($_POST["email"], $_POST["password"]);
+    }else{
+        $_SESSION["mensajeResultado"]="
+            <div style='background-color: red; height: 80px; text-align: center; padding-top: 5px;'>
+                <h1>Tiene que introducir Emails y Password!</h1>
+            <div>";
+        header("location: ../index.php");
+    }
 }
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="modificar"){

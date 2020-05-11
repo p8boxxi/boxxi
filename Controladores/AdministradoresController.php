@@ -2,8 +2,8 @@
 //GP
 require "../Modelos/Administrador.php";
 
-require "SesionesController.php";
-$objecteSessio = new SesionesController();
+// require "SesionesController.php";
+// $objecteSessio = new SesionesController();
 
 class AdministradoresController extends Administrador{
 
@@ -33,6 +33,15 @@ class AdministradoresController extends Administrador{
     }
 
 
+    
+    public function buscaAdmin($id){
+        return $this->buscaAdministrador($id);
+    }
+
+    public function retornaIdAdminDel($usuario){
+        return $this->buscaIdAdminDel($usuario);
+    }
+    
 
 
 }

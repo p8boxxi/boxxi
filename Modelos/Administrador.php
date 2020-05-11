@@ -62,7 +62,7 @@ class Administrador{
         }
     }
 
-    public function buscaSiExiste($id){
+    protected function buscaSiExiste($id){
         try{
             $conecta = new ConexionBD();
             $conecta->getConexionBD()->beginTransaction();
@@ -77,6 +77,36 @@ class Administrador{
         }
     }
 
+    protected function buscaAdministrador($id){
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "SELECT id_administrador FROM administradores
+                                        WHERE id_usuario = '$id'";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute();
+            return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return null;  
+        }
+    }
+
+
+    protected function buscaIdAdminDel($usuari){
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "SELECT id_admin FROM administradores
+                                        WHERE id_usuario = '$usuari'";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute();
+            return $intencio->fetchColumn();
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return false;  
+        }
+    }
 
 
 

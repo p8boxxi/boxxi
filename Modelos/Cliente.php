@@ -80,7 +80,52 @@ class Cliente{
         }
     }
 
-    
+    protected function buscaSiExiste($id){
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "SELECT id_cliente FROM clientes
+                                        WHERE id_usuario = '$id'";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute();
+            return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return null;  
+        }
+    }
+
+    protected function buscaElCliente($id){
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "SELECT id_cliente 
+                                FROM clientes
+                                        WHERE id_usuario = '$id'";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute();
+            return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return null;  
+        }
+    }
+
+    protected function retornaIdClientedel($usuario){
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "SELECT id_cliente 
+                                    FROM clientes
+                                    WHERE id_usuario = $usuario";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute();
+            return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return null;  
+        }
+    }
 
 
 
