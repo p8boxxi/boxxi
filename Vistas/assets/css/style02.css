@@ -1,3 +1,85 @@
+.c-orange {
+  color: #ff8a00;
+}
+
+/* Modals */
+
+.modal {
+
+  }
+.modal h4 {
+  font-weight: bold;
+  }
+.modal .link {
+  color: #999999;
+}
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Inputs */
+
+.input-container {
+  position: relative;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+.input-container .label {
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 5px;
+  line-height: 50px;
+  transition: 0.2s ease all;
+  padding: 0;
+  font-size: 14px;
+  color: #333333;
+}
+.input-container input,
+.input-container textarea {
+    padding: 25px 10px 5px 10px;
+    line-height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    border: 0;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+}
+.input-container textarea {
+  line-height: 18px;
+  padding-top: 30px;
+}
+.input-container input:focus ~ .label,
+.input-container textarea:focus ~ .label,
+.input-container input:not(:focus):valid ~ .label,
+.input-container textarea:not(:focus):valid ~ .label {
+  font-size: 11px!important;
+  opacity: 1;
+  line-height: 30px;
+  font-weight: normal!important;
+  top: 0;
+}
+.input-container.s2 .label {
+  transition: 0.2s ease opacity;
+  line-height: 30px;
+}
+.input-container.s2 input {
+  padding: 5px 10px 5px 10px;
+}
+.input-container.s2 input:focus ~ .label,
+.input-container.s2 input:not(:focus):valid ~ .label {
+  opacity: 0;
+  font-size: 14px!important;
+  top: 5px;
+}
+
 /* Footer */
 
 footer {
