@@ -58,7 +58,6 @@ $objecteSessio = new SesionesController();
             unset($_SESSION["Denegado"]);
         }
     }
-}
     
     if (isset($_SESSION["mensajeResultado"])){
         echo $_SESSION["mensajeResultado"];
