@@ -9,11 +9,7 @@ $objecteSessio = new SesionesController();
 
 <body>
 
-
     <?php  
-
-    
-
 
     //GP
     // if(!empty($_SESSION["id_usuario"])){
@@ -22,31 +18,43 @@ $objecteSessio = new SesionesController();
     //             echo "eres ".$_SESSION["rol"];
     // }  
 
-    
-
     if (isset($_SESSION["login"])){
         if ($_SESSION["login"]==false){
             if (isset($_SESSION["mensajeLogin"])){
-                echo "<div style='background-color: red; height: 80px; text-align: center; padding-top: 5px;'><h1>";
-                echo $_SESSION["mensajeLogin"];
-                echo "</h1>";
-                echo "<a href='formLoginPrueba.php'>Loguearse</a>";
+                // AZ
+                echo "<div class='modal fade' id='wrongModal' tabindex='-1' role='dialog' aria-labelledby='wrongModal' aria-hidden='true'>";
+                echo "<div class='modal-dialog' role='document'>";
+                echo "<div class='modal-content p-4 text-center'>";
+                echo "<a class='close' data-dismiss='modal'>×</a>";
+                echo "<p class='m-0'><b>".$_SESSION["mensajeLogin"]."</b></p>";
                 echo "</div>";
-            }
-        }else{
-            if (isset($_SESSION["Denegado"])){
-                echo "<div style='background-color: red; height: 80px; text-align: center; padding-top: 5px;'><h1>";
-                echo $_SESSION["Denegado"];
-                echo "</h1>";
-               // echo "<a href='formLoginPrueba.php'>Loguearse de nuevo</a>";
                 echo "</div>";
+                echo "</div>";
+                echo "<script>$('#wrongModal').modal('show');</script>";
+                unset($_SESSION["mensajeLogin"]);
             }
+        } else {
+        if (isset($_SESSION["Denegado"])){
+            // AZ
+            echo "<div class='modal fade' id='wrongModal' tabindex='-1' role='dialog' aria-labelledby='wrongModal' aria-hidden='true'>";
+            echo "<div class='modal-dialog' role='document'>";
+            echo "<div class='modal-content p-4 text-center'>";
+            echo "<a class='close' data-dismiss='modal'>×</a>";
+            echo "<p class='m-0'><b>".$_SESSION["Denegado"]."</b></p>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+            echo "<script>$('#wrongModal').modal('show');</script>";
+            unset($_SESSION["Denegado"]);
         }
     }
+}
     
-    if (isset($_SESSION["mensajeResultado"])){
-        echo $_SESSION["mensajeResultado"];
-    }
+
+if (isset($_SESSION["mensajeResultado"])){
+    echo $_SESSION["mensajeResultado"];
+    unset($_SESSION["mensajeResultado"]);
+}
     
     //var_dump($_SESSION);
 
