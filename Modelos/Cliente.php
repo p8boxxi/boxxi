@@ -13,7 +13,13 @@ class Cliente{
 
     protected $id_cliente; 
 
-    protected function registraCliente(){
+    protected function registraCliente($email, $password, $nombre, $apellidos, $telefono, $direccion){
+        $this->setEmail($email);
+        $this->setPassword($password);
+        $this->setNombre($nombre);
+        $this->setApellidos($apellidos);
+        $this->setTelefono($telefono);
+        $this->setDireccion($direccion);
         try{    
             $conecta = new ConexionBD();
             $conecta->getConexionBD()->beginTransaction();
@@ -21,12 +27,12 @@ class Cliente{
                     VALUES (null, :email, :password, :nombre, :apellidos, :telefono, :direccion)";
             $resultado = $conecta->getConexionBD()->prepare($sqlUsuario);
             $resultado->execute(array(
-                                    ":email" => $this->email,
-                                    ":password" => $this->password,
-                                    ":nombre" => $this->nombre,
-                                    ":apellidos" => $this->apellidos,
-                                    ":telefono" => $this->telefono,
-                                    ":direccion" => $this->direccion
+                            ":email" => $this->getEmail(),
+                            ":password" => $this->getPassword(),
+                            ":nombre" => $this->getNombre(),
+                            ":apellidos" => $this->getApellidos(),
+                            ":telefono" => $this->getTelefono(),
+                            ":direccion" => $this->getDireccion()
                                 ));
             
             $idInsertado = $conecta->getConexionBD()->lastInsertId();
@@ -128,8 +134,101 @@ class Cliente{
     }
 
 
+    public function getId_usuario()
+    {
+        return $this->id_usuario;
+    }
 
+    public function setId_usuario($id_usuario)
+    {
+        $this->id_usuario = $id_usuario;
 
+        return $this;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    public function getApellidos()
+    {
+        return $this->apellidos;
+    }
+
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+
+        return $this;
+    }
+
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    public function getId_cliente()
+    {
+        return $this->id_cliente;
+    }
+
+    public function setId_cliente($id_cliente)
+    {
+        $this->id_cliente = $id_cliente;
+
+        return $this;
+    }
 }
 
 

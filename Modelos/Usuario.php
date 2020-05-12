@@ -96,7 +96,7 @@ class Usuario{
                                         nombre = :nombre,
                                         apellidos = :apellidos,
                                         telefono = :telefono,
-                                        direccion = :direccion'
+                                        direccion = :direccion
                                     WHERE id_usuario = $id";
             $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
             $intencio->execute(array(

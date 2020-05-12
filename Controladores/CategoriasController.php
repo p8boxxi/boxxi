@@ -1,17 +1,29 @@
 <?php
 
-require_once "../Modelos/Categoria.php";
+if (file_exists("../Modelos/Categoria.php")){
+    require_once "../Modelos/Categoria.php";
+}
+
+if (file_exists("../../Modelos/Categoria.php")){
+    require_once "../../Modelos/Categoria.php";
+}
+
+
 //GP
-require_once "../Controladores/SesionesController.php";
+if (file_exists("../Controladores/SesionesController.php")){
+    require_once "../Controladores/SesionesController.php";
+}
+if (file_exists("../../Controladores/SesionesController.php")){
+    require_once "../../Controladores/SesionesController.php";
+}
+
 $objecteSessio = new SesionesController();
 
 
 class CategoriasController extends Categoria{
 
     public function leeInfoCategoria($nombre){
-       $this->nombre = $nombre;
-
-       $this->resultadoRegistraCategoria($this->registraCategoria());
+       $this->resultadoRegistraCategoria($this->registraCategoria($nombre));
     }
 
     public function resultadoRegistraCategoria($resultat){
@@ -29,21 +41,19 @@ class CategoriasController extends Categoria{
     }
 
     public function CompruebaParaEliminar($categoria){
-        $this->id_categoria = $categoria;
-
         require "ProductosController.php";
         $productos = new ProductosController();
 
-        if ($productos->CompruebaParaActualizar($this->id_categoria)){
-            $this->eliminaLaCategoria();
+        if ($productos->CompruebaParaActualizar($categoria)){
+            $this->eliminaLaCategoria($categoria);
         }else{
             require "../Vistas/Categoria/NoEliminable.php";
         }
 
     }
 
-    public function eliminaLaCategoria(){
-        if ($this->eliminaCategoria()){
+    public function eliminaLaCategoria($categoria){
+        if ($this->eliminaCategoria($categoria)){
             require "../Vistas/Categoria/Eliminado.php"; 
         }else{
             require "../Vistas/Categoria/NoEliminado.php";
@@ -57,11 +67,7 @@ class CategoriasController extends Categoria{
 
     
     public function ModificarCategoria($id, $nombre){
-
-        $this->id_categoria = $id;
-        $this->nombre = $nombre;
-
-        $this->resultadoModificaCategoria($this->modificaCategoria());
+        $this->resultadoModificaCategoria($this->modificaCategoria($id, $nombre));
      }
 
      public function resultadoModificaCategoria($resultat){
@@ -81,6 +87,10 @@ class CategoriasController extends Categoria{
     }
 
 
+    public function selectCategorias(){
+        return $this->retornaCategoriasTodos();
+    }
+
 
 
 }
@@ -89,10 +99,13 @@ class CategoriasController extends Categoria{
 
 
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
-    $Categoria = new CategoriasController();
-    $Categoria->leeInfoCategoria(
-                    $_POST["nombre"]
-                );
+    if (isset($_POST["nombre"]) && !empty($_POST["nombre"])){
+        $Categoria = new CategoriasController();
+        $Categoria->leeInfoCategoria($_POST["nombre"]);
+    }else{
+        echo "Operación No posible";
+    }
+    
 }
 
 
@@ -102,23 +115,30 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
 }
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="elimina"){
-    $Categoria = new CategoriasController();
-    $Categoria->CompruebaParaEliminar($_GET["categoria"]);
+    if (isset($_GET["categoria"]) && !empty($_GET["categoria"])){
+        $Categoria = new CategoriasController();
+        $Categoria->CompruebaParaEliminar($_GET["categoria"]);
+    }else{
+        echo "Operación No disponible";
+    }
 }
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="modificar"){
-    $Categoria = new CategoriasController();
-    $Categoria->MuestraModificarCategoria($_GET["categoria"]);
+    if (isset($_GET["categoria"]) && !empty($_GET["categoria"])){
+        $Categoria = new CategoriasController();
+        $Categoria->MuestraModificarCategoria($_GET["categoria"]);
+    }else{
+        echo "Operación No disponible";
+    }
 }
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
-    $Categoria = new CategoriasController();
-
-    $Categoria->ModificarCategoria(
-                    $_POST["id"],
-                    $_POST["nombre"]
-                );
+    if (isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["id"]) && !empty($_POST["id"])){
+        $Categoria = new CategoriasController();
+        $Categoria->ModificarCategoria($_POST["id"],$_POST["nombre"]);
+    } else{
+        echo "Operación No disponible";
+    }
+    
 }
-
-
 
 ?>

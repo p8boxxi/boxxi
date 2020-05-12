@@ -13,14 +13,7 @@ if (file_exists("../../Modelos/Cliente.php")){
 class ClientesController extends Cliente{
 
     public function leeInfoCliente($email, $password, $nombre, $apellidos, $telefono, $direccion){
-       $this->email = $email;
-       $this->password = $password;
-       $this->nombre = $nombre;
-       $this->apellidos = $apellidos;
-       $this->telefono = $telefono;
-       $this->direccion = $direccion;
-
-       $this->resultadoRegistraCliente($this->registraCliente());
+       $this->resultadoRegistraCliente($this->registraCliente($email, $password, $nombre, $apellidos, $telefono, $direccion));
     }
 
     public function resultadoRegistraCliente($resultat){
@@ -75,15 +68,16 @@ class ClientesController extends Cliente{
 
 
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
-    $Cliente = new ClientesController();
-    $Cliente->leeInfoCliente(
-                    $_POST["email"],
-                    $_POST["password"],
-                    $_POST["nombre"],
-                    $_POST["apellidos"],
-                    $_POST["telefono"],
-                    $_POST["direccion"]
-                );
+    if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["telefono"]) && isset($_POST["direccion"])){
+        if (!empty($_POST["email"]) and !empty($_POST["password"])){
+            $Cliente = new ClientesController();
+            $Cliente->leeInfoCliente($_POST["email"],$_POST["password"],$_POST["nombre"],$_POST["apellidos"],$_POST["telefono"],$_POST["direccion"]);
+        }else{
+            echo "Faltan datos";
+        }
+    }else{
+        echo "Operacion No permitida";
+    }
 }
 
 

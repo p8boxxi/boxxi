@@ -7,11 +7,12 @@ $objecteSessions = new SesionesController();
 
 class PedidosController extends Pedido{
 
-    public function leeInfoPedido($estado, $fecha){
+    public function leeInfoPedido($cliente, $estado){
         $this->id_cliente = $_SESSION["id_usuario"];
         $this->id_estado = $estado;
         $this->fecha = $fecha;
-        $this->resultadoRegistraPedido($this->registraPedido());
+
+        $this->resultadoRegistraPedido($this->registraPedido($cliente, $estado));
     }
 
     public function resultadoRegistraPedido($resultat){
@@ -31,10 +32,9 @@ class PedidosController extends Pedido{
 
 
     public function CompruebaParaCambiarEstadoDel($id, $operacion){
-        $this->id_pedido = $id;
         if ($operacion == "cancelar"){
             //PEDIDO:"cancelado":
-            if ($this->actualizaPedido($operacion)){
+            if ($this->actualizaPedido($id, $operacion)){
                 require "../Vistas/Pedido/Actualizado.php";
             }else{
                 require "../Vistas/Pedido/NoActualizado.php";
@@ -47,9 +47,9 @@ class PedidosController extends Pedido{
 
 
     public function MuestraModificarPedido($id){
-
         header("location: ../Vistas/Pedido/modificarPedido.php?id=$id"); 
     }
+
     public function ModificarPedido($id, $fecha){
         //$this->id_usuario = $usuario;
         //$this->id_estado = $estado;
@@ -59,7 +59,7 @@ class PedidosController extends Pedido{
         
          
 
-       $this->resultadoModificaPedido($this->modificaPedido());
+       $this->resultadoModificaPedido($this->modificaPedido($id, $fecha));
     }
     public function resultadoModificaPedido($resultat){
         if ($resultat){
@@ -77,11 +77,6 @@ class PedidosController extends Pedido{
         header("location: ../index.php");
     }
 
-
-
-
-
-
 }
 
 
@@ -89,13 +84,20 @@ class PedidosController extends Pedido{
 
 
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
-    $nuevoObjeto = new PedidosController();
-    $estado = 1;  /**** ATENCIO: llega por INPUT!!  */
     
-    $nuevoObjeto->leeInfoPedido(
-                    $estado,
-                    $_POST["fecha"]
-                );
+    $estado = 1;  /**** ATENCION: por defecto!!  */
+
+
+    $cliente = $_SESSION["id_usuario"];
+
+    if (isset($_SESSION["id_usuario"]) && !empty($_SESSION["id_usuario"])){
+        $cliente = $_SESSION["id_usuario"];
+        $nuevoObjeto = new PedidosController();
+        $nuevoObjeto->leeInfoPedido($cliente, $estado);
+    }else{
+        echo "Operación No permitida";
+        header ("location: index.php");
+    }
 }
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
@@ -104,22 +106,32 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
 }
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="cancelar"){
-    $objecte = new PedidosController();
-    $objecte->CompruebaParaCambiarEstadoDel($_GET["pedido"], $_GET["operacio"]);
+    if (isset($_GET["pedido"]) && !empty($_GET["pedido"])){
+        $objecte = new PedidosController();
+        $objecte->CompruebaParaCambiarEstadoDel($_GET["pedido"], $_GET["operacio"]);
+    }else{
+        echo "Operación No permitida";
+    }
 }
 
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="modificar"){
-    $pedido = new PedidosController();
-    $pedido->MuestraModificarPedido($_GET["pedido"]);
+    if (isset($_GET["pedido"]) && !empty($_GET["pedido"])){
+        $pedido = new PedidosController();
+        $pedido->MuestraModificarPedido($_GET["pedido"]);
+    }else{
+        echo "Operación No permitida";
+    }
+    
 }
+
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
-    $pedido = new PedidosController();
-   
-    $pedido->ModificarPedido(
-                    $_POST["id"], //$id_usuario, $id_estado,
-                    $_POST["fecha"]
-                );
+    if (isset($_POST["id"]) && !empty($_POST["id"]) && isset($_POST["fecha"]) && !empty($_POST["fecha"])){
+        $pedido = new PedidosController();
+        $pedido->ModificarPedido($_POST["id"], $_POST["fecha"]);
+    }else{
+        echo "Operación No permitida";
+    }
 }
 
 

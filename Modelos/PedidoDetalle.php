@@ -132,10 +132,81 @@ class PedidoDetalle{
 
 
 
+    public function getId_pedido_detalle()
+    {
+        return $this->id_pedido_detalle;
+    }
+
+  
+    public function setId_pedido_detalle($id_pedido_detalle)
+    {
+        $this->id_pedido_detalle = $id_pedido_detalle;
+
+        return $this;
+    }
+
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+
+    public function setCantidad($cantidad)
+    {
+        $this->cantidad = $cantidad;
+
+        return $this;
+    }
 
 
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
 
+    public function setPrecio($precio)
+    {
+        $this->precio = $precio;
 
+        return $this;
+    }
+
+    public function getProducto()
+    {
+        return $this->producto;
+    }
+
+  
+    public function setProducto($producto)
+    {
+        $this->producto = $producto;
+
+        return $this;
+    }
+
+    public function getId_pedido()
+    {
+        return $this->id_pedido;
+    }
+
+   
+    public function setId_pedido($id_pedido)
+    {
+        $this->id_pedido = $id_pedido;
+
+        return $this;
+    }
+
+    public function getId_producto()
+    {
+        return $this->id_producto;
+    }
+
+    public function setId_producto($id_producto)
+    {
+        $this->id_producto = $id_producto;
+
+        return $this;
+    }
 }
 
 //

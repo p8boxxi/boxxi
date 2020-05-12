@@ -9,9 +9,7 @@ $objecteSessio = new SesionesController();
 class EstadosController extends Estado{
 
     public function leeInfoEstado($nombre){
-       $this->nombre = $nombre;
-
-       $this->resultadoRegistraEstado($this->registraEstado());
+       $this->resultadoRegistraEstado($this->registraEstado($nombre));
     }
 
     public function resultadoRegistraEstado($resultat){
@@ -22,23 +20,17 @@ class EstadosController extends Estado{
         } 
     }
 
-    
     public function LlistaEstados(){
         $Llistat = $this->retornaEstadosTodos();
         require "../Vistas/Estado/verEstado.php";
     }
 
-
     public function MuestraModificarEstado($id){
-
         header("location: ../Vistas/Estado/modificarEstado.php?id=$id"); 
     }
+
     public function ModificarEstado($id, $nombre){
-
-        $this->id_estado = $id;
-        $this->nombre = $nombre;
-
-       $this->resultadoModificaEstado($this->modificaEstado());
+       $this->resultadoModificaEstado($this->modificaEstado($id, $nombre));
     }
     public function resultadoModificaEstado($resultat){
         if ($resultat){
@@ -67,10 +59,12 @@ class EstadosController extends Estado{
 
 
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
-    $objecte = new EstadosController();
-    $objecte->leeInfoEstado(
-                    $_POST["nombre"]
-                );
+    if (isset($_POST["nombre"]) && !empty($_POST["nombre"])){
+        $objecte = new EstadosController();
+        $objecte->leeInfoEstado($_POST["nombre"]);
+    }else{
+        echo "Operación No posible";
+    }
 }
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
@@ -80,16 +74,20 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
 
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="modificar"){
-    $estado = new EstadosController();
-    $estado->MuestraModificarEstado($_GET["id_estado"]);
+    if (isset($_GET["id_estado"]) && !empty($_GET["id_estado"])){
+        $estado = new EstadosController();
+        $estado->MuestraModificarEstado($_GET["id_estado"]);
+    }else{
+        echo "Operación No disponible";
+    }
 }
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
-    $estado = new EstadosController();
-    
-    $estado->ModificarEstado(
-                    $_POST["id"],
-                    $_POST["nombre"]
-                );
+    if (isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["id"]) && !empty($_POST["id"])){
+        $estado = new EstadosController();
+        $estado->ModificarEstado($_POST["id"],$_POST["nombre"]);
+    } else{
+        echo "Operación No disponible";
+    }
 }
 
 ?>

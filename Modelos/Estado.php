@@ -7,8 +7,8 @@ class Estado{
     protected $nombre;
     
 
-    protected function registraEstado(){
-
+    protected function registraEstado($nombre){
+        $this->setNombre($nombre);
        
         try{    
             $conecta = new ConexionBD();
@@ -17,7 +17,7 @@ class Estado{
                     VALUES (null, :nombre)";
             $resultado = $conecta->getConexionBD()->prepare($sqlEstados);
             $resultado->execute(array(
-                                    ":nombre" => $this->nombre
+                                    ":nombre" => $this->getNombre()
                                 ));
             $conecta->getConexionBD()->commit();  
             return true;
@@ -59,15 +59,17 @@ class Estado{
         }
     }
 
-    protected function modificaEstado(){
+    protected function modificaEstado($id, $nombre){
+        $this->setId_estado($id);
+        $this->setNombre($nombre);
         try{
             $conecta = new ConexionBD();
             $conecta->getConexionBD()->beginTransaction();
             $sentenciaSQL = "UPDATE estados
-                                    SET nombre = '$this->nombre'
-                                    WHERE id_estado = '$this->id_estado'";
+                                    SET nombre = :nombre
+                                    WHERE id_estado = :estado";
             $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
-            $intencio->execute();
+            $intencio->execute(array(":nombre" => $this->getNombre(), ":categoria" => $this->getId_estado()));
             $conecta->getConexionBD()->commit();
             return true;  
         }catch(Exception $excepcio){
@@ -76,7 +78,29 @@ class Estado{
         }
     }
 
+    public function getId_estado()
+    {
+        return $this->id_estado;
+    }
 
+    public function setId_estado($id_estado)
+    {
+        $this->id_estado = $id_estado;
+
+        return $this;
+    }
+
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
 }
 
 

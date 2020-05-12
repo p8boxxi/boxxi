@@ -93,6 +93,7 @@ class UsuariosController extends Usuario{
     public function MuestraModificarUsuari($id){
         header("location: ../Vistas/Usuario/modificarUsuario.php?id=$id"); 
     }
+    
     public function ModificarUsuari($id, $email, $password, $nombre, $apellidos, $telefono, $direccion){
         $this->resultadoModificaUsuario($this->modificaUsuari($id, $email, $password, $nombre, $apellidos, $telefono, $direccion));
     }
@@ -119,15 +120,17 @@ class UsuariosController extends Usuario{
 
 
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
-    $Usuario = new UsuariosController();
-    $Usuario->LeeInfoUsuario(
-                    $_POST["email"],
-                    $_POST["password"],
-                    $_POST["nombre"],
-                    $_POST["apellidos"],
-                    $_POST["telefono"],
-                    $_POST["direccion"]
-                );
+    if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["telefono"]) && isset($_POST["direccion"])){
+        if (!empty($_POST["email"]) && !empty($_POST["password"])){
+            $usuari = new UsuariosController();
+            $usuari->LeeInfoUsuario($_POST["email"],$_POST["password"],$_POST["nombre"],$_POST["apellidos"],$_POST["telefono"],$_POST["direccion"]);
+        }else{
+            echo "Faltan datos";
+            //header ("location: ../../index.php");
+        }
+    }else{
+        echo "Operacion No permitida";
+    }
 }
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
@@ -149,21 +152,26 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="login"){
 }
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="modificar"){
-    $usuari = new UsuariosController();
-    $usuari->MuestraModificarUsuari($_GET["usuario"]);
+    if (isset($_GET["usuario"]) && !empty($_GET["usuario"])){
+        $usuari = new UsuariosController();
+        $usuari->MuestraModificarUsuari($_GET["usuario"]);
+    }else{
+        echo "Operación No disponible";
+    }
 }
+
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
-    $usuari = new UsuariosController();
-   
-    $usuari->ModificarUsuari(
-                    $_POST["id"],
-                    $_POST["email"],
-                    $_POST["password"],
-                    $_POST["nombre"],
-                    $_POST["apellidos"],
-                    $_POST["telefono"],
-                    $_POST["direccion"]
-                );
+    if (isset($_POST["id"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["telefono"]) && isset($_POST["direccion"])){
+        if (!empty($_POST["id"]) && !empty($_POST["email"]) && !empty($_POST["password"])){
+            $usuari = new UsuariosController();
+            $usuari->ModificarUsuari($_POST["id"],$_POST["email"],$_POST["password"],$_POST["nombre"],$_POST["apellidos"],$_POST["telefono"],$_POST["direccion"]);
+        }else{
+            echo "Faltan datos";
+            //header ("location: ../../index.php");
+        }
+    }else{
+        echo "Operacion No permitida";
+    }
 }
 
 

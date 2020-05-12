@@ -26,20 +26,8 @@ $objecteSessio = new SesionesController();
 
 class ProductosController extends Producto{
 
-    public function leeInfoProducto($categoria, $nombre, $subtitulo, $stock, $precio, $descripcion, $foto1, $foto2, $foto3){
-    
-       $this->nombre = $nombre;
-       $this->subtitulo = $subtitulo;
-       $this->stock = $stock;
-       $this->precio = $precio;
-       $this->descripcion = $descripcion;
-       $this->foto1 = $foto1;
-       $this->foto2 = $foto2;
-       $this->foto3 = $foto3;
-       
-       $this->id_categoria = $categoria;    
-       
-       $this->resultadoRegistraProducto($this->registraProducto());
+    public function leeInfoProducto($categoria, $nombre, $subtitulo, $stock, $precio, $descripcion, $foto1, $foto2, $foto3){   
+       $this->resultadoRegistraProducto($this->registraProducto($categoria, $nombre, $subtitulo, $stock, $precio, $descripcion, $foto1, $foto2, $foto3));
     }
 
     public function resultadoRegistraProducto($resultat){
@@ -69,26 +57,22 @@ class ProductosController extends Producto{
         require "../../Vistas/Producto/verProductoHome.php";
     }
 
-    public function CompruebaParaActualizar($categoria){
-        $this->id_categoria=$categoria;     
-        return $actualiza = $this->actualizaProducto()?true:false;
+    public function CompruebaParaActualizar($categoria){   
+        return $actualiza = $this->actualizaProducto($categoria)?true:false;
     }
 
     public function CompruebaParaEliminar($producto){
-        $this->id_producto = $producto;
-
         require "PedidoDetallesController.php";
         $pedidoDetalle = new PedidoDetallesController();
-        if ($pedidoDetalle->CompruebaParaActualizar($this->id_producto)){
-            
-           $this->eliminaElProducto();
+        if ($pedidoDetalle->CompruebaParaActualizar($producto)){
+           $this->eliminaElProducto($producto);
         }else{
             require "../Vistas/Producto/NoEliminable.php";
         }
     }
 
-    public function eliminaElProducto(){
-        if ($this->eliminaProducto()){
+    public function eliminaElProducto($producto){
+        if ($this->eliminaProducto($producto)){
             require "../Vistas/Producto/Eliminado.php"; 
         }else{
             require "../Vistas/Producto/NoEliminado.php";
@@ -96,25 +80,13 @@ class ProductosController extends Producto{
     }
     
     public function MuestraModificarProducto($id){
-
         header("location: ../Vistas/Producto/modificarProducto.php?id=$id"); 
     }
+
     public function ModificarProducte($id, $nombre, $subtitulo, $stock, $precio, $descripcion, $foto1, $foto2, $foto3){
-
-        $this->id_producto = $id;
-        $this->nombre = $nombre;
-        $this->subtitulo = $subtitulo;
-        $this->stock = $stock;
-        $this->precio = $precio;
-        $this->descripcion = $descripcion;
-        $this->foto1 = $foto1;
-        $this->foto2 = $foto2;
-        $this->foto3 = $foto3;
-
-        echo $subtitulo;
-
-       $this->resultadoModificaProducte($this->modificaProducto());
+       $this->resultadoModificaProducte($this->modificaProducto($id, $nombre, $subtitulo, $stock, $precio, $descripcion, $foto1, $foto2, $foto3));
     }
+
     public function resultadoModificaProducte($resultat){
         if ($resultat){
             $_SESSION["mensajeResultado"]="
@@ -131,57 +103,56 @@ class ProductosController extends Producto{
         header("location: ../index.php");
     }
 
-
-
-
-
-
 }
 
 
 
 
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
-    $nuevoObjeto = new ProductosController();
-
-    $ruta_imagenes = $_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/";
-
-    if (isset($_FILES["foto1"])){
-        $nombre_foto1 = $_FILES["foto1"]["name"];
-        $tmp_foto1 = $_FILES["foto1"]["tmp_name"];
-        $rutaFoto1 = $ruta_imagenes.$nombre_foto1;
-        copy($tmp_foto1, $rutaFoto1);
-    }else{
-        $nombre_foto1=null;
-    }
-    if (isset($_FILES["foto2"])){
-        $nombre_foto2 = $_FILES["foto2"]["name"];
-        $tmp_foto2 = $_FILES["foto2"]["tmp_name"];
-        $rutaFoto2 = $ruta_imagenes.$nombre_foto2;
-        copy($tmp_foto2, $rutaFoto2);
-    }else{
-        $nombre_foto2=null;
-    }
-    if (isset($_FILES["foto3"])){
-        $nombre_foto3 = $_FILES["foto3"]["name"];
-        $tmp_foto3 = $_FILES["foto3"]["tmp_name"];
-        $rutaFoto3 = $ruta_imagenes.$nombre_foto3;
-        copy($tmp_foto3, $rutaFoto3);
-    }else{
-        $nombre_foto3=null;
-    }
     
-    $categoria = 1;   //*** ATENCIO: s'ha de rebre l'input! */
-    $nuevoObjeto->leeInfoProducto(
-                    $_POST["nombre"],
-                    $_POST["subtitulo"],
-                    $_POST["stock"],
-                    $_POST["precio"],
-                    $_POST["descripcion"],
-                    $nombre_foto1,
-                    $nombre_foto2,
-                    $nombre_foto3
-                );
+    if (isset($_POST["categoria"]) && isset($_POST["nombre"]) && isset($_POST["subtitulo"]) && isset($_POST["stock"]) && isset($_POST["precio"]) && isset($_POST["descripcion"])){
+        if (!empty($_POST["categoria"]) && !empty($_POST["nombre"]) && !empty($_POST["subtitulo"]) && !empty($_POST["stock"]) && !empty($_POST["precio"]) && !empty($_POST["descripcion"])){
+        
+            if (!file_exists($_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/")){
+                mkdir($_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/");
+            }
+            $ruta_imagenes = $_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/";
+
+            if (isset($_FILES["foto1"]) && ($_FILES["foto1"]["name"])!=null){
+                $nombre_foto1 = $_FILES["foto1"]["name"];
+                $tmp_foto1 = $_FILES["foto1"]["tmp_name"];
+                $rutaFoto1 = $ruta_imagenes.$nombre_foto1;
+                copy($tmp_foto1, $rutaFoto1);
+            }else{
+                $nombre_foto1=null;
+            }
+            if (isset($_FILES["foto2"]) && ($_FILES["foto2"]["name"])!=null){
+                $nombre_foto2 = $_FILES["foto2"]["name"];
+                $tmp_foto2 = $_FILES["foto2"]["tmp_name"];
+                $rutaFoto2 = $ruta_imagenes.$nombre_foto2;
+                copy($tmp_foto2, $rutaFoto2);
+            }else{
+                $nombre_foto2=null;
+            }
+            if (isset($_FILES["foto3"])  && ($_FILES["foto2"]["name"])!=null){
+                $nombre_foto3 = $_FILES["foto3"]["name"];
+                $tmp_foto3 = $_FILES["foto3"]["tmp_name"];
+                $rutaFoto3 = $ruta_imagenes.$nombre_foto3;
+                copy($tmp_foto3, $rutaFoto3);
+            }else{
+                $nombre_foto3=null;
+            }
+
+            $nuevoObjeto = new ProductosController();
+            $nuevoObjeto->leeInfoProducto($_POST["categoria"],$_POST["nombre"],$_POST["subtitulo"],$_POST["stock"],$_POST["precio"],$_POST["descripcion"],$nombre_foto1,$nombre_foto2,$nombre_foto3);
+        }  
+        else{
+            echo "Faltan Los datos!<br>";
+        }
+    }else{
+        echo "Operacion No permitida";
+        //header("location: index.php");
+    }
 }
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
@@ -197,58 +168,71 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="verFotos"){
 
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="eliminar"){
-
-    $objecte = new ProductosController();
-    $objecte->CompruebaParaEliminar($_GET["producto"]);
+    if (isset($_GET["producto"]) && !empty(($_GET["producto"]))){
+        $objecte = new ProductosController();
+        $objecte->CompruebaParaEliminar($_GET["producto"]);
+    }else{
+        echo "operación NO permitida";
+    }
+    
 }
 
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="modificar"){
-    $objecte = new ProductosController();
-    $objecte->MuestraModificarProducto($_GET["producto"]);
-}
-if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
-    $objecte = new ProductosController();
-    
-    $ruta_imagenes = $_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/";
-    
-    if (isset($_FILES["foto1"])){
-        $nombre_foto1 = $_FILES["foto1"]["name"];
-        $tmp_foto1 = $_FILES["foto1"]["tmp_name"];
-        $rutaFoto1 = $ruta_imagenes.$nombre_foto1;
-        copy($tmp_foto1, $rutaFoto1);
+    if (isset($_GET["producto"]) && !empty(($_GET["producto"]))){
+        $objecte = new ProductosController();
+        $objecte->MuestraModificarProducto($_GET["producto"]);
     }else{
-        $nombre_foto1=null;
+        echo "Operación No permitida";
     }
-    if (isset($_FILES["foto2"])){
-        $nombre_foto2 = $_FILES["foto2"]["name"];
-        $tmp_foto2 = $_FILES["foto2"]["tmp_name"];
-        $rutaFoto2 = $ruta_imagenes.$nombre_foto2;
-        copy($tmp_foto2, $rutaFoto2);
+}
+
+if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
+
+    if (isset($_POST["id"]) && isset($_POST["nombre"]) && isset($_POST["subtitulo"]) && isset($_POST["stock"]) && isset($_POST["precio"]) && isset($_POST["descripcion"])){
+        if (!empty($_POST["id"]) && !empty($_POST["nombre"]) && !empty($_POST["subtitulo"]) && !empty($_POST["stock"]) && !empty($_POST["precio"]) && !empty($_POST["descripcion"])){
+        
+            if (!file_exists($_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/")){
+                mkdir($_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/");
+            }
+            $ruta_imagenes = $_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/";
+
+            if (isset($_FILES["foto1"]) && ($_FILES["foto1"]["name"])!=null){
+                $nombre_foto1 = $_FILES["foto1"]["name"];
+                $tmp_foto1 = $_FILES["foto1"]["tmp_name"];
+                $rutaFoto1 = $ruta_imagenes.$nombre_foto1;
+                copy($tmp_foto1, $rutaFoto1);
+            }else{
+                $nombre_foto1=null;
+            }
+            if (isset($_FILES["foto2"]) && ($_FILES["foto2"]["name"])!=null){
+                $nombre_foto2 = $_FILES["foto2"]["name"];
+                $tmp_foto2 = $_FILES["foto2"]["tmp_name"];
+                $rutaFoto2 = $ruta_imagenes.$nombre_foto2;
+                copy($tmp_foto2, $rutaFoto2);
+            }else{
+                $nombre_foto2=null;
+            }
+            if (isset($_FILES["foto3"])  && ($_FILES["foto2"]["name"])!=null){
+                $nombre_foto3 = $_FILES["foto3"]["name"];
+                $tmp_foto3 = $_FILES["foto3"]["tmp_name"];
+                $rutaFoto3 = $ruta_imagenes.$nombre_foto3;
+                copy($tmp_foto3, $rutaFoto3);
+            }else{
+                $nombre_foto3=null;
+            }
+
+            $nuevoObjeto = new ProductosController();
+            $nuevoObjeto->ModificarProducte($_POST["id"],$_POST["nombre"],$_POST["subtitulo"],$_POST["stock"],$_POST["precio"],$_POST["descripcion"],$nombre_foto1,$nombre_foto2,$nombre_foto3);
+        }  
+        else{
+            echo "Faltan Los datos!<br>";
+        }
     }else{
-        $nombre_foto2=null;
+        echo "Operacion No permitida";
+        //header("location: index.php");
     }
 
-    if (isset($_FILES["foto3"])){
-        $nombre_foto3 = $_FILES["foto3"]["name"];
-        $tmp_foto3 = $_FILES["foto3"]["tmp_name"];
-        $rutaFoto3 = $ruta_imagenes.$nombre_foto3;
-        copy($tmp_foto3, $rutaFoto3);
-    }else{
-        $nombre_foto3=null;
-    }
-    
-    $objecte->ModificarProducte(
-                    $_POST["id"],
-                    $_POST["nombre"],
-                    $_POST["subtitulo"],
-                    $_POST["stock"],
-                    $_POST["precio"],
-                    $_POST["descripcion"],
-                    $nombre_foto1,
-                    $nombre_foto2,
-                    $nombre_foto3
-                );
 }
 
 

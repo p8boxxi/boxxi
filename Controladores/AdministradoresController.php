@@ -8,14 +8,7 @@ require "../Modelos/Administrador.php";
 class AdministradoresController extends Administrador{
 
     public function leeInfoAdministrador($email, $password, $nombre, $apellidos, $telefono, $direccion){
-       $this->email = $email;
-       $this->password = $password;
-       $this->nombre = $nombre;
-       $this->apellidos = $apellidos;
-       $this->telefono = $telefono;
-       $this->direccion = $direccion;
-
-       $this->resultadoRegistraAdministrador($this->registraAdministrador());
+       $this->resultadoRegistraAdministrador($this->registraAdministrador($email, $password, $nombre, $apellidos, $telefono, $direccion));
     }
 
     public function resultadoRegistraAdministrador($resultat){
@@ -50,15 +43,18 @@ class AdministradoresController extends Administrador{
 
 
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
-    $Administrador = new AdministradoresController();
-    $Administrador->leeInfoAdministrador(
-                    $_POST["email"],
-                    $_POST["password"],
-                    $_POST["nombre"],
-                    $_POST["apellidos"],
-                    $_POST["telefono"],
-                    $_POST["direccion"]
-                );
+    if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["telefono"]) && isset($_POST["direccion"])){
+        if (!empty($_POST["email"]) and !empty($_POST["password"])){
+            $Administrador = new AdministradoresController();
+            $Administrador->leeInfoAdministrador($_POST["email"],$_POST["password"],$_POST["nombre"],$_POST["apellidos"],$_POST["telefono"],$_POST["direccion"]);
+        }else{
+            echo "Faltan datos";
+            //header ("location: ../../index.php");
+        }
+    }else{
+        echo "Operacion No permitida";
+    }
+    
 }
 
 
