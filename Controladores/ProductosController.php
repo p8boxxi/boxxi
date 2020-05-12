@@ -103,8 +103,16 @@ class ProductosController extends Producto{
         header("location: ../index.php");
     }
 
-}
 
+    ///////////  AP
+    public function ProductoDetalle($producto){
+        $this->id_producto = $producto;
+        $Llistat = $this->retornaProductoDetalle();
+        require "../Vistas/Producto/verProductoDetalle.php";
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+}
 
 
 
@@ -234,6 +242,14 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
     }
 
 }
+
+////////  AP
+
+if(isset($_GET["operacio"]) && $_GET["operacio"]=="verProductoDetalle"){
+    $objecte = new ProductosController();
+    $objecte->ProductoDetalle($_GET["producto"]);
+}
+//////////////////////////////////////////////////////////////////////
 
 
 ?>

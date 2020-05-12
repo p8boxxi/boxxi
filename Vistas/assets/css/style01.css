@@ -1,24 +1,30 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
 body {
     font-family: 'Poppins', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
+
 }
 
 
-/*****************************************************************************************
-******************** BARRA NAVEGACION GENERAL ***************************************/
+/*******************************************************************************************************************
+*******************************************************************************************************************
+******* BARRA NAVEGACION GENERAL *************************************************************************************/
+
+
 .container{
     width: 100%;
 }
 .navbar{
     display: block;
     min-height: 80px;
-    margin: 0;
-    padding: 20px 0;
+    margin-top: 10px;
+    height: relative;
 }
 
 .navbar a{
 
-    font-weight: bold;
+    font-weight: 600;
     color: black;
     font-size: 18px;
     text-decoration: none;
@@ -26,22 +32,17 @@ body {
 }
 .logo-header{
     display: block;
-    width: 200px;
+    width: 33%;
     text-align: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 15px;
-    margin: auto;
 }
 
 .nav{
     display: block;
-    width: 50%;
+    width: 33%; 
 }
 
 .nav li, .nav-derecha li{
-    margin: 0 10px 0 10px;
+    margin: 0 20px 0 20px;
     text-align: center;
     list-style: none;
     display: inline-block;
@@ -56,11 +57,11 @@ body {
 */
 
 .nav li:after {
-   display:block;
-   content: '';
-   border-bottom: solid 3px #FF8A00;  
-   transform: scaleX(0);  
-   transition: transform 250ms ease-in-out;
+ display:block;
+ content: '';
+ border-bottom: solid 3px #FF8A00;  
+ transform: scaleX(0);  
+ transition: transform 250ms ease-in-out;
 }
 
 .nav li:hover:after {
@@ -75,10 +76,7 @@ body {
 .nav-derecha {
     text-align: right;
     display: block;
-    width: 50%;
-}
-.nav-derecha ul {
-    margin:0;
+    width: 33%;
 }
 .nav-derecha a{
     font-size: 16px;
@@ -89,8 +87,11 @@ body {
     visibility: hidden;
 }
 
-/*****************************************************************************************
-******************** BARRA NAVEGACION TIENDA ***************************************/
+
+/*******************************************************************************************************************
+*******************************************************************************************************************
+******* BARRA NAVEGACION TIENDA *************************************************************************************/
+
 .nav-tienda{
     background-color: #FF8A00;
     margin-bottom: 20px;
@@ -122,11 +123,11 @@ body {
 }
 
 .naranja li:after {
-   display:block;
-   content: '';
-   border-bottom: solid 2px white;  
-   transform: scaleX(0);  
-   transition: transform 250ms ease-in-out;
+ display:block;
+ content: '';
+ border-bottom: solid 2px white;  
+ transform: scaleX(0);  
+ transition: transform 250ms ease-in-out;
 }
 .naranja li:hover:after {
     transform: scaleX(1); 
@@ -138,28 +139,31 @@ body {
 }
 
 
-/*****************************************************************************************
-******************** PRODUCTOS TIENDA ***************************************/
+/*******************************************************************************************************************
+********************************************************************************************************************
+******************** PRODUCTOS TIENDA ******************************************************************************/
+
+
 .titulo-main{
     text-align: center;
     font-weight: 600;
     margin: 25px;
 }
 
-
-
-
 .flex-container {
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
+  justify-content: center;
 }
-.flex-container>div{
+
+.bloque >div{
     width: 250px;
     height: 300px;
     margin: 0 10px 25px 10px;   
-/*    background-color: #f2f2f2;*/
+    /*    background-color: #f2f2f2;*/
 }
+
 .container-bloque{   
     display: block;
     height: inherit;
@@ -169,10 +173,11 @@ body {
     margin: 0 auto;
     text-align: center;
 }
+
 .container-bloque ul{
-   list-style-type: none;
-   margin: 0;
-   padding: 0;
+ list-style-type: none;
+ margin: 0;
+ padding: 0;
 }
 
 .container-bloque li{
@@ -180,40 +185,45 @@ body {
     list-style: none;
     font-size: 16px;
     text-align: center;
-
 }
+
 .bloque img{
     text-align: center;
     margin: 0 auto;
 }
+
 .bloquefoto{
     width: inherit;
     text-align: center;
     margin-bottom: 10px;
 }
+
 .bloque-precio a{
     color: #FF8A00;
     font-weight: 300;
 }
+
 .tituloProducto a{
     font-weight: 400;
     font-size: 17px;
 }
+
 .boton{
     width: 120px;
     height: 30px;
     text-align: center;
     border-radius: 25px ;
     margin: 0 auto;
-    
 }
+
 .bt-comprar li{
     display: inline-block;
 }
+
 .bt-comprar {
     background-color: #cccc00;
-
 }
+
 .bt-comprar a{
     width: inherit;
     height: inherit;
@@ -224,4 +234,157 @@ body {
     text-align: center;
     display: table-cell;
     vertical-align: middle; 
+}
+
+
+/*******************************************************************************************************************
+*******************************************************************************************************************
+******* PRODUCTO DETALLE ******************************************************************************************/
+
+.migas{
+    display:block;
+    height: 20px;
+    margin-bottom: 20px;
+}
+
+
+.prod-detalle  >div{
+    width: 500px;
+    min-height: 600px;
+    /*    background-color: #f2f2f2;*/
+}
+
+.prod-detalle{
+    width: inherit;
+    /*background-color: blue;*/
+}
+
+.container-fotos{
+    width: 550px;
+    /*    background-color: red;*/
+}
+.container-datos{
+    width: 550px;
+    /*   background-color: pink;*/
+}
+.foto-grande{
+    width: 100%;
+    height: 450px;
+    background-color: grey;
+    overflow: hidden;
+    border: solid 1px #ccc;
+    background-color: white;
+}
+.foto-grande img{
+    width: inherit;
+    height: auto;
+    justify-content: center;
+
+}
+.foto-pequeñas{
+    display: flex;
+    flex-wrap: wrap;
+    height: 140px;
+    width:100%;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.foto-pequeñas >div{
+    width: 30%;
+    margin: 0 auto; 
+    padding: 0;
+    border: solid 1px #ccc;
+    /*background-color: white;    */
+    overflow: hidden;
+    
+}
+.foto-pequeñas img{
+    width: 170px;
+    height: auto;
+}
+
+.container-datos{
+    padding: 0 20px 0 30px;
+    width: 100%;
+}
+
+.container-datos h1{
+    font-weight: 900;
+    font-size: 30px;
+    color: black;
+    text-align: left;
+}
+.container-datos p{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+.precio-grande {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #FF8A00;
+    margin-bottom: 20px;
+
+}
+
+
+.bt-lateral{
+    display: block;
+    vertical-align: left;
+    color: #FF8A00;
+    margin-bottom: 20px;
+}
+
+
+.bt-lateral button{
+  background-color: #cccc00; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 30px ;
+  margin-bottom: 20px;
+}
+
+
+/***************  SNIPET BOTON **************************/
+#myform {
+    display: block;
+    text-align: left;
+    padding: 5px;
+    margin: 2%;
+    margin-bottom: 30px;
+    border: solid 1px #ccc;
+    width: 120px;
+    border-radius: 5px;
+}
+.qty {
+    width: 40px;
+    height: 25px;
+    text-align: center;
+    border:none;
+}
+
+.rec{
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  justify-content: center;
+}
+#cantidad input{
+    font-weight: 600;
+}
+
+input.qtyplus { 
+    width:25px; 
+    height:25px;
+    border:none;
+}
+input.qtyminus {
+    width:25px; 
+    height:25px;
+    border: none;
 }

@@ -9,26 +9,29 @@
     </ul>
 
     <div class="logo-header">
-      <a href='../../index.php'>
-     <img   src="../../Vistas/assets/img/logo_color.png" >     
-   </a>
-   </div>
-   <div class="nav-derecha">
-    <ul >
-      <li <?php if ($currentPage === 'Tienda') {echo 'class="active-tienda"';} ?> ><a href='../Home/tienda.php'>Tienda</a></li>  
-      <?php
-      if(empty($_SESSION["id_usuario"])){ echo '<li><a type="button" data-toggle="modal" data-target="#loginModal">Acceso de usuarios</a></li>';}  
-      ?>
-      <?php
-      if(!empty($_SESSION["id_usuario"])){ 
-        if($_SESSION["rol"]=="Cliente"){
-          echo "<li><a href='clientePerfil.php'><b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</a></b></li>";
-        } else {
-          echo "<li><a href='adminPerfil.php'><b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</a></b></li>";
-        }
-        echo "<li><a href='../../Controladores/SesionesController.php?operacion=cerrarSesion'>Cerrar sesión</a></li>";
-      }  
-      ?>
+      <a href="../../index.php">
+         <img   src="<?php 
+          if (file_exists("../../Vistas/assets/img/logo_color.png")){echo '../../Vistas/assets/img/logo_color.png';}
+          if (file_exists("../Vistas/assets/img/logo_color.png")){echo '../Vistas/assets/img/logo_color.png';}
+          if (file_exists("Vistas/assets/img/logo_color.png")){echo 'Vistas/assets/img/logo_color.png';}
+           ?>" >     
+      </a>
+    </div>
+    <div class="nav-derecha">
+      <ul >
+        <li <?php if ($currentPage === 'Tienda') {echo 'class="active-tienda"';} ?> ><a href='../Home/tienda.php'>Tienda</a></li> <?php
+                if(empty($_SESSION["id_usuario"])){ echo '<li><a type="button" data-toggle="modal" data-target="#loginModal">Acceso de usuarios</a></li>';}  
+               ?>
+              <?php
+              if(!empty($_SESSION["id_usuario"])){ 
+                  if($_SESSION["rol"]=="Cliente"){
+                      echo "<li><a href='clientePerfil.php'><b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</a></b></li>";
+                  } else {
+                      echo "<li><a href='adminPerfil.php'><b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</a></b></li>";
+                  }
+                  echo "<li><a href='../../Controladores/SesionesController.php?operacion=cerrarSesion'>Cerrar sesión</a></li>";
+              }  
+              ?>
 
     </ul>
   </div>

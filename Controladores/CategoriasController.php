@@ -90,7 +90,12 @@ class CategoriasController extends Categoria{
     public function selectCategorias(){
         return $this->retornaCategoriasTodos();
     }
-
+    ///////////////// AP
+    public function MuestraInfoCategoria($id){
+       $this->id = $id;
+       $this->retornaNomCategoria();
+    }
+   //////////////////////////////////////////////////////////
 
 
 }

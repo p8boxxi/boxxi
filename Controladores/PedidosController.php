@@ -105,6 +105,7 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
     $objecte->LlistaPedidos();
 }
 
+
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="cancelar"){
     if (isset($_GET["pedido"]) && !empty($_GET["pedido"])){
         $objecte = new PedidosController();
