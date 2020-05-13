@@ -36,6 +36,34 @@ class Pedido{
         }
     }
 
+    //////  AP
+    protected function registraPedidoVisitante($estado){
+        $this->setId_estado($estado);
+        $this->setFecha(date("Y-m-d H:i:s"));
+
+        try{    
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sqlPedido = "INSERT INTO pedidos (id_pedido, id_cliente, id_estado, fecha) 
+                    VALUES (null, 1, :id_estado, :fecha)";
+            $resultado = $conecta->getConexionBD()->prepare($sqlPedido);
+            $resultado->execute(array(
+                                    
+                                    ":id_estado" => $this->getId_estado(),
+                                    ":fecha" => $this->getFecha()
+                                ));
+            $conecta->getConexionBD()->commit();  
+            return true;
+         }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return false; 
+        }
+    }
+
+
+    /////////////////////////////////////
+
+
     protected function retornaPedidosTodos(){
         try{
             $conecta = new ConexionBD();

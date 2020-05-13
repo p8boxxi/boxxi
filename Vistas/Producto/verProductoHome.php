@@ -1,13 +1,14 @@
 <?php    
 /***  ENCABEZADO */
+require_once "../../Controladores/ProductosController.php";
 
     //require '';
-
 ?>
 
 <h1 class="titulo-main">mobiliario</h1>
 <div class="container">
 <div class = "flex-container bloque ">
+
     <?php
 
     foreach($Llistat as $objecte){ 
@@ -16,15 +17,19 @@
             <div class="bloquefoto">
                 <?php if ($objecte->foto1!=null){   
                     ?>
-                    <img src="../../Vistas/assets/img/productos/<?php echo $objecte->foto1 ?>" width="220" height="200">
+                    <img src="/Vistas/assets/img/productos/<?php echo $objecte->foto1 ?>" width="220" height="200"></img>
                     <?php
                 } else{
-                    echo '<span style="width:220; height: 200px; display:block; background-color:#e6e6e6;">Imagen no disponible</span>' ;}?>
+                    echo '<span style="width:220; height: 200px; display:block; background-color:#e6e6e6;">Imagen no disponible</span>' ;
+                }?>
+
             </div>
             <ul>
                 <li class = "tituloProducto"><a><?php echo $objecte->nombre ?></a></li>
                 <li class= "bloque-precio"><a><?php echo $objecte->precio ."€" ?></a></li>
-                  <li class="boton bt-comprar"><a  href="#">Comprar</a></li>
+                   <li class="boton bt-comprar"><a  href="/Controladores/ProductosController.php?operacio=verProductoDetalle&producto=<?php echo $objecte->id_producto ?>" >Comprar</a></li>
+                                               
+                    
               </ul>
         </div>
 

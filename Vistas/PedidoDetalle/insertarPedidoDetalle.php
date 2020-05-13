@@ -17,7 +17,7 @@
             <input type="text" name="precio" placeholder="precio">
         </div>
         <div class="field">
-            <label for="producto">producto (TIENE QUE VENIR DE PRODUCTOS(nombre)!!)</label>
+            <label for="producto">producto (TIENE QUE VENIR DE PRODUCTOS(id)!!)</label>
             <input type="text" name="producto" placeholder="producto">
         </div>
         <input type="hidden" name="operacio" value="inserta">

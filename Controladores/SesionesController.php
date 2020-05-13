@@ -17,6 +17,7 @@ if (isset($_GET["operacion"]) && $_GET["operacion"]=="cerrarSesion"){
     session_destroy();
 
     header("location: ../Vistas/Home/index.php");
+    
 }
 
 

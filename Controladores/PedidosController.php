@@ -10,11 +10,11 @@ class PedidosController extends Pedido{
     public function leeInfoPedido($cliente, $estado){
         $this->id_cliente = $_SESSION["id_usuario"];
         $this->id_estado = $estado;
-        $this->fecha = $fecha;
+        //$this->fecha = $fecha;
 
         $this->resultadoRegistraPedido($this->registraPedido($cliente, $estado));
     }
-
+        
     public function resultadoRegistraPedido($resultat){
         if ($resultat){
             require "../Vistas/Pedido/Insertado.php";
@@ -22,6 +22,30 @@ class PedidosController extends Pedido{
             require "../Vistas/Pedido/NoInsertado.php";
         } 
     }
+
+
+    public function leeInfoPedidoComprar($cliente, $estado, $producto){
+        $this->id_cliente = $_SESSION["id_usuario"];
+        $this->id_estado = $estado;
+        //$this->fecha = $fecha;
+        $this->id_producto = $producto;
+        $this->resultadoRegistraPedidoComprar($this->registraPedido($cliente, $estado), $producto);
+    }
+
+
+    public function resultadoRegistraPedidoComprar($resultat, $producto){
+        if ($resultat){
+            require "ProductosController.php";
+            $obj = new ProductosController();
+            $obj->ProductoDetalleComprar($producto);
+            //require "../Vistas/PedidoDetalle/ConfirmarCompra.php";
+        }else{
+            require "../Vistas/Pedido/NoInsertado.php";
+        } 
+    }
+
+
+
 
     public function LlistaPedidos(){
 
@@ -87,7 +111,6 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
     
     $estado = 1;  /**** ATENCION: por defecto!!  */
 
-
     $cliente = $_SESSION["id_usuario"];
 
     if (isset($_SESSION["id_usuario"]) && !empty($_SESSION["id_usuario"])){
@@ -100,10 +123,28 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
     }
 }
 
+if(isset($_POST["operacio"]) && $_POST["operacio"]=="comprar"){
+    $estado = 1;  /**** ATENCION: por defecto!!  */
+
+    $producto = $_POST['id'];
+    $cliente = $_SESSION["id_usuario"];
+
+    if (isset($_SESSION["id_usuario"]) && !empty($_SESSION["id_usuario"])){
+        $cliente = $_SESSION["id_usuario"];
+        $nuevoObjeto = new PedidosController();
+        $nuevoObjeto->leeInfoPedidoComprar($cliente, $estado, $producto);
+    }else{
+        echo "Operación No permitida";
+        header ("location: index.php");
+    }
+}
+
+
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
     $objecte = new PedidosController();
     $objecte->LlistaPedidos();
 }
+
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="cancelar"){
     if (isset($_GET["pedido"]) && !empty($_GET["pedido"])){

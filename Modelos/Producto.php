@@ -143,7 +143,23 @@ class Producto{
         }
     }
 
-
+    ////////////// AP
+    protected function retornaProductoDetalle(){
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "SELECT * FROM productos
+                                    WHERE id_producto = '$this->id_producto'";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute();
+            $conecta->getConexionBD()->commit();
+            return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return null;  
+        }
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////
 
 
     public function getId_producto()

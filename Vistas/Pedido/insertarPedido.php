@@ -6,7 +6,7 @@
 ?>
 
 <h1>Inserta un PEDIDO</h1>
-<form action="../../Controladores/PedidosController.php" method="POST">
+<form action="/Controladores/PedidosController.php" method="POST">
     <div class="six fields">
         <div class="field">
             <label for="fecha">fecha</label>

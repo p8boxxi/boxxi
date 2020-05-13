@@ -10,16 +10,18 @@ class PedidoDetallesController extends PedidoDetalle{
        $this->precio = $precio;
        $this->producto = $producto;
        
-       $this->resultadoRegistraPedidoDetalle($this->registraPedidoDetalle());
+       $this->resultadoRegistraPedidoDetalle($this->registraPedidoDetalle($producto));
     }
 
     public function resultadoRegistraPedidoDetalle($resultat){
         if ($resultat){
-            require "../Vistas/PedidoDetalle/Insertado.php";
+            require "../Vistas/PedidoDetalle/insertadoPedidoDetalle.php";
         }else{
             require "../Vistas/PedidoDetalle/NoInsertado.php";
         } 
     }
+
+
 
     public function LlistaPedidoDetalles(){
 
