@@ -15,7 +15,7 @@ if (!isset($_SESSION["cistella"])){
 <h1>AÑADIR un PRODUCTO en el PEDIDO de "ahora"</h1>
 <form action="../../Controladores/PedidosController.php" method="POST">
 
-<?php print_r($_SESSION) ?>
+<?php  ?>
 
 
 
