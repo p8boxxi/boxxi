@@ -9,12 +9,8 @@
     </ul>
 
     <div class="logo-header">
-      <a href="../../index.php">
-         <img   src="<?php 
-          if (file_exists("../../Vistas/assets/img/logo_color.png")){echo '../../Vistas/assets/img/logo_color.png';}
-          if (file_exists("../Vistas/assets/img/logo_color.png")){echo '../Vistas/assets/img/logo_color.png';}
-          if (file_exists("Vistas/assets/img/logo_color.png")){echo 'Vistas/assets/img/logo_color.png';}
-           ?>" >     
+      <a href="/index.php">
+         <img   src="/Vistas/assets/img/logo_color.png">     
       </a>
     </div>
     <div class="nav-derecha">

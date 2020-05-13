@@ -246,6 +246,9 @@ body {
     height: 20px;
     margin-bottom: 20px;
 }
+.migas a{
+     text-decoration: none;
+}
 
 
 .prod-detalle  >div{
@@ -324,9 +327,7 @@ body {
     font-weight: 600;
     color: #FF8A00;
     margin-bottom: 20px;
-
 }
-
 
 .bt-lateral{
     display: block;
@@ -336,7 +337,7 @@ body {
 }
 
 
-.bt-lateral button{
+.boton-buy input[type=submit] {
   background-color: #cccc00; /* Green */
   border: none;
   color: white;
@@ -387,4 +388,32 @@ input.qtyminus {
     width:25px; 
     height:25px;
     border: none;
+}
+
+
+/*******************************************************************************************************************
+*******************************************************************************************************************
+******* FINALIZAR PEDIDO ******************************************************************************************/
+
+
+.prod-comprar  >div{
+    width: 90%;
+    height: relative;
+}
+.prod-comprar{
+    width: inherit;
+}
+
+
+.producto-cesta{
+    width: 80%;
+    height: 150px;
+}
+
+
+.img-referencia{
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    overflow: hidden;
 }

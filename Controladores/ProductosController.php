@@ -111,6 +111,12 @@ class ProductosController extends Producto{
         require "../Vistas/Producto/verProductoDetalle.php";
     }
 
+    public function ProductoDetalleComprar($producto){
+        $this->id_producto = $producto;
+        $obj = $this->retornaProductoDetalle();
+        require "../Vistas/Pedido/verPedidoComprar.php";
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
@@ -121,10 +127,10 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
     if (isset($_POST["categoria"]) && isset($_POST["nombre"]) && isset($_POST["subtitulo"]) && isset($_POST["stock"]) && isset($_POST["precio"]) && isset($_POST["descripcion"])){
         if (!empty($_POST["categoria"]) && !empty($_POST["nombre"]) && !empty($_POST["subtitulo"]) && !empty($_POST["stock"]) && !empty($_POST["precio"]) && !empty($_POST["descripcion"])){
         
-            if (!file_exists($_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/")){
-                mkdir($_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/");
+            if (!file_exists($_SERVER["DOCUMENT_ROOT"]."/Vistas/assets/img/productos/")){
+                mkdir($_SERVER["DOCUMENT_ROOT"]."/Vistas/assets/img/productos/");
             }
-            $ruta_imagenes = $_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/";
+            $ruta_imagenes = $_SERVER["DOCUMENT_ROOT"]."/Vistas/assets/img/productos/";
 
             if (isset($_FILES["foto1"]) && ($_FILES["foto1"]["name"])!=null){
                 $nombre_foto1 = $_FILES["foto1"]["name"];

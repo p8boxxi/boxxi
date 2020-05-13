@@ -17,7 +17,7 @@ require_once "../../Controladores/ProductosController.php";
             <div class="bloquefoto">
                 <?php if ($objecte->foto1!=null){   
                     ?>
-                    <img src="../../Vistas/assets/img/productos/<?php echo $objecte->foto1 ?>" width="220" height="200"></img>
+                    <img src="/Vistas/assets/img/productos/<?php echo $objecte->foto1 ?>" width="220" height="200"></img>
                     <?php
                 } else{
                     echo '<span style="width:220; height: 200px; display:block; background-color:#e6e6e6;">Imagen no disponible</span>' ;
@@ -27,7 +27,7 @@ require_once "../../Controladores/ProductosController.php";
             <ul>
                 <li class = "tituloProducto"><a><?php echo $objecte->nombre ?></a></li>
                 <li class= "bloque-precio"><a><?php echo $objecte->precio ."€" ?></a></li>
-                   <li class="boton bt-comprar"><a  href="../../Controladores/ProductosController.php?operacio=verProductoDetalle&producto=<?php echo $objecte->id_producto ?>" >Comprar</a></li>
+                   <li class="boton bt-comprar"><a  href="/Controladores/ProductosController.php?operacio=verProductoDetalle&producto=<?php echo $objecte->id_producto ?>" >Comprar</a></li>
                                                
                     
               </ul>
