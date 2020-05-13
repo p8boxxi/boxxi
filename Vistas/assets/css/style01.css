@@ -247,7 +247,7 @@ body {
     margin-bottom: 20px;
 }
 .migas a{
-     text-decoration: none;
+ text-decoration: none;
 }
 
 
@@ -259,7 +259,8 @@ body {
 
 .prod-detalle{
     width: inherit;
-    /*background-color: blue;*/
+    height: relative;
+    margin-bottom: 50px;
 }
 
 .container-fotos{
@@ -362,6 +363,16 @@ body {
     width: 120px;
     border-radius: 5px;
 }
+#myform2 {
+    display: block;
+    text-align: center;
+    padding: 5px;
+    margin: 2%;
+    margin-bottom: 30px;
+    border: solid 1px #ccc;
+    width: 120px;
+    border-radius: 5px;
+}
 .qty {
     width: 40px;
     height: 25px;
@@ -397,23 +408,84 @@ input.qtyminus {
 
 
 .prod-comprar  >div{
-    width: 90%;
+    width: inherit;
     height: relative;
+    margin: 15px 0 15px 0;
 }
 .prod-comprar{
     width: inherit;
+    height: relative;
+    padding-bottom: 120px;
 }
-
+.prod-comprar h1{
+    font-weight: 600;
+    margin-bottom: 40px;
+    text-align: center;
+}
 
 .producto-cesta{
     width: 80%;
     height: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    overflow: hidden;
+
+}
+.producto-cesta>div{
+    width: relative;
+    height: inherit;
+    margin-right: 50px;
 }
 
+
+.items-prod{
+    width: relative;
+    height: relative;
+    display: inline-block;
+
+}
+.prod-dentro{
+    width: 200px;
+    text-align: center;
+}
 
 .img-referencia{
     display: block;
     margin: 0 auto;
-    width: 100px;
+    width: 200px;
     overflow: hidden;
+}
+.img-referencia img{
+    width: 200px;
+    height: auto;
+}
+
+.items-prod p, .items-prod h2{
+    text-align: left;
+}
+.items-prod h2{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400; 
+    font-size: 20px;
+}
+.items-prod p{
+    font-size: 12px;
+}
+
+.items-confirmar{
+    text-align: right;
+}
+
+.confirmar input[type=submit]{
+    background-color: black;
+}
+
+
+/*******************************************************************************************************************
+*******************************************************************************************************************
+******* RESULTADO ******************************************************************************************/
+
+.container-final{
+    min-height: 700px;
 }

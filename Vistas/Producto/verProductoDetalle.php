@@ -96,7 +96,8 @@ $cat = new CategoriasController();
     <script src="../Vistas/assets/js/botoncantidad.js"></script>
 <?php } ?>
 
-<?php    
-/***  PIE */
+<?php include '../Vistas/Footer/footer.php'; ?>
 
-?>
+</body>
+
+</html>
