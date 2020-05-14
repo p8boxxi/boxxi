@@ -8,6 +8,7 @@
         public function __construct() {
 
             try{
+                //$this->conexionBD = new PDO('mysql:host=sql203.epizy.com;dbname=epiz_25500860_boxxi', 'epiz_25500860', '8TPrDIFBY4OVfJ');
                 $this->conexionBD = new PDO('mysql:host=localhost; dbname=boxxi', 'root', '');
                 $this->conexionBD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->conexionBD->exec("SET CHARACTER SET utf8");

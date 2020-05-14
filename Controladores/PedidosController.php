@@ -5,12 +5,13 @@ require "../Modelos/Pedido.php";
 require "SesionesController.php";
 $objecteSessions = new SesionesController();
 
+if (!isset($_SESSION["cistella"])){
+    $_SESSION["cistella"]= new Cistella();
+}
+
 class PedidosController extends Pedido{
 
     public function leeInfoPedido($cliente, $estado){
-        $this->id_cliente = $_SESSION["id_usuario"];
-        $this->id_estado = $estado;
-        //$this->fecha = $fecha;
 
         $this->resultadoRegistraPedido($this->registraPedido($cliente, $estado));
     }
@@ -23,16 +24,16 @@ class PedidosController extends Pedido{
         } 
     }
 
-
+    //AP
     public function leeInfoPedidoComprar($cliente, $estado, $producto){
-        $this->id_cliente = $_SESSION["id_usuario"];
-        $this->id_estado = $estado;
-        //$this->fecha = $fecha;
-        $this->id_producto = $producto;
+        // $this->id_cliente = $_SESSION["id_usuario"];
+        // $this->id_estado = $estado;
+        // //$this->fecha = $fecha;
+        // $this->id_producto = $producto;
         $this->resultadoRegistraPedidoComprar($this->registraPedido($cliente, $estado), $producto);
     }
 
-
+    //AP
     public function resultadoRegistraPedidoComprar($resultat, $producto){
         if ($resultat){
             require "ProductosController.php";
@@ -75,9 +76,7 @@ class PedidosController extends Pedido{
     }
 
     public function ModificarPedido($id, $fecha){
-        //$this->id_usuario = $usuario;
-        //$this->id_estado = $estado;
-        
+       
          $this->id_pedido = $id;
          $this->fecha = $fecha;
         
@@ -103,7 +102,26 @@ class PedidosController extends Pedido{
 
 }
 
+if(isset($_POST["operacio"]) && $_POST["operacio"]=="anadirApedido"){
+    
+    if (isset($_POST["cantidad"]) && !empty($_POST["cantidad"])){
+        if (isset($_SESSION["cistella"])){
+            $_SESSION["cistella"]->posaProducteCistella($_POST["producto"], $_POST["cantidad"]);  
+            header("location: ../Vistas/Pedido/insertarPedido.php");
+        }else{
+            echo "Error!";
+        }
+        
+    }else{
+        echo "Defina la cantidad!";
+    }
+     
 
+    $cliente = $_SESSION["id_cliente"];
+
+
+
+}
 
 
 
@@ -123,6 +141,39 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
     }
 }
 
+
+if(isset($_GET["accio"]) && $_GET["accio"]=="creaPedido"){
+
+    $estado = 2;  /**** ATENCION: 2?, por defecto (pedido nuevo)!!  */
+    
+    if(isset($_SESSION["id_cliente"]) && isset($_SESSION["carro"])){
+        $vector = $_SESSION["carro"];
+        require "PedidoDetallesController.php";
+        $pedidodetalle = new PedidoDetallesController();
+
+        for($i=0;$i<count($vector);$i+=4){
+            if ($i<4){
+                $idPedido = null;
+            }else{
+                $idPedido = $valorRetornat[1];
+            }
+            
+            $valorRetornat=$pedidodetalle->leeInfoPedidoDetalle($vector[$i+3], $vector[$i+2], $vector[$i], $vector[$i+1], $_SESSION["id_cliente"], $idPedido); 
+        }
+        if ($valorRetornat[0]){
+            require "../Vistas/Pedido/Insertado.php";
+        }else{
+            require "../Vistas/Pedido/Insertado.php";
+        }   
+    }else{
+        echo "DEBE LOGUEARSE!!";
+    }
+
+}
+
+
+
+//AP
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="comprar"){
     $estado = 1;  /**** ATENCION: por defecto!!  */
 
@@ -144,7 +195,6 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
     $objecte = new PedidosController();
     $objecte->LlistaPedidos();
 }
-
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="cancelar"){
     if (isset($_GET["pedido"]) && !empty($_GET["pedido"])){
@@ -174,7 +224,6 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
         echo "Operación No permitida";
     }
 }
-
 
 
 ?>

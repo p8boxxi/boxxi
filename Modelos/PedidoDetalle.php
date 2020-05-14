@@ -6,38 +6,68 @@ class PedidoDetalle{
     protected $id_pedido_detalle;
     protected $cantidad;
     protected $precio;
-    protected $producto;
+    protected $producto; //nombre
     
-
+    
     protected $id_pedido; /**** */
     protected $id_producto; /**** */
     
 
-    protected function registraPedidoDetalle($id_producto){
+    protected function registraPedidoDetalle($cantidad, $precio, $idProducto, $nombreProducto, $cliente, $idPedido){
+        $this->setCantidad($cantidad);
+        $this->setPrecio($precio);
+        $this->setId_producto($idProducto);
+        $this->setProducto($nombreProducto);
         
+        if ($idPedido==null){
+            try{    
+                $conecta = new ConexionBD();
+                $conecta->getConexionBD()->beginTransaction();
+                $sqlPedido = "INSERT INTO pedidos (id_pedido, id_cliente, id_estado, fecha)
+                                VALUES (null, $cliente,'2',now())";
+                $resultado = $conecta->getConexionBD()->prepare($sqlPedido);
+                $resultado->execute();
+                $idInsertado = $conecta->getConexionBD()->lastInsertId();
 
-        $this->setId_pedido(13);   /**** ATENCIO-MILLORAR::  id_pedido, = l'ha de saber!*/
-        $this->setId_producto($id_producto);  /**** ATENCIO-MILLORAR::  id_producto, = l'ha de saber! */
+                $sqlPedidoDetalle = "INSERT INTO pedido_detalle (id_pedido_detalle, id_pedido, id_producto, cantidad, precio, producto) 
+                        VALUES (null, :id_pedido, :id_producto, :cantidad, :precio, :producto) ";
+                $resultado = $conecta->getConexionBD()->prepare($sqlPedidoDetalle);
+                $resultado->execute(array(
+                                        ":id_pedido" => $idInsertado,
+                                        ":id_producto" => $this->getId_producto(),
+                                        ":cantidad" => $this->getCantidad(),
+                                        ":precio" => $this->getPrecio(),
+                                        ":producto" => $this->getProducto()
+                                    ));
+                $conecta->getConexionBD()->commit(); 
+                return array(true, $idInsertado);
+             }catch(Exception $excepcio){
+                $conecta->getConexionBD()->rollback();  
+                echo $excepcio->getMessage(); 
+            }
+        }else{
+            try{    
+                $conecta = new ConexionBD();
+                $conecta->getConexionBD()->beginTransaction();
         
-        
-        try{    
-            $conecta = new ConexionBD();
-            $conecta->getConexionBD()->beginTransaction();
-            $sqlPedidoDetalle = "INSERT INTO pedido_detalle (id_pedido_detalle, id_pedido, id_producto, cantidad, precio) 
-                    VALUES (null, :id_pedido, :id_producto, :cantidad, :precio) ";
-            $resultado = $conecta->getConexionBD()->prepare($sqlPedidoDetalle);
-            $resultado->execute(array(
-                                    ":id_pedido" => $this->getId_pedido(),
-                                    ":id_producto" => $this->getId_producto(),
-                                    ":cantidad" => $this->getCantidad(),
-                                    ":precio" => $this->getPrecio()
-                                ));
-            $conecta->getConexionBD()->commit();  
-            return true;
-         }catch(Exception $excepcio){
-            $conecta->getConexionBD()->rollback();  
-            return false; 
+                $sqlPedidoDetalle = "INSERT INTO pedido_detalle (id_pedido_detalle, id_pedido, id_producto, cantidad, precio, producto) 
+                        VALUES (null, :id_pedido, :id_producto, :cantidad, :precio, :producto) ";
+                $resultado = $conecta->getConexionBD()->prepare($sqlPedidoDetalle);
+                $resultado->execute(array(
+                                        ":id_pedido" => $idPedido,
+                                        ":id_producto" => $this->getId_producto(),
+                                        ":cantidad" => $this->getCantidad(),
+                                        ":precio" => $this->getPrecio(),
+                                        ":producto" => $this->getProducto()
+                                    ));
+                $conecta->getConexionBD()->commit();  
+                return array (true, $idPedido);
+             }catch(Exception $excepcio){
+                $conecta->getConexionBD()->rollback();  
+                return false; 
+            }
         }
+        
     }
 
     protected function retornaPedidoDetallesTodos(){
@@ -207,6 +237,7 @@ class PedidoDetalle{
 
         return $this;
     }
+
 }
 
 //

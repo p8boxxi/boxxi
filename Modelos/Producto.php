@@ -66,6 +66,21 @@ class Producto{
             return null;  
         }
     }
+    
+    protected function retornaProducto($id){
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "SELECT * FROM productos WHERE id_producto=$id";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute();
+            $conecta->getConexionBD()->commit();
+            return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return null;  
+        }
+    }
 
     protected function actualizaProducto($categoria){
         //poso a valor 1 (=sin nombre, com un "null")    /*** ATENCIO: codigo en CATEGORIAS */

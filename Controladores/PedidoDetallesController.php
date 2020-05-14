@@ -2,16 +2,29 @@
 
 require "../Modelos/PedidoDetalle.php";
 
+require_once "SesionesController.php";
+$objecteSessions = new SesionesController();
+
 class PedidoDetallesController extends PedidoDetalle{
 
-    public function leeInfoPedidoDetalle($cantidad, $precio, $producto){
-    
-       $this->cantidad = $cantidad;
-       $this->precio = $precio;
-       $this->producto = $producto;
+    public function leeInfoPedidoDetalle($cantidad, $precio, $idProducto, $nombreProducto, $cliente, $idPedido){
+
+        $ejecuta = $this->registraPedidoDetalle($cantidad, $precio, $idProducto, $nombreProducto, $cliente, $idPedido);
+
+        return $ejecuta;
        
-       $this->resultadoRegistraPedidoDetalle($this->registraPedidoDetalle($producto));
     }
+
+
+//AP
+    // public function leeInfoPedidoDetalle($cantidad, $precio, $producto){
+    
+    //    $this->cantidad = $cantidad;
+    //    $this->precio = $precio;
+    //    $this->producto = $producto;
+       
+    //    $this->resultadoRegistraPedidoDetalle($this->registraPedidoDetalle($producto));
+    // }
 
     public function resultadoRegistraPedidoDetalle($resultat){
         if ($resultat){
@@ -20,7 +33,6 @@ class PedidoDetallesController extends PedidoDetalle{
             require "../Vistas/PedidoDetalle/NoInsertado.php";
         } 
     }
-
 
 
     public function LlistaPedidoDetalles(){
