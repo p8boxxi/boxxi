@@ -42,11 +42,11 @@ class ClientesController extends Cliente{
 
         $Llistat = $this->retornaCliente($_SESSION["id_usuario"]);
 
-        if (file_exists("../Vistas/Cliente/infoCliente.php")){
-            require_once "../Vistas/Cliente/infoCliente.php";
+        if (file_exists("../Vistas/Cliente/cliente-perfil.php")){
+            require_once "../Vistas/Cliente/cliente-perfil.php";
         }
-        if (file_exists("../../Vistas/Cliente/infoCliente.php")){
-            require_once "../../Vistas/Cliente/infoCliente.php";
+        if (file_exists("../../Vistas/Cliente/cliente-perfil.php")){
+            require_once "../../Vistas/Cliente/cliente-perfil.php";
         }
 
     }

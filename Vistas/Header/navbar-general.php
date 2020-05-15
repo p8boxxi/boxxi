@@ -21,9 +21,9 @@
               <?php
               if(!empty($_SESSION["id_usuario"])){ 
                   if($_SESSION["rol"]=="Cliente"){
-                      echo "<li><a href='clientePerfil.php'><b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</a></b></li>";
+                      echo "<li><a href='cliente-perfil.php'><b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</a></b></li>";
                   } else {
-                      echo "<li><a href='adminPerfil.php'><b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</a></b></li>";
+                      echo "<li><a href='admin-perfil.php'><b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</a></b></li>";
                   }
                   echo "<li><a href='../../Controladores/SesionesController.php?operacion=cerrarSesion'>Cerrar sesión</a></li>";
               }  

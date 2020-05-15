@@ -41,6 +41,7 @@
   color: #333333;
 }
 .input-container input,
+.input-container .input,
 .input-container textarea {
     padding: 25px 10px 5px 10px;
     line-height: 30px;
@@ -59,7 +60,8 @@
 .input-container input:focus ~ .label,
 .input-container textarea:focus ~ .label,
 .input-container input:not(:focus):valid ~ .label,
-.input-container textarea:not(:focus):valid ~ .label {
+.input-container textarea:not(:focus):valid ~ .label,
+.input-container .label.sm {
   font-size: 11px!important;
   opacity: 1;
   line-height: 30px;
@@ -144,8 +146,84 @@ footer .social-links i.icon-in {
   background-image: url(../img/icon-in.png);
 }
 
+/* Section admin */
+
+section.admin {
+  border-top: 1px solid #dddddd;
+  background-color: #ffffff;
+}
+section.admin .content {
+  padding: 20px 40px;
+  background-color: #ffffff;
+}
+section.admin .content h2 {
+font-size: 24px;
+font-weight: 600;
+margin: 10px 0 20px;
+}
+
+/* Navegacion lateral */
 
 
+
+.nav-col {
+  border-right: 1px solid #dddd;
+  border-left: 1px solid #dddddd;
+  padding: 20px 0;
+  min-height: 640px;
+}
+.nav-col h3 {
+  font-weight: 600;
+  font-size: 20px;
+  padding: 0 15px;
+  margin: 0;
+  color: #ff8a00;
+  line-height: 40px;
+}
+.nav-col nav {
+
+}
+
+.nav-col ul {
+  
+list-style: none;
+  
+margin: 0;
+  
+padding: 0;
+}
+
+.nav-col li {
+  
+margin: 0;
+  
+padding: 0;
+}
+
+.nav-col a {
+  
+line-height: 50px;
+  
+color: #444444;
+  
+display: block;
+  
+padding: 0 15px;
+  
+font-size: 14px;
+  
+border-bottom: 1px solid #e2e2e2;
+  
+font-weight: 600;
+}
+.nav-col a:hover {
+color: #111111;
+background-color: #fbfbfb;
+text-decoration: none;
+}
+.nav-col a i {
+  
+}
 
 /* Mobile screen */
 
