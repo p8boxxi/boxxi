@@ -1,6 +1,11 @@
 <?php
 //GP
-require_once "../Modelos/Usuario.php";
+if (file_exists("../Modelos/Usuario.php")){
+    require_once "../Modelos/Usuario.php";
+}
+if (file_exists("../../Modelos/Usuario.php")){
+    require_once "../../Modelos/Usuario.php";
+}
 //require "../Modelos/Administrador.php";
 
 require_once "SesionesController.php";
@@ -98,6 +103,20 @@ class UsuariosController extends Usuario{
         $this->resultadoModificaUsuario($this->modificaUsuari($id, $email, $password, $nombre, $apellidos, $telefono, $direccion));
     }
 
+    //AZ
+    public function modificarPass($id, $password){
+        $this->resultadoModificarPassword($this->modificarPassword($id,$password));
+    }
+    public function resultadoModificarPassword($resultat){
+        if ($resultat){
+            $_SESSION["mensajeResultado"]="Contraseña modificado correctamente";
+        }else{
+            $_SESSION["mensajeResultado"]="La contraseña no se ha podido modificar";
+        } 
+        header("location: ../Vistas/Home/cliente-password.php");
+    }
+
+
     public function resultadoModificaUsuario($resultat){
         if ($resultat){
             $_SESSION["mensajeResultado"]="
@@ -168,6 +187,20 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
         }else{
             echo "Faltan datos";
             //header ("location: ../../index.php");
+        }
+    }else{
+        echo "Operacion No permitida";
+    }
+}
+
+//AZ
+if(isset($_POST["operacio"]) && $_POST["operacio"]=="modificarPasswd"){
+    if (isset($_POST["id"]) && isset($_POST["password"])){
+        if (!empty($_POST["id"]) && !empty($_POST["password"])){
+            $usuari = new UsuariosController();
+            $usuari->modificarPass($_POST["id"],$_POST["password"]);
+        }else{
+            echo "Faltan datos";
         }
     }else{
         echo "Operacion No permitida";

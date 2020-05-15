@@ -116,6 +116,26 @@ class Usuario{
         
     }
 
+    //AZ
+    protected function modificarPassword($id, $password){
+        $this->setPassword($password);
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "UPDATE usuarios 
+                                    SET password = :password
+                                    WHERE id_usuario = $id";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute(array(
+                ":password" => $this->getPassword(),
+            ));
+            $conecta->getConexionBD()->commit();
+            return true;
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return  $excepcio->getMessage();  
+        }
+    }
 
     public function getId_usuario()
     {

@@ -157,10 +157,19 @@ section.admin .content {
   background-color: #ffffff;
 }
 section.admin .content h2 {
-font-size: 24px;
-font-weight: 600;
-margin: 10px 0 20px;
+font-size: 24px;
+font-weight: 600;
+margin: 10px 0 20px;
 }
+section.admin .content form {
+  display: block;
+  width: 100%;
+}
+section.admin .msg {
+  color: #4CAF50;
+    font-weight: 600;
+}
+
 
 /* Navegacion lateral */
 
