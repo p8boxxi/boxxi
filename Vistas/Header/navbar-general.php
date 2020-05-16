@@ -15,19 +15,26 @@
     </div>
     <div class="nav-derecha">
       <ul >
-        <li <?php if ($currentPage === 'Tienda') {echo 'class="active-tienda"';} ?> ><a href='../Home/tienda.php'>Tienda</a></li> <?php
-                if(empty($_SESSION["id_usuario"])){ echo '<li><a type="button" data-toggle="modal" data-target="#loginModal">Acceso de usuarios</a></li>';}  
-               ?>
-              <?php
-              if(!empty($_SESSION["id_usuario"])){ 
-                  if($_SESSION["rol"]=="Cliente"){
-                      echo "<li><a href='cliente-perfil.php'><b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</a></b></li>";
-                  } else {
-                      echo "<li><a href='admin-perfil.php'><b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</a></b></li>";
-                  }
-                  echo "<li><a href='../../Controladores/SesionesController.php?operacion=cerrarSesion'>Cerrar sesión</a></li>";
-              }  
-              ?>
+        <li <?php if ($currentPage === 'Tienda') {echo 'class="active-tienda"';} ?> ><a href='../Home/tienda.php'>Tienda</a></li> 
+
+          <?php
+            if(empty($_SESSION["id_usuario"])){ echo '<li><a type="button" data-toggle="modal" data-target="#loginModal">Acceso de usuarios</a></li>';}
+            else 
+            if(!empty($_SESSION["id_usuario"])){ 
+                echo "<li class='user-box'>";
+                if($_SESSION["rol"]=="Cliente"){
+                    echo "<b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</b>";
+                    echo "<a class='c-999' href='../../Controladores/SesionesController.php?operacion=cerrarSesion'>Cerrar sesión</a>";
+                    echo "<a href='cliente-perfil.php'>Mi cuenta</a>";
+                } else {
+                  echo "<b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</b>";
+                  echo "<a class='c-999' href='../../Controladores/SesionesController.php?operacion=cerrarSesion'>Cerrar sesión</a>";
+                  echo "<a href='admin-perfil.php'>Panel de control</a>";
+                }
+                
+                echo "</li>";
+            }  
+          ?>
 
     </ul>
   </div>

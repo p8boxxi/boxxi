@@ -1,14 +1,13 @@
-<?php
+<?php   
+//GP  
+require_once "../../Controladores/SesionesController.php";
+$objecteSessio = new SesionesController();
 
 //AP
 $title = 'Tienda'; 
 $currentPage = 'Tienda'; 
 include '../../Vistas/Header/header.php';    
 include '../../Vistas/Header/navbar-tienda.php';
-
-//GP
-require_once "../../Controladores/SesionesController.php";
-$objecteSessio = new SesionesController();
 
 //AP
 require_once "../../Controladores/ProductosController.php";

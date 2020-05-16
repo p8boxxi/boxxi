@@ -1,7 +1,29 @@
 .c-orange {
   color: #ff8a00;
 }
-
+.c-999 {
+  color: #999999!important;
+}
+.navbar ul {
+  vertical-align: middle;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+.nav-derecha li.user-box {
+  text-align: right;
+}
+.nav-derecha li.user-box b {
+  font-weight: bold;
+  display: block;
+  line-height: 1;
+}
+.nav-derecha li.user-box a {
+  font-weight: normal;
+  margin-left: 10px;
+  font-size: 14px;
+}
 /* Modals */
 
 .modal {
