@@ -29,6 +29,9 @@
   overflow: hidden;
   background-color: #ffffff;
 }
+.input-container.disabled {
+  background-color: #f7f7f7;
+}
 .input-container .label {
   position: absolute;
   pointer-events: none;

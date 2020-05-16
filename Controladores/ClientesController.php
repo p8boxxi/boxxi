@@ -51,6 +51,20 @@ class ClientesController extends Cliente{
 
     }
 
+    //AZ
+    public function mostrarModificarCliente(){
+
+        $Llistat = $this->retornaCliente($_SESSION["id_usuario"]);
+
+        if (file_exists("../Vistas/Cliente/cliente-modificar.php")){
+            require_once "../Vistas/Cliente/cliente-modificar.php";
+        }
+        if (file_exists("../../Vistas/Cliente/cliente-modificar.php")){
+            require_once "../../Vistas/Cliente/cliente-modificar.php";
+        }
+
+    }
+
 
     public function BuscaIdClienteDel($usuario){
         foreach($this->retornaIdClientedel($usuario) as $client){}

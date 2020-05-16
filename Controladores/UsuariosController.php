@@ -103,20 +103,6 @@ class UsuariosController extends Usuario{
         $this->resultadoModificaUsuario($this->modificaUsuari($id, $email, $password, $nombre, $apellidos, $telefono, $direccion));
     }
 
-    //AZ
-    public function modificarPass($id, $password){
-        $this->resultadoModificarPassword($this->modificarPassword($id,$password));
-    }
-    public function resultadoModificarPassword($resultat){
-        if ($resultat){
-            $_SESSION["mensajeResultado"]="Contraseña modificado correctamente";
-        }else{
-            $_SESSION["mensajeResultado"]="La contraseña no se ha podido modificar";
-        } 
-        header("location: ../Vistas/Home/cliente-password.php");
-    }
-
-
     public function resultadoModificaUsuario($resultat){
         if ($resultat){
             $_SESSION["mensajeResultado"]="
@@ -133,7 +119,31 @@ class UsuariosController extends Usuario{
         header("location: ../index.php");
     }
 
+    //AZ
+    public function modificarPass($id, $password){
+        $this->resultadoModificarPassword($this->modificarPassword($id,$password));
+    }
+    public function resultadoModificarPassword($resultat){
+        if ($resultat){
+            $_SESSION["mensajeResultado"]="Contraseña modificada correctamente";
+        }else{
+            $_SESSION["mensajeResultado"]="La contraseña no se ha podido modificar";
+        } 
+        header("location: ../Vistas/Home/cliente-password.php");
+    }
 
+    //AZ
+    public function modificarClnt($id, $email, $nombre, $apellidos, $telefono, $direccion){
+        $this->resultadoModificarCliente($this->modificarCliente($id, $email, $nombre, $apellidos, $telefono, $direccion));
+    }
+    public function resultadoModificarCliente($resultat){
+        if ($resultat){
+            $_SESSION["mensajeResultado"]="Tus datos se han actualizado correctamente";
+        }else{
+            $_SESSION["mensajeResultado"]="Tus datos no se han podido actualizar";
+        } 
+        header("location: ../Vistas/Home/cliente-modificar.php");
+    }
     
 }
 
@@ -199,6 +209,20 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="modificarPasswd"){
         if (!empty($_POST["id"]) && !empty($_POST["password"])){
             $usuari = new UsuariosController();
             $usuari->modificarPass($_POST["id"],$_POST["password"]);
+        }else{
+            echo "Faltan datos";
+        }
+    }else{
+        echo "Operacion No permitida";
+    }
+}
+
+//AZ
+if(isset($_POST["operacio"]) && $_POST["operacio"]=="modificarClient"){
+    if (isset($_POST["id"]) && isset($_POST["email"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["telefono"]) && isset($_POST["direccion"])){
+        if (!empty($_POST["id"]) && !empty($_POST["email"])){
+            $usuari = new UsuariosController();
+            $usuari->modificarClnt($_POST["id"],$_POST["email"],$_POST["nombre"],$_POST["apellidos"],$_POST["telefono"],$_POST["direccion"]);
         }else{
             echo "Faltan datos";
         }

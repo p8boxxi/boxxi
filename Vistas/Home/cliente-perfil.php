@@ -25,7 +25,7 @@ include '../../Vistas/Header/header.php';
                     $objecte->infoCliente();
                     ?>
                     <div class="col-12">
-                        <a href="#" class="btn btn-secondary">Modificar mis datos</a>
+                        <a href="cliente-modificar.php" class="btn btn-secondary">Modificar mis datos</a>
                     </div>
                     
                 
@@ -37,13 +37,6 @@ include '../../Vistas/Header/header.php';
     </div>
 </section>
 
-
-
-
-   
-
-
-    
 <?php include '../../Vistas/Footer/footer.php'; ?>
 
 </body>

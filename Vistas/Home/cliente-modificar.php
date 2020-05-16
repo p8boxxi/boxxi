@@ -23,22 +23,22 @@ include '../../Vistas/Header/header.php';
             
                 <form id="form" action="../../Controladores/UsuariosController.php" method="POST">
                     <div class="row">
-                        <h2 class="col-12">Cambiar contraseña</h2>
-                        <p class="col-12">Ingresa tu nueva contraseña:</p>
+                        <h2 class="col-12">Modificar datos personales</h2>
                             
-                        <div class="col-md-6 mb-3">
-                            <div class="input-container">
-                                <input type="text" id="password" name="password" required="required">
-                                <label for="password" class="label">Nueva contraseña</label>
-                            </div>
-                        </div>
+                        <?php
+                        include '../../Controladores/ClientesController.php'; 
+                        $objecte = new ClientesController();
+                        $objecte->mostrarModificarCliente();
+                        ?>
                         
                         <input type="hidden" name="id" value="<?php echo $_SESSION['id_usuario']?>">
-                        <input type="hidden" name="operacio" value="modificarPasswd">
+                        <input type="hidden" name="operacio" value="modificarClient">
 
                         <div class="col-md-12 mb-3">
-                            <input type="submit" class="btn btn-secondary" value="Modificar contraseña">
+                            <input type="submit" class="btn btn-success" value="Modificar">
+                            <a href="cliente-perfil.php" class="btn btn-light">Cancelar</a>
                         </div>
+
                     </div>
                 </form>   
 

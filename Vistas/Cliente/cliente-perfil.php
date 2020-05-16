@@ -2,7 +2,7 @@
     ?>
 
     <div class="col-md-6 mb-3">
-      <div class="input-container">
+      <div class="input-container disabled">
         <div class="input">
             <?php echo $objecte->nombre ?>
         </div>
@@ -11,7 +11,7 @@
     </div>
 
     <div class="col-md-6 mb-3">
-      <div class="input-container">
+      <div class="input-container disabled">
         <div class="input">
             <?php echo $objecte->apellidos ?>
         </div>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="col-md-6 mb-3">
-      <div class="input-container">
+      <div class="input-container disabled">
         <div class="input">
             <?php echo $objecte->email ?>
         </div>
@@ -29,7 +29,7 @@
     </div>
 
     <div class="col-md-6 mb-3">
-      <div class="input-container">
+      <div class="input-container disabled">
         <div class="input">
             <?php echo $objecte->telefono ?>
         </div>
@@ -38,7 +38,7 @@
     </div>
 
     <div class="col-md-12 mb-3">
-      <div class="input-container">
+      <div class="input-container disabled">
         <div class="input">
             <?php echo $objecte->direccion ?>
         </div>

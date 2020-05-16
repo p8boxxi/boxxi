@@ -137,6 +137,40 @@ class Usuario{
         }
     }
 
+    //AZ
+    protected function modificarCliente($id, $email, $nombre, $apellidos, $telefono, $direccion){
+        $this->setEmail($email);
+        $this->setNombre($nombre);
+        $this->setApellidos($apellidos);
+        $this->setTelefono($telefono);
+        $this->setDireccion($direccion);
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "UPDATE usuarios 
+                                    SET  email = :email,
+                                        nombre = :nombre,
+                                        apellidos = :apellidos,
+                                        telefono = :telefono,
+                                        direccion = :direccion
+                                    WHERE id_usuario = $id";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute(array(
+                ":email" => $this->getEmail(),
+                ":nombre" => $this->getNombre(),
+                ":apellidos" => $this->getApellidos(),
+                ":telefono" => $this->getTelefono(),
+                ":direccion" => $this->getDireccion()
+            ));
+            $conecta->getConexionBD()->commit();
+            return true;
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return  $excepcio->getMessage();  
+        }
+        
+    }
+
     public function getId_usuario()
     {
         return $this->id_usuario;
