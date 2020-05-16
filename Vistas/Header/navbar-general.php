@@ -1,12 +1,20 @@
 <nav class="navbar">
 
   <div class="container">
+    
+    <?php if ($currentPage !== 'Tienda') {echo '
+      <ul class="nav">
+        <li class="active"><a href="#">Nosotros</a></li>
+        <li><a href="#">Idea</a></li>
+        <li><a href="#">Galeria</a></li>
+      </ul>
+    ';}?>
 
-    <ul class="nav">
-      <li class="active"><a href="#">Nosotros</a></li>
-      <li><a href="#">Idea</a></li>
-      <li><a href="#">Galeria</a></li>
-    </ul>
+    <?php if ($currentPage === 'Tienda') {echo '
+      <ul class="nav">
+        <li><a href="index.php">Página de inicio</a></li>
+      </ul>
+    ';}?>
 
     <div class="logo-header">
       <a href="/index.php">
