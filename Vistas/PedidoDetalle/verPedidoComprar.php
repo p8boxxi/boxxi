@@ -5,27 +5,20 @@ include '../Vistas/Header/header.php';
 include '../Vistas/Header/navbar-tienda.php';  
 
 
-require_once "../Controladores/SesionesController.php";
+require_once '../Controladores/SesionesController.php';
+
+require_once '../Controladores/PedidoDetallesController.php';
+$pedido = new PedidoDetallesController();
+
+
+require_once '../Controladores/ProductosController.php';
+
 $objecteSessio = new SesionesController();
 
 
-
-
-
-
-foreach($obj as $objecte) { ?>
-
-
-
+ ?>
     <div class="container"> 
-        <div class="migas"> 
-            <a href="/Vistas/Home/tienda.php">Tienda</a>
-            > 
-            <a href="#">mostrar ruta </a>
-            >
-            <!-- <?php echo $objecte->nombre ?> -->
 
-        </div> 
 
         <div class = "flex-container prod-comprar ">
 
@@ -34,15 +27,23 @@ foreach($obj as $objecte) { ?>
                 <h1>Tramitar pedido</h1>
 
             </div>
+            
+            <?php 
+                $i=0 ;
+                foreach($objDetalls as $objecte) {
+                $prod = new ProductosController();
+                $prodinfo = $objecte->id_producto;
+                $detallsProducte = $prod->ProductoDetalleComprarInfo($prodinfo);
 
-
+            print_r($detallsProducte);
+            ?>
             <div class ="producto-cesta">
                 <div class="items-prod"> 
                     <div class= "img-referencia">                    
                        <?php 
-                       if ($objecte->foto1!=null){
+                       if ($detallsProducte['foto1']!=null){
                         ?> 
-                        <img src="../Vistas/assets/img/productos/<?php echo $objecte->foto1 ?>" ></img> 
+                        <img src="../Vistas/assets/img/productos/<?php echo $detallsProducte['foto1'] ?>" ></img> 
                         <?php
                     } else{
                        echo '<span style="width: 620; height: 200px; display:block; background-color:#e6e6e6;">Imagen no disponible</span>' ;
@@ -52,8 +53,8 @@ foreach($obj as $objecte) { ?>
 
                 <div class="items-prod">
                     <div class="prod-dentro">
-                        <h2><?php echo $objecte->nombre?></h2> 
-                        <p><?php echo $objecte->subtitulo ?></p>
+                        <h2><?php echo $objecte->producto;?></h2> 
+                        <p><?php echo $detallsProducte['subtitulo']; ?></p>
                     </div>
                 </div>
 
@@ -65,15 +66,18 @@ foreach($obj as $objecte) { ?>
                     <div class="prod-dentro"> <!--boton cantidad -->
                         <form id='myform2' method='POST' action='#'>
                             <div class="rec">
-                                <input id='cantidad' type='button' value='-' class='qtyminus' field='cantidad' />
-                                <input id="cantidad-final" type='text' name='cantidad' value='0' class='qty' />
-                                <input type='button' value='+' class='qtyplus' field='cantidad' />
+                                <input id='cantidad' type='button' value='-' class='qtyminus' field='cantidad<?php echo $i;?>' />
+                                <input id="cantidad-final" type='text' name='cantidad<?php echo $i;?>' value='0' class='qty' />
+                                <input type='button' value='+' class='qtyplus' field='cantidad<?php echo $i;?>' />
                             </div>
                         </form>
 
                     </div>
                 </div>
             </div>
+            <?php  
+            $i++;
+            }?> 
         </div>
 
         <div class ="prod-comprar">
@@ -86,7 +90,7 @@ foreach($obj as $objecte) { ?>
                         <input type="hidden" name="producto" value="<?php echo $objecte->id_producto?>">
 
                         <div class="confirmar boton-buy ">
-                            <input type="hidden" name="operacio" value="inserta"/>
+                            <input type="hidden" name="operacio" value=""/>
                             <input type="submit" value="Finalizar compra"/>
                         </div>
 
@@ -106,7 +110,7 @@ $("#cantidad-enviar").val($(this).val());
 
 </script>
 
-<?php  }?> 
+
 <?php include '../Vistas/Footer/footer.php'; ?>
 
 </body>

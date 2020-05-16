@@ -30,7 +30,7 @@ class SesionesController{
 if (isset($_GET["operacion"]) && $_GET["operacion"]=="cerrarSesion"){
     $objecteSessio = new SesionesController();
     session_destroy();
-
+    session_unset();
     header("location: ../Vistas/Home/index.php");
 }
 

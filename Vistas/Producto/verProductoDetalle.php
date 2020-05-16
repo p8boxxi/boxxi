@@ -3,31 +3,37 @@
 
 $title = 'Tienda'; 
 $currentPage = 'Tienda'; 
-include '../Vistas/Header/header.php';    
-include '../Vistas/Header/navbar-tienda.php';
+if (file_exists('../Vistas/Header/header.php')){ include '../Vistas/Header/header.php';}
+if (file_exists('../Header/header.php')){ include '../Header/header.php';}
+if (file_exists('../Vistas/Header/navbar-tienda.php')){ include '../Vistas/Header/navbar-tienda.php';}
+if (file_exists('../Header/navbar-tienda.php')){ include '../Header/navbar-tienda.php';}
 
 //GP
-require_once "../Controladores/SesionesController.php";
+if (file_exists('../Controladores/SesionesController.php')){ require_once '../Controladores/SesionesController.php';}
+if (file_exists('../../Controladores/SesionesController.php')){ require_once '../../Controladores/SesionesController.php';}
 $objecteSessio = new SesionesController();
 
 
-require_once "../Controladores/ProductosController.php";
-require_once "../Controladores/CategoriasController.php";
-$cat = new CategoriasController();
-
-
-
+if (file_exists('../Controladores/ProductosController.php')){ require_once '../Controladores/ProductosController.php';}
+if (file_exists('/Controladores/ProductosController.php')){ require_once '/Controladores/ProductosController.php';}
+if (!isset($_SESSION["cistella"])){
+    $_SESSION["cistella"] = new Cistella();
+}
+// require_once "../Controladores/CategoriasController.php";
+// $cat = new CategoriasController();
 
     //require '';
 ?>
+
+
 <?php foreach($Llistat as $objecte) { ?>
 
     <div class="container"> 
         <div class="migas"> 
             <a href="/Vistas/Home/tienda.php">Tienda</a>
             > 
-            <a href="#"><?php echo $cat->MuestraInfoCategoria($objecte->id_categoria); ?> </a>
-            >
+            <!-- <a href="#"><?php //echo $cat->MuestraInfoCategoria($objecte->id_categoria); ?> </a> -->
+            
             <?php echo $objecte->nombre ?>
         </div> 
         <div class = "flex-container prod-detalle ">
@@ -62,24 +68,26 @@ $cat = new CategoriasController();
 
                     <!-- Boton añadir cantidad -->
 
-                    <form id='myform' method='POST' action='#'>
+                    <form id='myform2' method='POST' action='#'>
                         <div class="rec">
-                            <input id='cantidad' type='button' value='-' class='qtyminus' field='quantity' />
-                            <input type='text' name='quantity' value='0' class='qty' />
-                            <input type='button' value='+' class='qtyplus' field='quantity' />
+                            <input id='cantidad' type='button' value='-' class='qtyminus' field='cantidad' />
+                            <input id="cantidad-final" type='text' name='cantidad' value='0' class='qty' />
+                            <input type='button' value='+' class='qtyplus' field='cantidad' />
                         </div>
                     </form>
 
-                    <!---->
+                    <!-- Boton añadir a la cistella-->
 
                     <div class="bt-lateral">
                         <form action="/Controladores/PedidosController.php" method="POST">
                             <div class="six fields boton-buy">
                                 <div class="field">
-                                    <input type="hidden" name="fecha" placeholder="fecha" value="<?php echo date("Y-m-d")?>"/>
-                                    <input type="hidden" name="id" placeholder="id" value="<?php echo $objecte->id_producto?>"/>
+                                    <input id="cantidad" type="" name="cantidad" value="">
+                                    <!-- <input type="hidden" name="fecha" placeholder="fecha" value="<?php //echo date("Y-m-d")?>"/> -->
+                                     <input type="hidden" name="llistat" placeholder="llistat" value="<?php echo $Llistat?>"/>
+                                    <input type="hidden" name="producto" placeholder="producto" value="<?php echo $objecte->id_producto?>"/>
                                 </div>
-                                <input type="hidden" name="operacio" value="comprar"/>
+                                <input type="hidden" name="operacio" value="anadirApedido"/>
                                 <input type="submit" value="Comprar">
                             </div>
                         </form>
@@ -90,7 +98,9 @@ $cat = new CategoriasController();
                     </div>
                 </ul>
             </div>                               
+                <div>
 
+                </div>
         </div>
     </div>
     <script src="../Vistas/assets/js/botoncantidad.js"></script>

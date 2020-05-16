@@ -14,7 +14,7 @@ require_once "../../Controladores/ProductosController.php";
 $objecte = new ProductosController();
 $Llistat = $objecte->LlistaProductoHome();
 
-require_once "../Controladores/PedidosController.php";
+require_once "/Controladores/PedidosController.php";
 $oobjecte2 = new PedidosController();
 $fecha = date("Y-m-d");
 $fecha = $objecte2->leeInfoPedido();

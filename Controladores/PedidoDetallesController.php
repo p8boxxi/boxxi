@@ -1,6 +1,18 @@
 <?php
 
-require "../Modelos/PedidoDetalle.php";
+if (file_exists("/Modelos/PedidoDetalle.php")){
+    require_once "/Modelos/PedidoDetalle.php";
+}
+if (file_exists("../Modelos/PedidoDetalle.php")){
+    require_once "../Modelos/PedidoDetalle.php";
+}
+if (file_exists("../../Modelos/PedidoDetalle.php")){
+    require_once "../../Modelos/PedidoDetalle.php";
+}
+
+if (file_exists("Modelos/PedidoDetalle.php")){
+    require_once "Modelos/PedidoDetalle.php";
+}
 
 require_once "SesionesController.php";
 $objecteSessions = new SesionesController();
@@ -16,15 +28,13 @@ class PedidoDetallesController extends PedidoDetalle{
     }
 
 
-//AP
-    // public function leeInfoPedidoDetalle($cantidad, $precio, $producto){
-    
-    //    $this->cantidad = $cantidad;
-    //    $this->precio = $precio;
-    //    $this->producto = $producto;
-       
-    //    $this->resultadoRegistraPedidoDetalle($this->registraPedidoDetalle($producto));
-    // }
+    //AP
+    public function leeInfoPedidoDetalleId($idPedido){
+       $this->id_pedido = $idPedido; 
+       $objDetalls= $this->retornaPedidoDetallesIdPedido();
+       require  "../Vistas/PedidoDetalle/verPedidoComprar.php";
+    }
+
 
     public function resultadoRegistraPedidoDetalle($resultat){
         if ($resultat){

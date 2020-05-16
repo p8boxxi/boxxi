@@ -115,6 +115,11 @@ class ProductosController extends Producto{
         $obj = $this->retornaProductoDetalle();
         require "../Vistas/Pedido/verPedidoComprar.php";
     }
+    //AP
+    public function ProductoDetalleComprarInfo($producto){
+        $this->id_producto = $producto;
+        $detallsProducte = $this->retornaProductoDetalle();
+    }
 
 
     public function selectProducto(){
@@ -122,6 +127,7 @@ class ProductosController extends Producto{
     }
 
     public function retornaInfoProducto($id){
+        $this->id_producto = $id;
         return $this->retornaProducto($id);
     }
 

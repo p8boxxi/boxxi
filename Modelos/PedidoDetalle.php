@@ -84,6 +84,23 @@ class PedidoDetalle{
         }
     }
 
+
+    //AP
+    protected function retornaPedidoDetallesIdPedido(){
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "SELECT * FROM pedido_detalle
+                                    WHERE id_pedido = '$this->id_pedido' ";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute();
+            return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return null;  
+        }
+    }
+
     
 
     protected function retornaPedidoDetallesTODOTodas(){

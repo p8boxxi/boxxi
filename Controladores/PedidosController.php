@@ -32,14 +32,21 @@ class PedidosController extends Pedido{
         } 
     }
 
+    // //AP
+    // public function leeInfoPedidoComprar($cliente, $estado, $producto){
+    //     // $this->id_cliente = $_SESSION["id_usuario"];
+    //     // $this->id_estado = $estado;
+    //     // //$this->fecha = $fecha;
+    //     // $this->id_producto = $producto;
+    //     $this->resultadoRegistraPedidoComprar($this->registraPedido($cliente, $estado), $producto);
+    // }
+
     //AP
-    public function leeInfoPedidoComprar($cliente, $estado, $producto){
-        // $this->id_cliente = $_SESSION["id_usuario"];
-        // $this->id_estado = $estado;
-        // //$this->fecha = $fecha;
-        // $this->id_producto = $producto;
+    public function leeInfoPedidoComprar($idPedido){
+        $this->id_pedido = $idPedido;
         $this->resultadoRegistraPedidoComprar($this->registraPedido($cliente, $estado), $producto);
     }
+
 
     //AP
     public function resultadoRegistraPedidoComprar($resultat, $producto){
@@ -115,8 +122,8 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="anadirApedido"){
     
     if (isset($_POST["cantidad"]) && !empty($_POST["cantidad"])){
         if (isset($_SESSION["cistella"])){
-            $_SESSION["cistella"]->posaProducteCistella($_POST["producto"], $_POST["cantidad"]);  
-            header("location: ../Vistas/Pedido/insertarPedido.php");
+            $_SESSION["cistella"]->posaProducteCistella($_POST["producto"], $_POST["cantidad"]); 
+            require "../Vistas/Pedido/contenidoCistella.php";
         }else{
             echo "Error!";
         }
@@ -125,7 +132,6 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="anadirApedido"){
         echo "Defina la cantidad!";
     }
      
-
     $cliente = $_SESSION["id_cliente"];
 
 
@@ -169,15 +175,18 @@ if(isset($_GET["accio"]) && $_GET["accio"]=="creaPedido"){
             
             $valorRetornat=$pedidodetalle->leeInfoPedidoDetalle($vector[$i+3], $vector[$i+2], $vector[$i], $vector[$i+1], $_SESSION["id_cliente"], $idPedido); 
         }
-        if ($valorRetornat[0]){
-            require "../Vistas/Pedido/Insertado.php";
+        
+        if ($valorRetornat[0]){     
+            $pedidodetalle = new PedidoDetallesController();
+            $pedidodetalle->leeInfoPedidoDetalleId($idPedido);
         }else{
-            require "../Vistas/Pedido/Insertado.php";
+            require "../Vistas/Pedido/NoInsertado.php";
         }   
     }else{
         echo "DEBE LOGUEARSE!!";
     }
-
+$_SESSION["id_pedido"]= $idPedido;
+unset($_SESSION['carro']);
 }
 
 

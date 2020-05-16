@@ -71,7 +71,7 @@ class Producto{
         try{
             $conecta = new ConexionBD();
             $conecta->getConexionBD()->beginTransaction();
-            $sentenciaSQL = "SELECT * FROM productos WHERE id_producto=$id";
+            $sentenciaSQL = "SELECT * FROM productos WHERE id_producto = $id";
             $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
             $intencio->execute();
             $conecta->getConexionBD()->commit();
@@ -82,12 +82,12 @@ class Producto{
         }
     }
 
-    protected function actualizaProducto($categoria){
+    protected function actualizaProducto(){
         //poso a valor 1 (=sin nombre, com un "null")    /*** ATENCIO: codigo en CATEGORIAS */
         try{
             $conecta = new ConexionBD();
             $conecta->getConexionBD()->beginTransaction();
-            $sentenciaSQL = "UPDATE productos SET id_categoria = 1 WHERE id_categoria = $categoria";
+            $sentenciaSQL = "UPDATE productos SET id_categoria = 1 WHERE id_categoria = $this->categoria'";
             $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
             $intencio->execute();
             $conecta->getConexionBD()->commit();
@@ -158,7 +158,7 @@ class Producto{
         }
     }
 
-    ////////////// AP
+    // AP
     protected function retornaProductoDetalle(){
         try{
             $conecta = new ConexionBD();
@@ -174,7 +174,7 @@ class Producto{
             return null;  
         }
     }
-    ///////////////////////////////////////////////////////////////////////////////////////
+    
 
 
     public function getId_producto()
