@@ -1,8 +1,16 @@
 <?php
 
-require "../Modelos/Pedido.php";
+if (file_exists("/Modelos/Pedido.php")){
+    require_once "/Modelos/Pedido.php";
+}
+if (file_exists("../Modelos/Pedido.php")){
+    require_once "../Modelos/Pedido.php";
+}
+if (file_exists("../../Modelos/Pedido.php")){
+    require_once "../../Modelos/Pedido.php";
+}
 
-require "SesionesController.php";
+require_once "SesionesController.php";
 $objecteSessions = new SesionesController();
 
 if (!isset($_SESSION["cistella"])){
@@ -46,15 +54,16 @@ class PedidosController extends Pedido{
     }
 
 
-
-
     public function LlistaPedidos(){
-
         $Llistat = $this->retornaPedidosTodos();
         require "../Vistas/Pedido/verPedido.php";
     }
 
-
+    //AZ
+    public function pedidosCliente(){
+        $Llistat = $this->retornaPedidosCliente($_SESSION["id_usuario"]);
+        require_once "../../Vistas/Pedido/cliente-pedidos.php";
+    }
 
     public function CompruebaParaCambiarEstadoDel($id, $operacion){
         if ($operacion == "cancelar"){

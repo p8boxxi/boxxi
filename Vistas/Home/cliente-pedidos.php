@@ -20,7 +20,9 @@ include '../../Vistas/Header/header.php';
                     <h2 class="col-12">Pedidos realizados</h2>
 
                     <?php
-                    
+                    include '../../Controladores/PedidosController.php'; 
+                    $objecte = new PedidosController();
+                    $objecte->pedidosCliente();
                     ?>
                     
                 </div>
