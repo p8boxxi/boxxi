@@ -180,6 +180,7 @@ footer .social-links i.icon-in {
 section.admin {
   border-top: 1px solid #dddddd;
   background-color: #ffffff;
+  min-height: 640px;
 }
 section.admin .content {
   padding: 20px 40px;

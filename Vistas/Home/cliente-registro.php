@@ -13,7 +13,7 @@ include '../../Vistas/Header/header.php';
         
         <form class="text-center mt-5 mb-5" action="../../Controladores/ClientesController.php" method="POST">
         <div class="row">
-            <h4 class="col-12 mb-3 fw-600">Nuevo cliente</h4>
+            <h4 class="col-12 mb-3 fw-600"><span class="c-orange">Formulario</span> de registro</h4>
             <div class="col-md-6 offset-md-3 mb-3">
                 <div class="input-container">
                     <input type="text" id="email" name="email" required="required">
@@ -51,7 +51,7 @@ include '../../Vistas/Header/header.php';
                 </div>
             </div>
             <div class="col-md-6 offset-md-3 mb-3">
-                <a href="index.php" class="btn btn-light">Cancelar</a>
+                <a href="javascript:void(0)" onclick="goBack()" class="btn btn-light">Cancelar</a>
                 <input type="hidden" name="operacio" value="inserta">
                 <input type="submit" class="btn btn-success" value="Registrarme">
             </div>
@@ -65,4 +65,9 @@ include '../../Vistas/Header/header.php';
 
 </body>
 
+<script>
+    function goBack() {
+      window.history.back();
+    }
+</script>
 </html>
