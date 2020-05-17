@@ -7,6 +7,9 @@
 .navbar ul {
   vertical-align: middle;
 }
+.fw-600 {
+  font-weight: 600;
+}
 ul, li {
   margin: 0;
   padding: 0;

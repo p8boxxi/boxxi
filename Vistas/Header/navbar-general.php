@@ -74,7 +74,7 @@
               <input type="submit" class="btn btn-success btn-lg" value="Iniciar sesión">
             </div> 
             <div class="col-12">
-              <a class="link" href="../../Vistas/Cliente/insertarCliente.php">No tengo cuenta, quiero registrarme</a>
+              <a class="link" href="../../Vistas/Home/cliente-registro.php">No tengo cuenta, quiero registrarme</a>
             </div>
           </div>
       </form>
