@@ -23,7 +23,7 @@ class PedidosController extends Pedido{
 
         $this->resultadoRegistraPedido($this->registraPedido($cliente, $estado));
     }
-        
+
     public function resultadoRegistraPedido($resultat){
         if ($resultat){
             require "../Vistas/Pedido/Insertado.php";
@@ -92,38 +92,66 @@ class PedidosController extends Pedido{
     }
 
     public function ModificarPedido($id, $fecha){
-       
-         $this->id_pedido = $id;
-         $this->fecha = $fecha;
-        
-         
+     $this->id_pedido = $id;
+     $this->fecha = $fecha;
+     $this->resultadoModificaPedido($this->modificaPedido($id, $fecha));
+    }
+    
 
-       $this->resultadoModificaPedido($this->modificaPedido($id, $fecha));
-    }
     public function resultadoModificaPedido($resultat){
-        if ($resultat){
-            $_SESSION["mensajeResultado"]="
-                    <div style='background-color: green; height: 80px; text-align: center; padding-top: 5px;'>
-                        <h1>Pedido Modificado</h1>
-                    <div>";
-        }else{
-            $_SESSION["mensajeResultado"]="
-            <div style='background-color: red; height: 80px; text-align: center; padding-top: 5px;'>
-                <h1>El Pedido NO se ha podido Modificar</h1>
-            <div>";
-            
-        } 
-        header("location: ../index.php");
+    if ($resultat){
+        $_SESSION["mensajeResultado"]="
+        <div style='background-color: green; height: 80px; text-align: center; padding-top: 5px;'>
+        <h1>Pedido Modificado</h1>
+        <div>";
+    }else{
+        $_SESSION["mensajeResultado"]="
+        <div style='background-color: red; height: 80px; text-align: center; padding-top: 5px;'>
+        <h1>El Pedido NO se ha podido Modificar</h1>
+        <div>";
+
+    } 
+    header("location: ../index.php");
     }
+
+
+    ///AP
+    public function buidaCistella(){
+    header ('location: ../Vistas/Pedido/contenidoCistella.php');
+    }
+
+    //AP
+    public function actualizaEstado($id){
+        $this->id_pedido = $id;
+        $resultado = $this->actualizaPedidoComprado();
+        if($resultado){
+            require ("../Vistas/Pedido/CompraConfirmada.php");
+        }else{
+            echo "Se ha producido un error al realizar su compra.";
+        }
+    }
+
 
 }
 
+
+
+//AP
+if(isset($_GET["operacio"]) && $_GET["operacio"]=="vaciarCesta"){
+    $nuevoObjeto = new PedidosController();
+    $nuevoObjeto->buidaCistella();
+    unset($_SESSION['carro']);
+    unset($_SESSION["cistella"]);
+
+}
+
+
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="anadirApedido"){
-    
+
     if (isset($_POST["cantidad"]) && !empty($_POST["cantidad"])){
         if (isset($_SESSION["cistella"])){
             $_SESSION["cistella"]->posaProducteCistella($_POST["producto"], $_POST["cantidad"]); 
-            require "../Vistas/Pedido/contenidoCistella.php";
+            header ('location: ../Vistas/Pedido/contenidoCistella.php');
         }else{
             echo "Error!";
         }
@@ -131,17 +159,13 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="anadirApedido"){
     }else{
         echo "Defina la cantidad!";
     }
-     
     $cliente = $_SESSION["id_cliente"];
-
-
-
 }
 
 
 
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
-    
+
     $estado = 1;  /**** ATENCION: por defecto!!  */
 
     $cliente = $_SESSION["id_usuario"];
@@ -160,51 +184,50 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
 if(isset($_GET["accio"]) && $_GET["accio"]=="creaPedido"){
 
     $estado = 2;  /**** ATENCION: 2?, por defecto (pedido nuevo)!!  */
+
+    $idPedido=0;
     
     if(isset($_SESSION["id_cliente"]) && isset($_SESSION["carro"])){
         $vector = $_SESSION["carro"];
         require "PedidoDetallesController.php";
         $pedidodetalle = new PedidoDetallesController();
-
-        for($i=0;$i<count($vector);$i+=4){
-            if ($i<4){
-                $idPedido = null;
-            }else{
-                $idPedido = $valorRetornat[1];
-            }
-            
+        $valorRetornat = [];
+        $a= count($vector, COUNT_RECURSIVE);
+        for($i=0;$i<$a;$i+=4){
             $valorRetornat=$pedidodetalle->leeInfoPedidoDetalle($vector[$i+3], $vector[$i+2], $vector[$i], $vector[$i+1], $_SESSION["id_cliente"], $idPedido); 
+            $idPedido = $valorRetornat[1];
+            $_SESSION["id_pedido"]= $idPedido;
+            
         }
-        
-        if ($valorRetornat[0]){     
-            $pedidodetalle = new PedidoDetallesController();
-            $pedidodetalle->leeInfoPedidoDetalleId($idPedido);
-        }else{
-            require "../Vistas/Pedido/NoInsertado.php";
-        }   
-    }else{
-        echo "DEBE LOGUEARSE!!";
-    }
-$_SESSION["id_pedido"]= $idPedido;
+        if ($valorRetornat[0] == true){     
+           $pedidodetalle = new PedidoDetallesController();
+           $pedidodetalle->leeInfoPedidoDetalleId($idPedido);
+       }else{
+        require "../Vistas/Pedido/NoInsertado.php";
+    } 
+
+
+}else{
+    echo "DEBE LOGUEARSE!!";
+}
 unset($_SESSION['carro']);
+    unset($_SESSION["cistella"]);
 }
 
 
 
 //AP
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="comprar"){
-    $estado = 1;  /**** ATENCION: por defecto!!  */
-
-    $producto = $_POST['id'];
+    $estado = 3;  /**** ATENCION: por defecto!!  */
     $cliente = $_SESSION["id_usuario"];
+    $idPedido = $_SESSION["id_pedido"];
 
     if (isset($_SESSION["id_usuario"]) && !empty($_SESSION["id_usuario"])){
-        $cliente = $_SESSION["id_usuario"];
-        $nuevoObjeto = new PedidosController();
-        $nuevoObjeto->leeInfoPedidoComprar($cliente, $estado, $producto);
+        $objecte = new PedidosController();
+        $resultado = $objecte->actualizaEstado($idPedido);
     }else{
         echo "Operación No permitida";
-        header ("location: index.php");
+        header ("location: Vistas/Pedido/contenidoCistella.php");
     }
 }
 

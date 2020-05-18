@@ -489,3 +489,68 @@ input.qtyminus {
 .container-final{
     min-height: 700px;
 }
+
+
+
+
+
+/*******************************************************************************************************************
+*******************************************************************************************************************
+******* CONTENIDO CESTA ******************************************************************************************/
+
+.cesta-det{
+    width: 100%;
+    min-height: 650px;
+}
+
+.cistella-contingut{
+    width: 80%;
+    height: relative;
+    min-height: 200px;
+    margin: 0 auto;
+}
+
+.cistella-contingut ul{
+    text-align: right;
+}
+
+.cistella-contingut li{
+    display: inline-block;
+    text-decoration: none;
+    margin: 20px;
+}
+
+.cistella-contingut h3{
+    text-align: center;
+    font-weight: 600;
+    margin: 25px;
+}
+
+.nav-cesta{
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+
+.producto-cesta-lista{
+    width: 80%;
+    height: 70px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.producto-cesta-lista>div{
+    width: relative;
+    height: inherit;
+    margin-right: 30px;
+}
+
+.botones{
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    margin-bottom: 20px;
+}

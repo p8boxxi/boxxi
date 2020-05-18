@@ -14,10 +14,8 @@ $pedido = new PedidoDetallesController();
 require_once '../Controladores/ProductosController.php';
 
 $objecteSessio = new SesionesController();
-
-
- ?>
-    <div class="container"> 
+?>
+    <div class="container cesta-det"> 
 
 
         <div class = "flex-container prod-comprar ">
@@ -30,12 +28,12 @@ $objecteSessio = new SesionesController();
             
             <?php 
                 $i=0 ;
+                $objDetalls = (array)$objDetalls;
                 foreach($objDetalls as $objecte) {
                 $prod = new ProductosController();
                 $prodinfo = $objecte->id_producto;
                 $detallsProducte = $prod->ProductoDetalleComprarInfo($prodinfo);
 
-            print_r($detallsProducte);
             ?>
             <div class ="producto-cesta">
                 <div class="items-prod"> 
@@ -62,18 +60,6 @@ $objecteSessio = new SesionesController();
                     <a><?php echo $objecte->precio ?>€</a>
                 </div>
 
-                <div class="items-prod">
-                    <div class="prod-dentro"> <!--boton cantidad -->
-                        <form id='myform2' method='POST' action='#'>
-                            <div class="rec">
-                                <input id='cantidad' type='button' value='-' class='qtyminus' field='cantidad<?php echo $i;?>' />
-                                <input id="cantidad-final" type='text' name='cantidad<?php echo $i;?>' value='0' class='qty' />
-                                <input type='button' value='+' class='qtyplus' field='cantidad<?php echo $i;?>' />
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
             </div>
             <?php  
             $i++;
@@ -82,7 +68,7 @@ $objecteSessio = new SesionesController();
 
         <div class ="prod-comprar">
             <div class="items-confirmar ">
-                <form action="/Controladores/PedidoDetallesController.php" method="POST">
+                <form action="/Controladores/PedidosController.php" method="POST">
                     <div class="six fields">
                         <input type="hidden" name="fecha" value="<?php echo date("Y-m-d")?>"/>
                         <input id="cantidad-enviar" type="hidden" name="cantidad" value="">
@@ -90,7 +76,7 @@ $objecteSessio = new SesionesController();
                         <input type="hidden" name="producto" value="<?php echo $objecte->id_producto?>">
 
                         <div class="confirmar boton-buy ">
-                            <input type="hidden" name="operacio" value=""/>
+                            <input type="hidden" name="operacio" value="comprar"/>
                             <input type="submit" value="Finalizar compra"/>
                         </div>
 
