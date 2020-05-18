@@ -82,7 +82,7 @@ if (!isset($_SESSION["cistella"])){
                         <form action="/Controladores/PedidosController.php" method="POST">
                             <div class="six fields boton-buy">
                                 <div class="field">
-                                    <input id="cantidad" type="" name="cantidad" value="">
+                                    <input type="hidden" id="cantidad" type="" name="cantidad" value="">
                                     <!-- <input type="hidden" name="fecha" placeholder="fecha" value="<?php //echo date("Y-m-d")?>"/> -->
                                      <input type="hidden" name="llistat" placeholder="llistat" value="<?php echo $Llistat?>"/>
                                     <input type="hidden" name="producto" placeholder="producto" value="<?php echo $objecte->id_producto?>"/>

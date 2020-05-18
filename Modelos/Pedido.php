@@ -36,32 +36,29 @@ class Pedido{
         }
     }
 
-    //////  AP
-    protected function registraPedidoVisitante($estado){
-        $this->setId_estado($estado);
-        $this->setFecha(date("Y-m-d H:i:s"));
+    // //////  AP
+    // protected function registraPedidoVisitante($estado){
+    //     $this->setId_estado($estado);
+    //     $this->setFecha(date("Y-m-d H:i:s"));
 
-        try{    
-            $conecta = new ConexionBD();
-            $conecta->getConexionBD()->beginTransaction();
-            $sqlPedido = "INSERT INTO pedidos (id_pedido, id_cliente, id_estado, fecha) 
-                    VALUES (null, 1, :id_estado, :fecha)";
-            $resultado = $conecta->getConexionBD()->prepare($sqlPedido);
-            $resultado->execute(array(
+    //     try{    
+    //         $conecta = new ConexionBD();
+    //         $conecta->getConexionBD()->beginTransaction();
+    //         $sqlPedido = "INSERT INTO pedidos (id_pedido, id_cliente, id_estado, fecha) 
+    //                 VALUES (null, 1, :id_estado, :fecha)";
+    //         $resultado = $conecta->getConexionBD()->prepare($sqlPedido);
+    //         $resultado->execute(array(
                                     
-                                    ":id_estado" => $this->getId_estado(),
-                                    ":fecha" => $this->getFecha()
-                                ));
-            $conecta->getConexionBD()->commit();  
-            return true;
-         }catch(Exception $excepcio){
-            $conecta->getConexionBD()->rollback();  
-            return false; 
-        }
-    }
-
-
-    /////////////////////////////////////
+    //                                 ":id_estado" => $this->getId_estado(),
+    //                                 ":fecha" => $this->getFecha()
+    //                             ));
+    //         $conecta->getConexionBD()->commit();  
+    //         return true;
+    //      }catch(Exception $excepcio){
+    //         $conecta->getConexionBD()->rollback();  
+    //         return false; 
+    //     }
+    // }
 
 
     protected function retornaPedidosTodos(){
@@ -111,10 +108,24 @@ class Pedido{
                 $conecta->getConexionBD()->rollback();  
                 return false;  
             }
-        }
-        
+        }        
+    }
 
-        
+    //AP
+    protected function actualizaPedidoComprado(){
+            try{
+                $conecta = new ConexionBD();
+                $conecta->getConexionBD()->beginTransaction();
+                $sentenciaSQL = "UPDATE pedidos SET id_estado = 3 WHERE id_pedido = $this->id_pedido";
+                $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+                $intencio->execute();
+                $conecta->getConexionBD()->commit();
+                return true;
+            }catch(Exception $excepcio){
+                $conecta->getConexionBD()->rollback();  
+                return false;  
+            }
+                
     }
 
 
