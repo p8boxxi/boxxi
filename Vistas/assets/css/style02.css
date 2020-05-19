@@ -27,6 +27,22 @@ ul, li {
   margin-left: 10px;
   font-size: 14px;
 }
+.fz-12 {
+  font-size: 12px;
+}
+.fz-13 {
+  font-size: 13px;
+}
+.fz-14 {
+  font-size: 14px;
+}
+.fz-15 {
+  font-size: 15px;
+}
+.fz-16 {
+  font-size: 16px;
+}
+
 /* Modals */
 
 .modal {
@@ -260,6 +276,17 @@ text-decoration: none;
   
 }
 
+/**/
+
+table .sub {border-top: 0;}
+table .sub td {
+  border-top: 0;
+  line-height: 1.8;
+  padding-top: 0;
+}
+table .visible-next + tr {
+  display: table-row!important;
+}
 /* Mobile screen */
 
 @media (max-width:768px) {

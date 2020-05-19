@@ -19,7 +19,7 @@ include '../Vistas/Header/header.php';
                 
                 <!-- -->
 
-                <h2 class="col-12">Gestión de categorías <a class="btn btn-light float-right" href="../Vistas/Categoria/insertarCategoria.php">+ Nueva categoría</a></h2>
+                <h2 class="col-12">Gestión de categorías <a class="btn btn-sm btn-light float-right" href="../Vistas/Categoria/insertarCategoria.php">+ Nueva categoría</a></h2>
                 
                 <div class="col-12">
 
@@ -42,8 +42,8 @@ include '../Vistas/Header/header.php';
                                 <?php if (($objecte->id_categoria)!=1){
                                     ?>
                                     <td class='text-right'>
-                                        <a class='btn btn-outline-danger' href="CategoriasController.php?operacio=elimina&categoria=<?php echo $objecte->id_categoria ?>">Eliminar</a>
-                                        <a class='btn btn-outline-success' href="CategoriasController.php?operacio=modificar&categoria=<?php echo $objecte->id_categoria ?>">Modificar</a>
+                                        <a class='btn btn-sm btn-outline-danger' href="CategoriasController.php?operacio=elimina&categoria=<?php echo $objecte->id_categoria ?>">Eliminar</a>
+                                        <a class='btn btn-sm btn-outline-success' href="CategoriasController.php?operacio=modificar&categoria=<?php echo $objecte->id_categoria ?>">Modificar</a>
                                     </td>
                                     <?php
                                 } ?>
