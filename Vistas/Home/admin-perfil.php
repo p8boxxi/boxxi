@@ -21,7 +21,6 @@ include '../../Vistas/Header/header.php';
 ?>
 
 <body>
-<?php echo $_SESSION["id_administrador"] ?>
 <section class="admin">
     <div class="container">
         <div class="row">
