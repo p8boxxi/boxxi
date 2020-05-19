@@ -1,47 +1,72 @@
-<?php    
-    /***  ENCABEZADO */
-
-    //require '';
-   
+<?php
+require_once "../Controladores/SesionesController.php";
+$objecteSessio = new SesionesController();
+$title = 'Tienda'; 
+$currentPage = 'Tienda'; 
+include '../Vistas/Header/header.php';    
 ?>
+<body>
 
-<h1>Lista TODOS los PEDIDOS</h1>
+<section class="admin">
+    <div class="container">
+        <div class="row">
+            
+        <?php include '../Vistas/Header/nav-cuenta-admin.php';?>
+        
+            <div class="col-md-9 content">
+                
+                <div class="row">
+                
+                <!-- -->
 
-<div>
+<h2 class="col-12">Lista de pedidos</h2>
 
-    <table style="border:1px solid black;">
+<div class="col-12">
+            <table class="w-100 table fz-14">
         <tr>
-            <th>id_pedido</th>
-            <th>id_CLIENTE</th>
-            <th>id_estado</th>
-
+            <th>Id</th>
             <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Estado</th>
+            <th></th>
 
-            <th> CANCELAR </th>
-            <th> MODIFICAR </th>
         </tr>
     <?php
         
         foreach($Llistat as $objecte){ 
             ?>
             <tr>
-                <td style="border:1px solid black;"><?php echo $objecte->id_pedido ?></td>
-                <td style="border:1px solid black;"><?php echo $objecte->id_cliente ?></td>
-                <td style="border:1px solid black;"><?php echo $objecte->id_estado ?></td>
+                <td><?php echo $objecte->id_pedido ?></td>
+                <td><?php echo DateTime::createFromFormat('Y-m-d', $objecte->fecha)->format("d/m/Y")  ?></td>
+                <td><?php echo $objecte->id_cliente ?></td>
+                <td><?php echo $objecte->nombre ?></td>
 
-                <td style="border:1px solid black;"><?php echo DateTime::createFromFormat('Y-m-d', $objecte->fecha)->format("d/m/Y")  ?></td>
+                
 
-                <td style="border:1px solid black;"><a href="PedidosController.php?operacio=cancelar&pedido=<?php echo $objecte->id_pedido ?>">CANCELAR</a></td>
-                <td style="border:1px solid black;"><a href="PedidosController.php?operacio=modificar&pedido=<?php echo $objecte->id_pedido ?>">MODIFICAR</a></td>
+                <a class="d-none" href="PedidosController.php?operacio=cancelar&pedido=<?php echo $objecte->id_pedido ?>">Cancelar</a>
+                <a class="d-none" href="PedidosController.php?operacio=modificar&pedido=<?php echo $objecte->id_pedido ?>">Modificar</a>
+                <td>
+                    <span class="btn btn-sm btn-outline-success">Ver detalle</span>
+                </td>
             </tr>
     <?php
         }?>
     </table>
 </div>
-<br>
-<a href="../index.php">Inicio</a>
 
-<?php    
-    /***  PIE */
 
-?>
+
+                 <!-- -->
+
+            </div>
+        </div>
+        
+    </div>
+</section>
+    
+<?php include '../Vistas/Footer/footer.php'; ?>
+
+</body>
+
+</html>
+

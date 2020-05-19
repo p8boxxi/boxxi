@@ -65,7 +65,8 @@ class Pedido{
         try{
             $conecta = new ConexionBD();
             $conecta->getConexionBD()->beginTransaction();
-            $sentenciaSQL = "SELECT * FROM pedidos";
+            $sentenciaSQL = "SELECT * FROM pedidos INNER JOIN estados 
+                                        ON pedidos.id_estado=estados.id_estado";
             $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
             $intencio->execute();
             return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);

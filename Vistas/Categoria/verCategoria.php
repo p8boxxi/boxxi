@@ -23,7 +23,7 @@ include '../Vistas/Header/header.php';
                 
                 <div class="col-12">
 
-                    <table class="table">
+                    <table class="table fz-14">
                       <thead>
                         <tr>
                           <th scope="col">Identificador</th>

@@ -1,6 +1,14 @@
 <?php
 //GP
-require "../Modelos/Administrador.php";
+if (file_exists("/Modelos/Administrador.php")){
+    require_once "/Modelos/Administrador.php";
+}
+if (file_exists("../Modelos/Administrador.php")){
+    require_once "../Modelos/Administrador.php";
+}
+if (file_exists("../../Modelos/Administrador.php")){
+    require_once "../../Modelos/Administrador.php";
+}
 
 // require "SesionesController.php";
 // $objecteSessio = new SesionesController();
@@ -35,6 +43,36 @@ class AdministradoresController extends Administrador{
         return $this->buscaIdAdminDel($usuario);
     }
     
+
+    //AZ
+    public function infoAdministrador(){
+
+        $Llistat = $this->retornaAdmin($_SESSION["id_usuario"]);
+
+        if (file_exists("../Vistas/Administrador/administrador-perfil.php")){
+            require_once "../Vistas/Administrador/administrador-perfil.php";
+        }
+        if (file_exists("../../Vistas/Administrador/administrador-perfil.php")){
+            require_once "../../Vistas/Administrador/administrador-perfil.php";
+        }
+
+    }
+
+    //AZ
+    public function mostrarModificarAdministrador(){
+
+        $Llistat = $this->retornaAdmin($_SESSION["id_usuario"]);
+
+        if (file_exists("../Vistas/Administrador/administrador-modificar.php")){
+            require_once "../Vistas/Administrador/administrador-modificar.php";
+        }
+        if (file_exists("../../Vistas/Administrador/administrador-modificar.php")){
+            require_once "../../Vistas/Administrador/administrador-modificar.php";
+        }
+
+    }
+
+
 
 
 }

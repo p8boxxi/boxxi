@@ -17,7 +17,7 @@
         <a href="../../Controladores/ClientesController.php?operacio=ver">Clientes</a>
       </li>
       <li>
-        <a href="admin-perfil.php">Datos personales</a>
+        <a href="../../Vistas/Home/admin-perfil.php">Datos personales</a>
       </li>
       <li>
         <a href="admin-password.php">Cambiar contraseña</a>

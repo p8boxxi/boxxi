@@ -114,6 +114,24 @@ class Administrador{
         }
     }
 
+    //AZ
+    protected function retornaAdmin($id){
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "SELECT * FROM usuarios
+                                        INNER JOIN administradores 
+                                        ON administradores.id_usuario=usuarios.id_usuario
+                                        WHERE administradores.id_usuario='$id'";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute();
+            return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();   
+            return null;  
+        }
+    }
+
 
     public function getId_usuario()
     {
