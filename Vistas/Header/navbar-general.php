@@ -37,7 +37,7 @@
                 } else {
                   echo "<b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</b>";
                   echo "<a class='c-999' href='../../Controladores/SesionesController.php?operacion=cerrarSesion'>Cerrar sesión</a>";
-                  echo "<a href='admin-pedidos.php'>Panel de control</a>";
+                  echo "<a href='admin.php'>Panel de control</a>";
                 }
                 
                 echo "</li>";

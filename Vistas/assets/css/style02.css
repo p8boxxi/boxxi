@@ -186,11 +186,7 @@ section.admin .content {
   padding: 20px 40px;
   background-color: #ffffff;
 }
-section.admin .content h2 {
-font-size: 24px;
-font-weight: 600;
-margin: 10px 0 20px;
-}
+section.admin .content h2 {font-size: 24px;font-weight: 600;padding-top: 10px;padding-bottom: 10px;}
 section.admin .content form {
   display: block;
   width: 100%;

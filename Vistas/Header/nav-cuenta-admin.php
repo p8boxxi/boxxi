@@ -5,16 +5,16 @@
     <h3>Área de administrador</h3>
     <ul>
       <li>
-        <a href="admin-pedidos.php">Pedidos / Ventas</a>
+        <a href="../../Controladores/PedidosController.php?operacio=ver">Pedidos / Ventas</a>
       </li>
       <li>
-        <a href="admin-categorias.php">Categorías</a>
+        <a href="../../Controladores/CategoriasController.php?operacio=ver">Categorías</a>
       </li>
       <li>
-        <a href="admin-productos.php">Productos</a>
+        <a href="../../Controladores/ProductosController.php?operacio=ver">Productos</a>
       </li>
       <li>
-        <a href="admin-clientes.php">Clientes</a>
+        <a href="../../Controladores/ClientesController.php?operacio=ver">Clientes</a>
       </li>
       <li>
         <a href="admin-perfil.php">Datos personales</a>

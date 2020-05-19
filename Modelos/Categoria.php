@@ -92,7 +92,21 @@ class Categoria{
         }
     }
 
-
+    //AZ
+    protected function buscaNombreDeLaCategoria($categoria){
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "SELECT nombre FROM categorias 
+                                            WHERE id_categoria = $categoria";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute();
+            return $resultat = $intencio->fetchColumn();
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();   
+            return null;  
+        }
+    }
 
 
     public function getId_categoria()

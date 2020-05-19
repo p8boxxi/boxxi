@@ -41,8 +41,12 @@ class ProductosController extends Producto{
     public function LlistaProducto(){
 
         $Llistat = $this->retornaProductosTodos();
-        //require "../Vistas/Producto/verProducto.php";
-        require "Vistas/Producto/verProducto.php";
+        if (file_exists("Vistas/Producto/verProducto.php")){
+            require_once "Vistas/Producto/verProducto.php";
+        }
+        if (file_exists("../Vistas/Producto/verProducto.php")){
+            require_once "../Vistas/Producto/verProducto.php";
+        }
     }
 
     public function LlistaProductoConFotos(){

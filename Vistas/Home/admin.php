@@ -17,6 +17,7 @@ include '../../Vistas/Header/header.php';
                 
                 <div class="row">
 
+                    <h2 class="col-12"></h2>
 
                 </div>
 
