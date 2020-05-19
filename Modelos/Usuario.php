@@ -171,6 +171,36 @@ class Usuario{
         
     }
 
+    //AZ
+    protected function modificarAdministrador($id, $email, $nombre, $apellidos){
+        $this->setEmail($email);
+        $this->setNombre($nombre);
+        $this->setApellidos($apellidos);
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "UPDATE usuarios 
+                                    SET  email = :email,
+                                        nombre = :nombre,
+                                        apellidos = :apellidos
+                                    WHERE id_usuario = $id";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute(array(
+                ":email" => $this->getEmail(),
+                ":nombre" => $this->getNombre(),
+                ":apellidos" => $this->getApellidos(),
+            ));
+            $conecta->getConexionBD()->commit();
+            return true;
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return  $excepcio->getMessage();  
+        }
+        
+    }
+
+
+
     public function getId_usuario()
     {
         return $this->id_usuario;

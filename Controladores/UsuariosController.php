@@ -144,7 +144,25 @@ class UsuariosController extends Usuario{
         } 
         header("location: ../Vistas/Home/cliente-modificar.php");
     }
+
+    //AZ
+    public function modificarAdmn($id, $email, $nombre, $apellidos){
+        $this->resultadoModificarAdministrador($this->modificarAdministrador($id, $email, $nombre, $apellidos));
+    }
+    public function resultadoModificarAdministrador($resultat){
+        if ($resultat){
+            $_SESSION["mensajeResultado"]="Tus datos se han actualizado correctamente";
+        }else{
+            $_SESSION["mensajeResultado"]="Tus datos no se han podido actualizar";
+        } 
+        header("location: ../Vistas/Home/admin-modificar.php");
+    }
     
+
+
+
+
+
 }
 
 
@@ -223,6 +241,20 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="modificarClient"){
         if (!empty($_POST["id"]) && !empty($_POST["email"])){
             $usuari = new UsuariosController();
             $usuari->modificarClnt($_POST["id"],$_POST["email"],$_POST["nombre"],$_POST["apellidos"],$_POST["telefono"],$_POST["direccion"]);
+        }else{
+            echo "Faltan datos";
+        }
+    }else{
+        echo "Operacion No permitida";
+    }
+}
+
+//AZ
+if(isset($_POST["operacio"]) && $_POST["operacio"]=="modificarAdmin"){
+    if (isset($_POST["id"]) && isset($_POST["email"]) && isset($_POST["nombre"]) && isset($_POST["apellidos"])){
+        if (!empty($_POST["id"]) && !empty($_POST["email"])){
+            $usuari = new UsuariosController();
+            $usuari->modificarAdmn($_POST["id"],$_POST["email"],$_POST["nombre"],$_POST["apellidos"]);
         }else{
             echo "Faltan datos";
         }
