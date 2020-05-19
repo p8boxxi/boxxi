@@ -103,7 +103,7 @@ class Administrador{
         try{
             $conecta = new ConexionBD();
             $conecta->getConexionBD()->beginTransaction();
-            $sentenciaSQL = "SELECT id_admin FROM administradores
+            $sentenciaSQL = "SELECT id_administrador FROM administradores
                                         WHERE id_usuario = '$usuari'";
             $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
             $intencio->execute();
