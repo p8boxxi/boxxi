@@ -231,6 +231,20 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="comprar"){
     }
 }
 
+//AP
+// if(isset($_POST["operacio"]) && $_POST["operacio"]=="eliminarItemCesta"){
+
+//     if (isset($_GET["kart"]) && !empty($_GET["kart"])){
+//         $index = $_GET["kart"];
+//         $arr = $_SESSION["cistella"]->mostraProductesCistella();
+        
+
+//     }else{
+//         echo "Operación No permitida";
+//     }
+// }
+
+
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
     $objecte = new PedidosController();

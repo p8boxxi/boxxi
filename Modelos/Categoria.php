@@ -77,20 +77,6 @@ class Categoria{
         }
     }
 
-    protected function retornaNomCategoria(){
-        try{
-            $conecta = new ConexionBD();
-            $conecta->getConexionBD()->beginTransaction();
-            $sentenciaSQL = "SELECT nombre FROM Categorias
-                                    WHERE id_categoria = '$this->id_categoria' ";
-            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
-            $intencio->execute();
-            return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);
-        }catch(Exception $excepcio){
-            $conecta->getConexionBD()->rollback();   
-            return null;  
-        }
-    }
 
     //AZ
     protected function buscaNombreDeLaCategoria($categoria){

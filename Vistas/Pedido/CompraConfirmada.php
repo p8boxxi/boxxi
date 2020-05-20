@@ -16,9 +16,7 @@ $objecteSessio = new SesionesController();
 
 if (file_exists('../Controladores/ProductosController.php')){ require_once '../Controladores/ProductosController.php';}
 if (file_exists('/Controladores/ProductosController.php')){ require_once '/Controladores/ProductosController.php';}
-if (!isset($_SESSION["cistella"])){
-	$_SESSION["cistella"] = new Cistella();
-}
+
 // require_once "../Controladores/CategoriasController.php";
 // $cat = new CategoriasController();
 
@@ -26,8 +24,24 @@ if (!isset($_SESSION["cistella"])){
 ?>	
 <body>
 	
-	<div class="container cesta-det"> 
-		<h2>Compra realizada!</h2>
+	<div class="container cesta-fin"> 
+		<div class="cont-finalizado">
+
+			<h2>Compra realizada!</h2>
+			<p> Tu compra se ha realizado con exito, comprueba tu email para obtener todos los detalles del pedido. Te informaremos cuando el pedido salga de nuestras instalaciones.
+			</p>
+			<h5>¡GRACIAS POR CONFIAR EN BOXXI!	</h5>
+		</div>
+
+		<div class="nav-botones">
+			
+			<div class ="prod-comprar">
+				<div class="confirmar boton-buy ">
+					<a href="/Vistas/Home/cliente-pedidos.php"><input type="submit" value="Ver pedidos"/></a>
+					<a href="/Vistas/Home/tienda.php"><input type="submit" value="Seguir comprando"/></a>
+				</div>
+			</div>
+		</div>
 	</div>
 
 
