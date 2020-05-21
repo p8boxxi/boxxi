@@ -50,7 +50,6 @@ class ClientesController extends Cliente{
         }
 
     }
-
     //AZ
     public function mostrarModificarCliente(){
 
@@ -64,7 +63,6 @@ class ClientesController extends Cliente{
         }
 
     }
-
 
     public function BuscaIdClienteDel($usuario){
         foreach($this->retornaIdClientedel($usuario) as $client){}

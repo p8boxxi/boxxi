@@ -19,11 +19,35 @@ if (file_exists('/Controladores/ProductosController.php')){ require_once '/Contr
 if (!isset($_SESSION["cistella"])){
     $_SESSION["cistella"] = new Cistella();
 }
-// require_once "../Controladores/CategoriasController.php";
-// $cat = new CategoriasController();
-
-    //require '';
+require_once "../Controladores/CategoriasController.php";
+$cat = new CategoriasController();
 ?>
+
+<!-- El input siempre sea igual que el boton -->
+
+<?php
+$name = "cantidad";
+$val = 0;
+function get_option($name){
+    $default = 0;
+    $val = $default;
+    if (isset($_POST["operacio"])){
+        $val = 0;
+    }
+}           
+?>
+
+<!-- Comprueba cantidad vacia
+ -->
+<script>
+    function validateForm() {
+      var x = document.forms["myForm"]["cantidad"].value;
+      if (x == "0") {
+        alert("Debes introducir una cantidad");
+        return false;
+    }
+}
+</script>
 
 
 <?php foreach($Llistat as $objecte) { ?>
@@ -32,8 +56,8 @@ if (!isset($_SESSION["cistella"])){
         <div class="migas"> 
             <a href="/Vistas/Home/tienda.php">Tienda</a>
             > 
-            <!-- <a href="#"><?php //echo $cat->MuestraInfoCategoria($objecte->id_categoria); ?> </a> -->
-            
+            <a href="#"><?php echo $cat->obtieneNombreDeLaCategoria($objecte->id_categoria); ?> </a>  >
+
             <?php echo $objecte->nombre ?>
         </div> 
         <div class = "flex-container prod-detalle ">
@@ -65,13 +89,14 @@ if (!isset($_SESSION["cistella"])){
                     <div class="precio-grande">
                         <a><?php echo $objecte->precio ?>€</a>
                     </div>
+                    
 
                     <!-- Boton añadir cantidad -->
 
                     <form id='myform2' method='POST' action='#'>
                         <div class="rec">
                             <input id='cantidad' type='button' value='-' class='qtyminus' field='cantidad' />
-                            <input id="cantidad-final" type='text' name='cantidad' value='0' class='qty' />
+                            <input id="cantidad-final" type='text' name='cantidad' value='<?php echo $val; ?>' class='qty' />
                             <input type='button' value='+' class='qtyplus' field='cantidad' />
                         </div>
                     </form>
@@ -79,12 +104,12 @@ if (!isset($_SESSION["cistella"])){
                     <!-- Boton añadir a la cistella-->
 
                     <div class="bt-lateral">
-                        <form action="/Controladores/PedidosController.php" method="POST">
+                        <form name='myForm' action="/Controladores/PedidosController.php"  onsubmit="return validateForm()" method="POST">
                             <div class="six fields boton-buy">
                                 <div class="field">
-                                    <input type="hidden" id="cantidad" type="" name="cantidad" value="">
+                                    <input type="hidden" id="cantidad" type="" name="cantidad" value="<?php echo $val; ?>">
                                     <!-- <input type="hidden" name="fecha" placeholder="fecha" value="<?php //echo date("Y-m-d")?>"/> -->
-                                     <input type="hidden" name="llistat" placeholder="llistat" value="<?php echo $Llistat?>"/>
+                                    <input type="hidden" name="llistat" placeholder="llistat" value="<?php echo $Llistat?>"/>
                                     <input type="hidden" name="producto" placeholder="producto" value="<?php echo $objecte->id_producto?>"/>
                                 </div>
                                 <input type="hidden" name="operacio" value="anadirApedido"/>
@@ -98,9 +123,9 @@ if (!isset($_SESSION["cistella"])){
                     </div>
                 </ul>
             </div>                               
-                <div>
+            <div>
 
-                </div>
+            </div>
         </div>
     </div>
     <script src="../Vistas/assets/js/botoncantidad.js"></script>

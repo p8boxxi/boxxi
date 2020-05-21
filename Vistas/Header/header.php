@@ -23,6 +23,5 @@
 
 
 	<?php include 'navbar-general.php'; ?>
-	
+	</head>
 
-</head>

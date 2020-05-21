@@ -73,8 +73,6 @@ class AdministradoresController extends Administrador{
     }
 
 
-
-
 }
 
 

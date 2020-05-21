@@ -19,26 +19,6 @@ $oobjecte2 = new PedidosController();
 $fecha = date("Y-m-d");
 $fecha = $objecte2->leeInfoPedido();
 
-
-//include 'Vistas/Producto/verProducto.php';   <----  NO, perquè ja el crida el CONTROLADOR (la funcio LlistaProductoConFotos())
-      
-
-
-
-
-//*********************************************************************************************************************************** */
-//  CANVIS FETS:
-//      - tienda.php:    
-//          linies 14 a 16 ==> per cridar al CONTROLADOR que passi el resultat a la variable $Llistat a la vista d'ara
-//
-//      - productosController.php:    
-//            modificació de rutes ==>    com que s'ha canviat el "punt de partida" (de com era a l'exemple index.php), 
-//                                      s'haurien de canviar les RUTES als diferents fitxers!!
-//
-//      - ha calgut fer que el fitxer de SesionesController vigili si hi ha "sessió activa" (el tenia en una altra versió meva). Ja està
-/************************************************************************************************************************************** */
-
-
 ?>
 
 
@@ -46,18 +26,6 @@ $fecha = $objecte2->leeInfoPedido();
 
 
     <?php  
-
-    
-
-
-    //GP
-    // if(!empty($_SESSION["id_usuario"])){
-    //             echo "eres el usuario con ID: ".$_SESSION["id_usuario"];
-    //             echo "<br>";
-    //             echo "eres ".$_SESSION["rol"];
-    // }  
-
-    
 
     if (isset($_SESSION["login"])){
         if ($_SESSION["login"]==false){
@@ -82,17 +50,8 @@ $fecha = $objecte2->leeInfoPedido();
     if (isset($_SESSION["mensajeResultado"])){
         echo $_SESSION["mensajeResultado"];
     }
-    
-    //var_dump($_SESSION);
-
-    // echo "<br>";
-    // echo "<a href='Controladores/SesionesController.php?operacion=cerrarSesion'>Salir de  La Sesion</a>";
-
     ?>
 
-
-
-    
 <?php include '../../Vistas/Footer/footer.php'; ?>
 
 </body>

@@ -97,6 +97,7 @@ ul, li {
     background-color: transparent;
     border-radius: 0;
     -webkit-border-radius: 0;
+    min-height: 60px;
 }
 .input-container textarea {
   line-height: 18px;

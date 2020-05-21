@@ -244,10 +244,11 @@ body {
 .migas{
     display:block;
     height: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 .migas a{
  text-decoration: none;
+ color: grey;
 }
 
 
@@ -482,32 +483,39 @@ input.qtyminus {
 }
 
 
-/*******************************************************************************************************************
-*******************************************************************************************************************
-******* RESULTADO ******************************************************************************************/
-
-.container-final{
-    min-height: 700px;
-}
-
-
-
 
 
 /*******************************************************************************************************************
 *******************************************************************************************************************
-******* CONTENIDO CESTA ******************************************************************************************/
+******* CONTENIDO CESTA ******************************************************************************/
 
 .cesta-det{
-    width: 100%;
     min-height: 650px;
 }
 
-.cistella-contingut{
-    width: 80%;
+.titol-cesta {
+    display: block;
+    width: relative;
+    min-height: 20px;
+}
+.titol-cesta h3{
+    text-align: center;
+    font-weight: 600;
+    font-size: 38px;
+}
+
+.cistella-contingut  >div{
+    width: inherit;
     height: relative;
-    min-height: 200px;
+    margin: 15px 0 15px 0;
+}
+.cistella-contingut{
+    width: inherit;
+    height: relative;
+    padding-bottom: 120px;
     margin: 0 auto;
+
+    margin-top: 20px;
 }
 
 .cistella-contingut ul{
@@ -525,6 +533,13 @@ input.qtyminus {
     font-weight: 600;
     margin: 25px;
 }
+.wrapper-cistella{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    height: relative;
+    min-height: 300px;
+}
 
 .nav-cesta{
     display: block;
@@ -535,7 +550,7 @@ input.qtyminus {
 
 
 .producto-cesta-lista{
-    width: 80%;
+    width: 90%;
     height: 70px;
     display: flex;
     flex-wrap: wrap;
@@ -545,7 +560,16 @@ input.qtyminus {
 .producto-cesta-lista>div{
     width: relative;
     height: inherit;
-    margin-right: 30px;
+    margin: 0 auto;
+}
+.producto-cesta-total{
+    display: block;
+    height: relative;
+    width: 100%;
+    text-align:right;
+}
+.producto-cesta-total h2{
+    padding-right: 60px;
 }
 
 .botones{
@@ -554,3 +578,41 @@ input.qtyminus {
     text-decoration: none;
     margin-bottom: 20px;
 }
+
+
+
+
+/*******************************************************************************************************************
+*******************************************************************************************************************
+******* COMPRA FINALIZADA ******************************************************************************************/
+
+.cesta-fin{
+    min-height: 650px;
+}
+.cont-finalizado{
+    width: 80%;
+    height: relative;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 80px;
+}
+.cont-finalizado h2{
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;    
+    margin-bottom: 40px;
+    font-weight: 600;
+    font-size: 38px;
+}
+
+.cont-finalizado h5{
+    margin: 15px 0 30px 0;
+}
+
+.nav-botones{
+    text-align: center;
+}
+.nav-botones input{
+    margin: 5px;
+}
+

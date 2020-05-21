@@ -20,7 +20,7 @@
         <a href="../../Vistas/Home/admin-perfil.php">Datos personales</a>
       </li>
       <li>
-        <a href="admin-password.php">Cambiar contraseña</a>
+        <a href="../../Vistas/Home/admin-password.php">Cambiar contraseña</a>
       </li>
     </ul>
   </nav>

@@ -23,7 +23,7 @@
     </div>
     <div class="nav-derecha">
       <ul >
-        <li <?php if ($currentPage === 'Tienda') {echo 'class="active-tienda"';} ?> ><a href='../Home/tienda.php'>Tienda</a></li> 
+        <li><a href='../Home/tienda.php'>Tienda</a></li> 
 
           <?php
             if(empty($_SESSION["id_usuario"])){ echo '<li><a type="button" data-toggle="modal" data-target="#loginModal">Acceso de usuarios</a></li>';}
@@ -34,6 +34,7 @@
                     echo "<b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</b>";
                     echo "<a class='c-999' href='../../Controladores/SesionesController.php?operacion=cerrarSesion'>Cerrar sesión</a>";
                     echo "<a href='cliente-perfil.php'>Mi cuenta</a>";
+                     echo "<a href='../Pedido/contenidoCistella.php'>Mi cesta</a>";
                 } else {
                   echo "<b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</b>";
                   echo "<a class='c-999' href='../../Controladores/SesionesController.php?operacion=cerrarSesion'>Cerrar sesión</a>";
