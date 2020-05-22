@@ -1,11 +1,10 @@
 <?php     
 require_once "../../Controladores/SesionesController.php";
 $objecteSessio = new SesionesController();
+$title = 'Index'; 
+$currentPage = 'Index'; 
+include '../../Vistas/Header/header.php';    
 ?>
-<?php $title = 'Index'; ?>
-<?php $currentPage = 'Index'; ?>
-
-<?php include '../../Vistas/Header/header.php'; ?>
 
 <body>
 
@@ -19,10 +18,12 @@ $objecteSessio = new SesionesController();
     // }  
 
     if (isset($_SESSION["login"])){
+
         if ($_SESSION["login"]==false){
+
             if (isset($_SESSION["mensajeLogin"])){
                 // AZ
-                echo "<div class='modal fade' id='wrongModal1' tabindex='-1' role='dialog' aria-labelledby='wrongModal' aria-hidden='true'>";
+                echo "<div class='modal fade' id='wrongModal1' tabindex='-1' role='dialog' aria-labelledby='wrongModal1' aria-hidden='true'>";
                 echo "<div class='modal-dialog' role='document'>";
                 echo "<div class='modal-content p-4 text-center'>";
                 echo "<a class='close' data-dismiss='modal'>×</a>";
@@ -35,18 +36,18 @@ $objecteSessio = new SesionesController();
             }
         }else{
             if (isset($_SESSION["Denegado"])){
-            // AZ
-            echo "<div class='modal fade' id='wrongModal2' tabindex='-1' role='dialog' aria-labelledby='wrongModal' aria-hidden='true'>";
-            echo "<div class='modal-dialog' role='document'>";
-            echo "<div class='modal-content p-4 text-center'>";
-            echo "<a class='close' data-dismiss='modal'>×</a>";
-            echo "<p class='m-0'><b>".$_SESSION["Denegado"]."</b></p>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-            echo "<script>$('#wrongModal2).modal('show');</script>";
-            unset($_SESSION["Denegado"]);
-            }
+                // AZ
+                echo "<div class='modal fade' id='wrongModal2' tabindex='-1' role='dialog' aria-labelledby='wrongModal2' aria-hidden='true'>";
+                echo "<div class='modal-dialog' role='document'>";
+                echo "<div class='modal-content p-4 text-center'>";
+                echo "<a class='close' data-dismiss='modal'>×</a>";
+                echo "<p class='m-0'><b>".$_SESSION["Denegado"]."</b></p>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "<script>$('#wrongModal2').modal('show');</script>";
+                unset($_SESSION["Denegado"]);
+                }
         }
     }
     
