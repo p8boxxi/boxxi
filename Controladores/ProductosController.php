@@ -49,6 +49,18 @@ class ProductosController extends Producto{
         }
     }
 
+    //AZ
+    public function ProductoPor($id){
+
+        $Llistat = $this->retornaProducto($id);
+        if (file_exists("Vistas/Producto/verProductoFicha.php")){
+            require_once "Vistas/Producto/verProductoFicha.php";
+        }
+        if (file_exists("../Vistas/Producto/verProductoFicha.php")){
+            require_once "../Vistas/Producto/verProductoFicha.php";
+        }
+    }
+
     public function LlistaProductoConFotos(){
 
         $Llistat = $this->retornaProductosTodos();
@@ -192,6 +204,13 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
     $objecte->LlistaProducto();
 }
 
+//AZ
+if(isset($_GET["operacio"]) && $_GET["operacio"]=="verDetalle"){
+    if (isset($_GET["producto"])) {
+        $objecte = new ProductosController();
+        $objecte->ProductoPor($_GET["producto"]);
+    }
+}
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="verFotos"){
     $objecte = new ProductosController();

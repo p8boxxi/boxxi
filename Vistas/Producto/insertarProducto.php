@@ -1,21 +1,6 @@
 <?php    
-    /***  ENCABEZADO */
-
-    //GP
     require "../../Controladores/SesionesController.php";
     $objecteSessions = new SesionesController();
-
-    // if (!isset($_SESSION["id_usuario"])){
-    //     $_SESSION["login"] = false;
-    //     $_SESSION["mensajeLogin"]= "<< NO LOGUEADO >>";
-    //     header ("location: ../../index.php");
-    // }else{
-    //     if (isset($_SESSION["rol"]) && $_SESSION["rol"]!="Administrador"){
-    //         $_SESSION["NoPermiso"]="No tiene acceso al módulo de insertar Productos!!";
-    //         header ("location: ../../index.php");
-    //     }
-    // }
-    
 
     if (!isset($_SESSION["id_usuario"])){
         $_SESSION["login"] = false;
@@ -28,14 +13,28 @@
         }
     }
 
-
 require_once "../../Controladores/CategoriasController.php";
 
+$title = 'Tienda'; 
+$currentPage = 'Tienda'; 
+include '../../Vistas/Header/header.php';    
 ?>
+<body>
+
+<section class="admin">
+    <div class="container">
+        <div class="row">
+            
+        <?php include '../../Vistas/Header/nav-cuenta-admin.php';?>
+        
+            <div class="col-md-9 content">
+                
+                <div class="row">
+                
+                <!-- -->
 
 
-
-<h1>Inserta un PRODUCTO</h1>
+<h2 class="col-12">Nuevo producto</h2>
 <form action="../../Controladores/ProductosController.php" method="POST" enctype="multipart/form-data">
     <div class="six fields">
 
@@ -95,7 +94,16 @@ require_once "../../Controladores/CategoriasController.php";
     </div>
 
 
-<?php    
-    /***  PIE */
+  <!-- -->
 
-?>
+            </div>
+        </div>
+        
+    </div>
+</section>
+    
+<?php include '../../Vistas/Footer/footer.php'; ?>
+
+</body>
+
+</html>

@@ -1,30 +1,44 @@
 <?php    
-    /***  ENCABEZADO */
+    require "../../Controladores/SesionesController.php";
+    $objecteSessions = new SesionesController();
 
-    //GP
-    require_once "../../Controladores/SesionesController.php";
-    $objecteSessio = new SesionesController();
-
-    
     if (!isset($_SESSION["id_usuario"])){
         $_SESSION["login"] = false;
         $_SESSION["mensajeLogin"]= "<< NO LOGUEADO >>";
         header ("location: ../../index.php");
     }else{
         if (isset($_SESSION["rol"]) && $_SESSION["rol"]!="Administrador"){
-            $_SESSION["Denegado"]="No tiene acceso al módulo de modificar la Categoria!!";
+            $_SESSION["Denegado"]="No tiene acceso al módulo de insertar Productos!!";
             header ("location: ../../index.php");
         }
     }
 
 
+require_once "../../Controladores/CategoriasController.php";
 
+$title = 'Tienda'; 
+$currentPage = 'Tienda'; 
+include '../../Vistas/Header/header.php';    
 ?>
+<body>
+
+<section class="admin">
+    <div class="container">
+        <div class="row">
+            
+        <?php include '../../Vistas/Header/nav-cuenta-admin.php';?>
+        
+            <div class="col-md-9 content">
+                
+                <div class="row">
+                
+                <!-- -->
+
+                <h2 class="col-12">Modificar producto</h2>
 
     <?php 
     if (isset($_GET["id"])){
         ?>
-            <h1>Modifica un Producto</h1>
             <form action="../../Controladores/ProductosController.php" method="POST">
             <div class="two fields">
             <div class="field">
@@ -72,7 +86,16 @@
 
     ?>
 
-<?php    
-    /***  PIE */
+ <!-- -->
 
-?>
+            </div>
+        </div>
+        
+    </div>
+</section>
+    
+<?php include '../../Vistas/Footer/footer.php'; ?>
+
+</body>
+
+</html>
