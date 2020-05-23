@@ -33,7 +33,7 @@
                 if($_SESSION["rol"]=="Cliente"){
                     echo "<b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</b>";
                     echo "<a class='c-999' href='../../Controladores/SesionesController.php?operacion=cerrarSesion'>Cerrar sesión</a>";
-                    echo "<a href='cliente-perfil.php'>Mi cuenta</a>";
+                    echo "<a href='../Home/cliente-perfil.php'>Mi cuenta</a>";
                      echo "<a href='../Pedido/contenidoCistella.php'>Mi cesta</a>";
                 } else {
                   echo "<b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</b>";

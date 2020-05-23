@@ -87,7 +87,8 @@ ul, li {
 }
 .input-container input,
 .input-container .input,
-.input-container textarea {
+.input-container textarea,
+.input-container select {
     padding: 25px 10px 5px 10px;
     line-height: 30px;
     font-size: 15px;
@@ -102,6 +103,8 @@ ul, li {
 .input-container textarea {
   line-height: 18px;
   padding-top: 30px;
+  margin: 0;
+  float: left;
 }
 .input-container input:focus ~ .label,
 .input-container textarea:focus ~ .label,
@@ -109,6 +112,14 @@ ul, li {
 .input-container textarea:not(:focus):valid ~ .label,
 .input-container .label.sm {
   font-size: 11px!important;
+  opacity: 1;
+  line-height: 30px;
+  font-weight: normal!important;
+  top: 0;
+}
+.input-container.slct .label,
+.input-container.file .label  {
+font-size: 11px!important;
   opacity: 1;
   line-height: 30px;
   font-weight: normal!important;
@@ -281,9 +292,12 @@ text-decoration: none;
 
 table .sub {border-top: 0;}
 table .sub td {
-  border-top: 0;
-  line-height: 1.8;
-  padding-top: 0;
+  
+border-top: 0;
+  
+line-height: 1.8;
+  
+padding-top: 0;
 }
 table .visible-next + tr {
   display: table-row!important;

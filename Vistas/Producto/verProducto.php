@@ -20,7 +20,7 @@ include '../Vistas/Header/header.php';
                 <!-- -->
 
 
-<h2 class="col-12">Gestión de productos <a class="btn btn-sm btn-light float-right" href="../Vistas/Producto/insertarProducto.php">+ Nuevo producto</a></h2>
+<h2 class="col-12">Gestión de productos <a class="btn btn-sm btn-dark float-right" href="../Vistas/Producto/insertarProducto.php">+ Nuevo producto</a></h2>
 
 <div class="col-12">
             <table class="w-100 table fz-14">
