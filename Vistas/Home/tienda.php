@@ -1,4 +1,7 @@
 <?php   
+
+
+$categoriaProd = 0;
 //GP  
 require_once "../../Controladores/SesionesController.php";
 $objecteSessio = new SesionesController();
@@ -11,13 +14,19 @@ include '../../Vistas/Header/navbar-tienda.php';
 
 //AP
 require_once "../../Controladores/ProductosController.php";
-$objecte = new ProductosController();
-$Llistat = $objecte->LlistaProductoHome();
+if($categoriaProd == 0){
+    $objecte = new ProductosController();
+    $Llistat = $objecte->LlistaProductoHome();
+}else{
+    $objecte = new ProductosController();
+    $Llistat = $objecte->LlistaProductoHomeCategoria($categoriaProd);
+}
 
-require_once "/Controladores/PedidosController.php";
-$oobjecte2 = new PedidosController();
-$fecha = date("Y-m-d");
-$fecha = $objecte2->leeInfoPedido();
+
+// require_once "../../Controladores/PedidosController.php";
+// $objecte2 = new PedidosController();
+// $fecha = date("Y-m-d");
+// $fecha = $objecte2->leeInfoPedido();
 
 ?>
 
@@ -52,8 +61,9 @@ $fecha = $objecte2->leeInfoPedido();
     }
     ?>
 
-<?php include '../../Vistas/Footer/footer.php'; ?>
+    <?php include '../../Vistas/Footer/footer.php'; ?>
 
 </body>
+
 
 </html>

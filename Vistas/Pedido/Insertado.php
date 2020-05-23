@@ -2,7 +2,7 @@
     /***  ENCABEZADO */
 
     //require '';
-
+    unset($_SESSION["cistella"]);
 ?>
 
 <h1 style="color: green;">>> Pedido Creado << </h1>

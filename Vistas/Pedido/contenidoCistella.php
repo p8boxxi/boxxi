@@ -86,7 +86,7 @@ if (isset($_SESSION["mensajeResultado"])){
             <h3>cesta</h3>                
         </div>
 
-        <div class='flex-container cistella-contingut'>
+        <div class='cistella-contingut'>
             <div class="wrapper-cistella">
                 <?php
                 if (isset($_SESSION["cistella"])){  
@@ -105,31 +105,32 @@ if (isset($_SESSION["mensajeResultado"])){
 
                             <div class="items-prod-cesta">
                                 <div class="prod-dentro">
-                                    <h5>Cantidad</h5> 
+                                    <h4>Cantidad</h4> 
                                 </div>
                             </div>
 
                             <div class="items-prod-cesta">
                                 <div class="prod-dentro">
-                                    <h5>Producto</h5> 
+                                    <h4>Producto</h4> 
                                 </div>
                             </div>
                             <div class="items-prod-cesta">
                                 <div class="prod-dentro">
-                                    <h5>Precio</h5>
+                                    <h4>Precio</h4>
                                 </div>
                             </div>
                             <div class="items-prod-cesta">
                                 <div class="prod-dentro">
-                                    <h5>Precio total</h5>
+                                    <h4>Precio total</h4>
                                 </div>
                             </div>
                             <div class="items-prod-cesta">
                                 <div class="prod-dentro">
-                                    <h5></h5>
+                                    <h4></h4>
                                 </div>
                             </div>
                         </div>
+                        <hr>
 
                         <?php
                         $index = 0;
@@ -165,9 +166,11 @@ if (isset($_SESSION["mensajeResultado"])){
                                     </div>
 
                                     <div class="prod-dentro precio">
-                                        <a href="../../Controladores/PedidosController.php?operacio=eliminarItemCesta&kart=<?php echo $index ?>" >
-                                        Eliminar</a>
-                                        <input type="hidden" id="numero-array" value="<?php echo $index; echo $informacioProducte->id_producto;?>">
+                                        <ul class="social-links">
+                                            <a id="id" href="../../Controladores/PedidosController.php?accio=eliminaProductoCesta&id=<?php echo $informacioProducte->id_producto;?>" >
+                                                <i class="icon-del"></i>
+                                            </a>
+                                        </ul>
                                     </div>
                                 </div>
                                 <hr>
@@ -205,21 +208,21 @@ if (isset($_SESSION["mensajeResultado"])){
                         if(!empty($valorCistella)){
 
                             echo
-                            '<li><a href="../../Controladores/PedidosController.php?operacio=vaciarCesta"> vaciar cesta</a></li>';
+                            '<li><a class="bt-sec" href="../../Controladores/PedidosController.php?operacio=vaciarCesta"> vaciar cesta</a></li>';
                         }
                     }?>
-                    <li><a href='../../Vistas/Home/tienda.php'>seguir comprando</a></li>
+                    <li><a class="bt-sec" href='../../Vistas/Home/tienda.php'>seguir comprando</a></li>
                     <?php if(!empty($valorCistella)){
-                     if (!isset($_SESSION["login"])){?>
+                       if (!isset($_SESSION["login"])){?>
 
-                        <li><button id="registro">
-                            <a>FINALIZAR COMPRA</a>
-                        </button></li>        
+                        <li><a href="" class="bt-pri" id="registro">Finalizar compra</a>
+                        </li>        
                         <?php
                     }else { ?>
-                        <li><button >
-                            <a href='../../Controladores/PedidosController.php?accio=creaPedido'>FINALIZAR COMPRA</a>
-                        </button></li> 
+
+                        <li>
+                            <a class="bt-pri" href='../../Controladores/PedidosController.php?accio=creaPedido'>Finalizar compra</a>
+                        </li> 
                         <?php  
 
                     }

@@ -41,6 +41,33 @@ class Cistella {
        
     }
 
+        public function treuProducteCistella($idProd){
+
+        $copia = new Cistella();
+
+        $copia->vector_id_producte=[];
+        $copia->quantitat_del_producte=[];
+        $copia->quants_productes=0;
+        $copia->quin_detall=0;
+
+        
+        $posicio = 0;
+        foreach($_SESSION["cistella"]->vector_id_producte as $id){  
+            
+            if ($id != $idProd){
+                $copia->vector_id_producte[$copia->quin_detall]=$id; 
+                $copia->quantitat_del_producte[$copia->quin_detall]=$this->quantitat_del_producte[$posicio];
+                $copia->quants_productes = $copia->quants_productes + $this->quantitat_del_producte[$posicio];
+                $copia->quin_detall++;
+            }
+            $posicio++;
+        }
+    
+        $_SESSION["cistella"] = clone $copia;
+       
+
+    }
+
 
 
 

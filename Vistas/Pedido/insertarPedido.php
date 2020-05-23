@@ -12,7 +12,7 @@ if (!isset($_SESSION["cistella"])){
     require_once "../../Controladores/ProductosController.php";
 ?>
 
-<h1>AÃ‘ADIR un PRODUCTO en el PEDIDO de "ahora"</h1>
+<h1>AÑADIR un PRODUCTO en el PEDIDO de "ahora"</h1>
 <form action="../../Controladores/PedidosController.php" method="POST">
 
 <?php  ?>
@@ -53,7 +53,7 @@ if (!isset($_SESSION["cistella"])){
 
 
         <input type="hidden" name="operacio" value="anadirApedido">
-        <input type="submit" value="AÃ±adir Al PEDIDO">
+        <input type="submit" value="Añadir Al PEDIDO">
 
 
 
@@ -69,8 +69,9 @@ if (!isset($_SESSION["cistella"])){
     echo "<br>";
 
     if (isset($_SESSION["cistella"])){
+
         echo "<<<<<<   PEDIDO   >>>>>>><br><br>";
-        echo "<table border=1><th>ID</th><th>NOMBRE</th><th>PRECIO</th><th>CANTIDAD</th>";
+        echo "<table border=1><th>ID</th><th>NOMBRE</th><th>PRECIO</th><th>CANTIDAD</th><th>ELIMINAR 1</th>";
         $valorCistella = $_SESSION["cistella"]->mostraProductesCistella();
         
         $vectorAux = array();
@@ -87,7 +88,8 @@ if (!isset($_SESSION["cistella"])){
                     echo "<td>".$informacioProducte->id_producto."</td><td>".$informacioProducte->nombre."</td><td>".$informacioProducte->precio."</td>";
                     array_push($vectorAux, $informacioProducte->id_producto, $informacioProducte->nombre, $informacioProducte->precio);
                 }
-                echo "<td>".$cantidad."</td></tr>"; 
+                echo "<td>".$cantidad."</td><td><a href='../../Controladores/PedidosController.php?accio=eliminaProducto&id=".$informacioProducte->id_producto."'>Eliminar</a></td></tr>";
+               
                 array_push($vectorAux, $cantidad);
             }
             //array_push($vectorCistella, $vectorAux);

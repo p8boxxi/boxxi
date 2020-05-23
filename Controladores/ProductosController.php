@@ -49,6 +49,18 @@ class ProductosController extends Producto{
         }
     }
 
+        //AZ
+    public function ProductoPor($id){
+
+        $Llistat = $this->retornaProducto($id);
+        if (file_exists("Vistas/Producto/verProductoFicha.php")){
+            require_once "Vistas/Producto/verProductoFicha.php";
+        }
+        if (file_exists("../Vistas/Producto/verProductoFicha.php")){
+            require_once "../Vistas/Producto/verProductoFicha.php";
+        }
+    }
+
     public function LlistaProductoConFotos(){
 
         $Llistat = $this->retornaProductosTodos();
@@ -60,6 +72,14 @@ class ProductosController extends Producto{
         $Llistat = $this->retornaProductosTodos();
         require "../../Vistas/Producto/verProductoHome.php";
     }
+    public function LlistaProductoHomeCategoria($categoria){
+
+        $Llistat = $this->retornaProductosCategoria($categoria);
+        $categoriaProd= $categoria;
+        require "../../Vistas/Producto/verProductoHome.php";
+    }
+
+
 
     public function CompruebaParaActualizar($categoria){   
         return $actualiza = $this->actualizaProducto($categoria)?true:false;
@@ -192,6 +212,14 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
     $objecte->LlistaProducto();
 }
 
+//AZ
+if(isset($_GET["operacio"]) && $_GET["operacio"]=="verDetalle"){
+    if (isset($_GET["producto"])) {
+        $objecte = new ProductosController();
+        $objecte->ProductoPor($_GET["producto"]);
+    }
+}
+
 
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="verFotos"){
     $objecte = new ProductosController();
@@ -271,6 +299,12 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="verProductoDetalle"){
     $objecte = new ProductosController();
     $objecte->ProductoDetalle($_GET["producto"]);
+}
+
+//AP
+if(isset($_GET["operacio"]) && $_GET["operacio"]=="verProductoCat"){
+    $objecte = new ProductosController();
+    $objecte->LlistaProductoHomeCategoria($_GET["categoria"]);
 }
 
 

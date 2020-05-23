@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
 body {
     font-family: 'Poppins', sans-serif;
     /*font-family: 'Open Sans', sans-serif;*/
@@ -57,11 +57,11 @@ body {
 */
 
 .nav li:after {
- display:block;
- content: '';
- border-bottom: solid 3px #FF8A00;  
- transform: scaleX(0);  
- transition: transform 250ms ease-in-out;
+   display:block;
+   content: '';
+   border-bottom: solid 3px #FF8A00;  
+   transform: scaleX(0);  
+   transition: transform 250ms ease-in-out;
 }
 
 .nav li:hover:after {
@@ -88,6 +88,7 @@ body {
 }
 
 
+
 /*******************************************************************************************************************
 *******************************************************************************************************************
 ******* BARRA NAVEGACION TIENDA *************************************************************************************/
@@ -104,12 +105,13 @@ body {
 .naranja ul{
     height: inherit;
     width: inherit;
-
+    border:none;
     text-align: center;
 }
 .naranja li{
     display: inline-block;
-    margin: 0 1.5% 0 1.5%;
+    margin: 0 5% 0 5%;
+    border:none;
 }
 .naranja a{
     padding: 0;
@@ -119,15 +121,15 @@ body {
     vertical-align: middle; 
     color: white;
     font-weight: 300;
-
+    border:none;
 }
 
 .naranja li:after {
- display:block;
- content: '';
- border-bottom: solid 2px white;  
- transform: scaleX(0);  
- transition: transform 250ms ease-in-out;
+   display:block;
+   content: '';
+   border-bottom: solid 2px white;  
+   transform: scaleX(0);  
+   transition: transform 250ms ease-in-out;
 }
 .naranja li:hover:after {
     transform: scaleX(1); 
@@ -136,6 +138,17 @@ body {
 .naranja a:hover{
     text-decoration: none;
     color: #CCCCCC;
+}
+.naranja button{
+    border: none;
+    background-color: #FF8A00;
+    text-decoration: none;
+    margin: 0px 5px;
+
+}
+.active-nav a{
+    color: black;
+    font-weight: 600;
 }
 
 
@@ -155,17 +168,18 @@ body {
   flex-wrap: wrap;
   margin: 0 auto;
   justify-content: center;
+  min-height: 650px;
 }
 
 .bloque >div{
     width: 250px;
     height: 300px;
-    margin: 0 10px 25px 10px;   
+    margin: 0 0px 55px 15px;   
     /*    background-color: #f2f2f2;*/
 }
 
 .container-bloque{   
-    display: block;
+    display: table;
     height: inherit;
     width: inherit;
     color: black;
@@ -175,16 +189,16 @@ body {
 }
 
 .container-bloque ul{
- list-style-type: none;
- margin: 0;
- padding: 0;
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   width: inherit;
 }
 
 .container-bloque li{
     font-weight: 400;
     list-style: none;
     font-size: 16px;
-    text-align: center;
 }
 
 .bloque img{
@@ -196,16 +210,36 @@ body {
     width: inherit;
     text-align: center;
     margin-bottom: 10px;
+    display: inline-block;
 }
+
 
 .bloque-precio a{
     color: #FF8A00;
     font-weight: 300;
 }
+.tituloProducto{
+    height: 60px;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
 
-.tituloProducto a{
+.tituloProducto li{
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tituloProducto {
     font-weight: 400;
-    font-size: 17px;
+    font-size: 18px;
+    display: table-cell;
+     vertical-align: middle;
+    width: inherit;
+}
+.tituloProducto a{
+    padding: 0px 15px;
 }
 
 .boton{
@@ -214,6 +248,8 @@ body {
     text-align: center;
     border-radius: 25px ;
     margin: 0 auto;
+    margin-top: 5px;
+    vertical-align: bottom;
 }
 
 .bt-comprar li{
@@ -247,14 +283,13 @@ body {
     margin-bottom: 40px;
 }
 .migas a{
- text-decoration: none;
- color: grey;
+   text-decoration: none;
+   color: grey;
 }
 
 
 .prod-detalle  >div{
     width: 500px;
-    min-height: 600px;
     /*    background-color: #f2f2f2;*/
 }
 
@@ -444,11 +479,11 @@ input.qtyminus {
     width: relative;
     height: relative;
     display: inline-block;
-
 }
 .prod-dentro{
     width: 200px;
     text-align: center;
+    padding-top: 20px;
 }
 
 .img-referencia{
@@ -470,6 +505,11 @@ input.qtyminus {
     font-weight: 400; 
     font-size: 20px;
 }
+.items-prod h3{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600; 
+    font-size: 20px;
+}
 .items-prod p{
     font-size: 12px;
 }
@@ -482,6 +522,11 @@ input.qtyminus {
     background-color: black;
 }
 
+.divisor{
+    border: solid 0.5px #DEDEDE; 
+    width: 100%;
+    margin-top: -20px;
+}
 
 
 
@@ -489,9 +534,9 @@ input.qtyminus {
 *******************************************************************************************************************
 ******* CONTENIDO CESTA ******************************************************************************/
 
-.cesta-det{
+/*.cesta-det{
     min-height: 650px;
-}
+}*/
 
 .titol-cesta {
     display: block;
@@ -510,11 +555,12 @@ input.qtyminus {
     margin: 15px 0 15px 0;
 }
 .cistella-contingut{
+    display: flex;
+  flex-wrap: wrap;
     width: inherit;
     height: relative;
     padding-bottom: 120px;
     margin: 0 auto;
-
     margin-top: 20px;
 }
 
@@ -547,6 +593,16 @@ input.qtyminus {
     text-decoration: none;
     margin-bottom: 20px;
 }
+.nav-cesta, .nav-cesta a{
+    text-align: center;
+}
+.nav-cesta li, .bt-sec, .bt-pri{
+    margin: 5px;
+    border-radius: 20px;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+}
 
 
 .producto-cesta-lista{
@@ -568,8 +624,28 @@ input.qtyminus {
     width: 100%;
     text-align:right;
 }
+
+.producto-cesta-lista h4{
+    font-size: 20px;
+    font-weight: 600;
+}
 .producto-cesta-total h2{
     padding-right: 60px;
+}
+
+.producto-cesta-lista .social-links i {
+  height: 30px;
+  width: 30px;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: 18px;
+  background-size: 18px;
+  display: block;
+  margin: 0 auto;
+}
+.producto-cesta-lista  i.icon-del {
+  background-image: url(../img/delete.png);
 }
 
 .botones{
@@ -577,6 +653,27 @@ input.qtyminus {
     text-align: right;
     text-decoration: none;
     margin-bottom: 20px;
+}
+
+.botones a{
+    width: inherit;
+    height: inherit;
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle; 
+    padding: 8px 12px;
+}
+.bt-sec{
+    background-color: #cccc00;
+    
+}
+.bt-pri{
+    background-color: black;
+    
 }
 
 
@@ -610,9 +707,13 @@ input.qtyminus {
 }
 
 .nav-botones{
+    display: block;
+    width: relative;
+    height: relative;
     text-align: center;
+    margin: 0 auto;
 }
-.nav-botones input{
-    margin: 5px;
-}
+
+
+
 
