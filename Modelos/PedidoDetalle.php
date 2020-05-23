@@ -118,6 +118,24 @@ class PedidoDetalle{
             return null;  
         }
     }
+
+    //AZ
+    protected function retornaPedidoDetallesAdminIdPedido(){
+        try{
+            $conecta = new ConexionBD();
+            $conecta->getConexionBD()->beginTransaction();
+            $sentenciaSQL = "SELECT * FROM pedido_detalle
+                                INNER JOIN productos
+                                            ON pedido_detalle.id_producto=productos.id_producto
+                                    WHERE id_pedido = '$this->id_pedido' ";
+            $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
+            $intencio->execute();
+            return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);
+        }catch(Exception $excepcio){
+            $conecta->getConexionBD()->rollback();  
+            return null;  
+        }
+    }
     
 
     protected function retornaPedidoDetallesTODOTodas(){

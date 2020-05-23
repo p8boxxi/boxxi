@@ -28,7 +28,7 @@ include '../Vistas/Header/header.php';
             <th>Fecha</th>
             <th>Cliente</th>
             <th>Estado</th>
-            <th></th>
+            <th class="text-right">Opciones</th>
 
         </tr>
     <?php
@@ -42,11 +42,12 @@ include '../Vistas/Header/header.php';
                 <td><?php echo $objecte->nombre ?></td>
 
                 
-
+                <td class="text-right">
                 <a class="d-none" href="PedidosController.php?operacio=cancelar&pedido=<?php echo $objecte->id_pedido ?>">Cancelar</a>
-                <a class="d-none" href="PedidosController.php?operacio=modificar&pedido=<?php echo $objecte->id_pedido ?>">Modificar</a>
-                <td>
-                    <span class="btn btn-sm btn-outline-success">Ver detalle</span>
+
+                <a class="btn btn-sm btn-outline-success" href="PedidosController.php?operacio=modificar&pedido=<?php echo $objecte->id_pedido ?>">Actualizar estado</a>
+
+                    <a href="../Vistas/Home/admin-pedido-detalle.php?id=<?php echo $objecte->id_pedido ?>" class="btn btn-sm btn-success">Ver detalle</a>
                 </td>
             </tr>
     <?php

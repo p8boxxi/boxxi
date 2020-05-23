@@ -36,6 +36,13 @@ class PedidoDetallesController extends PedidoDetalle{
     }
 
     //AZ
+    public function verPedidoDetalleAdminPor($idPedido){
+       $this->id_pedido = $idPedido; 
+       $Llistat = $this->retornaPedidoDetallesAdminIdPedido();
+       require  "../../Vistas/PedidoDetalle/verPedidoDetalleAdmin.php";
+    }
+
+    //AZ
     public function verPedidoDetalleClientePor($idPedido){
        $this->id_pedido = $idPedido; 
        $Llistat = $this->retornaPedidoDetallesClienteIdPedido();

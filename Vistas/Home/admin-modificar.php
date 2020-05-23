@@ -1,6 +1,20 @@
 <?php
 require_once "../../Controladores/SesionesController.php";
 $objecteSessio = new SesionesController();
+
+// Filtro solo administradores
+if (!isset($_SESSION["id_usuario"])){
+    $_SESSION["login"] = false;
+    $_SESSION["mensajeLogin"]= "<< NO LOGUEADO >>";
+    header ("location: ../../index.php");
+}else{
+    if (isset($_SESSION["rol"]) && $_SESSION["rol"]!="Administrador"){
+        $_SESSION["Denegado"]="No tiene acceso al módulo de modificar la Categoria!!";
+        header ("location: ../../index.php");
+    }
+}
+//
+
 $title = 'Tienda'; 
 $currentPage = 'Tienda'; 
 include '../../Vistas/Header/header.php';    

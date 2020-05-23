@@ -25,6 +25,7 @@ include '../Vistas/Header/header.php';
                     <table class="w-100 table fz-14">
                         <thead>
                             <tr>
+                                <th scope="col">Id cliente</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Apellidos</th>
                                 <th scope="col">E-mail</th>
@@ -35,6 +36,7 @@ include '../Vistas/Header/header.php';
                         foreach($Llistat as $objecte){ 
                             ?>
                             <tr>
+                                <td><?php echo $objecte->id_cliente ?></td>
                                 <td><?php echo $objecte->nombre ?></td>
                                 <td><?php echo $objecte->apellidos ?></td>
                                 <td><?php echo $objecte->email ?></td>
@@ -45,7 +47,6 @@ include '../Vistas/Header/header.php';
                                     Teléfono:
                                     <br>Dirección:
                                     <br>ID Usuario:
-                                    <br>ID Cliente:
                                 </td>
                                 <td colspan="4">
                                     <?php echo $objecte->telefono ?>
@@ -54,7 +55,7 @@ include '../Vistas/Header/header.php';
                                     <br>
                                     <?php echo $objecte->id_usuario ?>
                                     <br>
-                                    <?php echo $objecte->id_cliente ?>
+                                    
                                 </td>
                             </tr>
 
