@@ -15,7 +15,8 @@
             <td><?php echo $objecte->id_pedido ?></td>
             <td><?php echo DateTime::createFromFormat('Y-m-d', $objecte->fecha)->format("d/m/Y")  ?></td>
             <td><?php echo $objecte->nombre ?></td>
-            <td class="text-right"><a href="#" class="btn btn-success">Ver detalle</a></td>
+            
+            <td class="text-right"><a href="cliente-pedido-detalle.php?id=<?php echo $objecte->id_pedido ?>" class="btn btn-success">Ver detalle</a></td>
         </tr>
     <?php
         }?>

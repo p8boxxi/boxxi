@@ -35,6 +35,12 @@ class PedidoDetallesController extends PedidoDetalle{
        require  "../Vistas/PedidoDetalle/verPedidoComprar.php";
     }
 
+    //AZ
+    public function verPedidoDetalleClientePor($idPedido){
+       $this->id_pedido = $idPedido; 
+       $Llistat = $this->retornaPedidoDetallesClienteIdPedido();
+       require  "../../Vistas/PedidoDetalle/verPedidoDetalleCliente.php";
+    }
 
     public function resultadoRegistraPedidoDetalle($resultat){
         if ($resultat){
@@ -133,7 +139,6 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
                     $_POST["precio"]
                 );
 }
-
 
 
 ?>
