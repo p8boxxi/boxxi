@@ -100,18 +100,12 @@ class PedidosController extends Pedido{
 
  public function resultadoModificaPedido($resultat){
     if ($resultat){
-        $_SESSION["mensajeResultado"]="
-        <div style='background-color: green; height: 80px; text-align: center; padding-top: 5px;'>
-        <h1>Pedido Modificado</h1>
-        <div>";
+        $_SESSION["mensajeResultado"]="Pedido Modificado";
     }else{
-        $_SESSION["mensajeResultado"]="
-        <div style='background-color: red; height: 80px; text-align: center; padding-top: 5px;'>
-        <h1>El Pedido NO se ha podido Modificar</h1>
-        <div>";
+        $_SESSION["mensajeResultado"]="El Pedido no se ha podido modificar";
 
     } 
-    header("location: ../index.php");
+    header('Location: ../Controladores/PedidosController.php?operacio=ver');
 }
 
 

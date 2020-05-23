@@ -15,6 +15,12 @@ include '../Vistas/Header/header.php';
         
             <div class="col-md-9 content">
                 
+                <?php if (isset($_SESSION["mensajeResultado"])){
+                    echo "<div class='row'><div class='col-12'><span class='msg'>".$_SESSION["mensajeResultado"]."</span></div></div>";
+                    unset($_SESSION["mensajeResultado"]);
+                };
+                ?>
+                
                 <div class="row">
                 
                 <!-- -->
@@ -45,7 +51,7 @@ include '../Vistas/Header/header.php';
                 <td class="text-right">
                 <a class="d-none" href="PedidosController.php?operacio=cancelar&pedido=<?php echo $objecte->id_pedido ?>">Cancelar</a>
 
-                <a class="btn btn-sm btn-outline-success" href="PedidosController.php?operacio=modificar&pedido=<?php echo $objecte->id_pedido ?>">Actualizar estado</a>
+                <a class="btn btn-sm btn-outline-success" href="PedidosController.php?operacio=modificar&pedido=<?php echo $objecte->id_pedido ?>">Modificar</a>
 
                     <a href="../Vistas/Home/admin-pedido-detalle.php?id=<?php echo $objecte->id_pedido ?>" class="btn btn-sm btn-success">Ver detalle</a>
                 </td>

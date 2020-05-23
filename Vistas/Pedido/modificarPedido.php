@@ -18,33 +18,91 @@
     }
 
 
-
+$title = 'Tienda'; 
+$currentPage = 'Tienda'; 
+include '../../Vistas/Header/header.php';    
 ?>
+<body>
 
-<?php 
-    if (isset($_GET["id"])){
-        ?>
-            <h1>Modifica un Pedido</h1>
-            <form action="../../Controladores/PedidosController.php" method="POST">
-            <div class="two fields">
-                <div class="field">
-                    <label for="fecha">fecha</label>
-                    <input type="text" name="fecha" placeholder="dd/mm/aaaa">
-                </div>
-                
+<section class="admin">
+    <div class="container">
+        <div class="row">
         
-                <input type="hidden" name="id" value="<?php echo $_GET["id"]?>">
-                <input type="hidden" name="operacio" value="modifica">
-                <input type="submit" value="modifica el Pedido">
+        <?php include '../../Vistas/Header/nav-cuenta-admin.php';?>
+            
+            <!-- -->
+
+            <div class="col-md-9 content">
+                    
+                <?php if (isset($_SESSION["mensajeResultado"])){
+                    echo "<div class='row'><div class='col-12'><span class='msg'>".$_SESSION["mensajeResultado"]."</span></div></div>";
+                    unset($_SESSION["mensajeResultado"]);
+                };
+                ?>
+
+
+                        <?php 
+            if (isset($_GET["id"])){
+                ?>
+                    <form action="../../Controladores/PedidosController.php" method="POST">
+                        <div class="row">
+                        <h2 class="col-12">Modificar pedido</h2>
+
+
+                        <div class="col-md-6 mb-3">
+                            <div class="input-container">
+                                <input type="text" id="fecha" name="fecha" required="required" placeholder="dd/mm/aaaa">
+                                <label for="fecha" class="label sm">Fecha</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                                
+                            <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Controladores/PedidosController.php?operacio=ver" class="btn btn-light">Cancelar</a>
+                            <input type="hidden" name="id" value="<?php echo $_GET["id"]?>">
+                            <input type="hidden" name="operacio" value="modifica">
+                            <input type="submit" class="btn btn-secondary" value="Modificar pedido">
+
+                        </div>
+                
+                        
+                    </div>
+                </div>
+            </form>
+                    <?php
+            }else{
+                echo "NO se puede mostrar";
+            }
+
+            ?>
+
+
+
             </div>
-            <?php
-    }else{
-        echo "NO se puede mostrar";
-    }
 
-    ?>
+            <!-- -->
+            
+        </div>
+    </div>
+</section>
 
-<?php    
-    /***  PIE */
+    
+<?php include '../../Vistas/Footer/footer.php'; ?>
 
-?>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
