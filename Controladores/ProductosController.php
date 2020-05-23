@@ -26,7 +26,7 @@ $objecteSessio = new SesionesController();
 
 class ProductosController extends Producto{
 
-    public function leeInfoProducto($categoria, $nombre, $subtitulo, $stock, $precio, $descripcion, $foto1, $foto2, $foto3){   
+    public function leeInfoProducto($categoria, $nombre, $subtitulo, $stock, $precio, $descripcion, $foto1, $foto2, $foto3){
        $this->resultadoRegistraProducto($this->registraProducto($categoria, $nombre, $subtitulo, $stock, $precio, $descripcion, $foto1, $foto2, $foto3));
     }
 
@@ -35,7 +35,7 @@ class ProductosController extends Producto{
             require "../Vistas/Producto/Insertado.php";
         }else{
             require "../Vistas/Producto/NoInsertado.php";
-        } 
+        }
     }
 
     public function LlistaProducto(){
@@ -49,7 +49,7 @@ class ProductosController extends Producto{
         }
     }
 
-        //AZ
+    //AZ
     public function ProductoPor($id){
 
         $Llistat = $this->retornaProducto($id);
@@ -81,7 +81,7 @@ class ProductosController extends Producto{
 
 
 
-    public function CompruebaParaActualizar($categoria){   
+    public function CompruebaParaActualizar($categoria){
         return $actualiza = $this->actualizaProducto($categoria)?true:false;
     }
 
@@ -97,14 +97,14 @@ class ProductosController extends Producto{
 
     public function eliminaElProducto($producto){
         if ($this->eliminaProducto($producto)){
-            require "../Vistas/Producto/Eliminado.php"; 
+            require "../Vistas/Producto/Eliminado.php";
         }else{
             require "../Vistas/Producto/NoEliminado.php";
         }
     }
-    
+
     public function MuestraModificarProducto($id){
-        header("location: ../Vistas/Producto/modificarProducto.php?id=$id"); 
+        header("location: ../Vistas/Producto/modificarProducto.php?id=$id");
     }
 
     public function ModificarProducte($id, $nombre, $subtitulo, $stock, $precio, $descripcion, $foto1, $foto2, $foto3){
@@ -122,8 +122,8 @@ class ProductosController extends Producto{
             <div style='background-color: red; height: 80px; text-align: center; padding-top: 5px;'>
                 <h1>El Producto NO se ha podido Modificar</h1>
             <div>";
-            
-        } 
+
+        }
         header("location: ../index.php");
     }
 
@@ -161,10 +161,10 @@ class ProductosController extends Producto{
 
 
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
-    
+
     if (isset($_POST["categoria"]) && isset($_POST["nombre"]) && isset($_POST["subtitulo"]) && isset($_POST["stock"]) && isset($_POST["precio"]) && isset($_POST["descripcion"])){
         if (!empty($_POST["categoria"]) && !empty($_POST["nombre"]) && !empty($_POST["subtitulo"]) && !empty($_POST["stock"]) && !empty($_POST["precio"]) && !empty($_POST["descripcion"])){
-        
+
             if (!file_exists($_SERVER["DOCUMENT_ROOT"]."/Vistas/assets/img/productos/")){
                 mkdir($_SERVER["DOCUMENT_ROOT"]."/Vistas/assets/img/productos/");
             }
@@ -197,7 +197,7 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
 
             $nuevoObjeto = new ProductosController();
             $nuevoObjeto->leeInfoProducto($_POST["categoria"],$_POST["nombre"],$_POST["subtitulo"],$_POST["stock"],$_POST["precio"],$_POST["descripcion"],$nombre_foto1,$nombre_foto2,$nombre_foto3);
-        }  
+        }
         else{
             echo "Faltan Los datos!<br>";
         }
@@ -220,7 +220,7 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="verDetalle"){
     }
 }
 
-
+//AZ
 if(isset($_GET["operacio"]) && $_GET["operacio"]=="verFotos"){
     $objecte = new ProductosController();
     $objecte->LlistaProductoConFotos();
@@ -234,7 +234,7 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="eliminar"){
     }else{
         echo "operación NO permitida";
     }
-    
+
 }
 
 
@@ -251,7 +251,7 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
 
     if (isset($_POST["id"]) && isset($_POST["nombre"]) && isset($_POST["subtitulo"]) && isset($_POST["stock"]) && isset($_POST["precio"]) && isset($_POST["descripcion"])){
         if (!empty($_POST["id"]) && !empty($_POST["nombre"]) && !empty($_POST["subtitulo"]) && !empty($_POST["stock"]) && !empty($_POST["precio"]) && !empty($_POST["descripcion"])){
-        
+
             if (!file_exists($_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/")){
                 mkdir($_SERVER["DOCUMENT_ROOT"]."/boxxi/imagenes/");
             }
@@ -284,7 +284,7 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
 
             $nuevoObjeto = new ProductosController();
             $nuevoObjeto->ModificarProducte($_POST["id"],$_POST["nombre"],$_POST["subtitulo"],$_POST["stock"],$_POST["precio"],$_POST["descripcion"],$nombre_foto1,$nombre_foto2,$nombre_foto3);
-        }  
+        }
         else{
             echo "Faltan Los datos!<br>";
         }

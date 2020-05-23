@@ -59,7 +59,7 @@ include '../Vistas/Header/header.php';
 
                 <?php if (($objecte->id_producto)!=1){    //1 es el "NULO
                     ?>
-                    <td><a href="ProductosController.php?operacio=verDetalle&producto=<?php echo $objecte->id_producto ?>">Ver</a></td>
+                    <td><a href="ProductosController.php?operacio=verdetalle&producto=<?php echo $objecte->id_producto ?>">Ver</a></td>
                     <td><a href="ProductosController.php?operacio=eliminar&producto=<?php echo $objecte->id_producto ?>">Eliminar</a></td>
                     <td><a href="ProductosController.php?operacio=modificar&producto=<?php echo $objecte->id_producto ?>">Modificar</a></td>
                     <?php

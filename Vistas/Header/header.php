@@ -14,13 +14,8 @@
 	<link rel="stylesheet" type="text/css" href="/Vistas/assets/css/style02.css">
 
 	<!-- JS -->
-	<script src="/Vistas/assets/js/jquery.min.js"></script>	
-	<script src="/Vistas/assets/js/bootstrap.min.js">		
-	</script>	
-
-	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 	<?php include 'navbar-general.php'; ?>
 	</head>
