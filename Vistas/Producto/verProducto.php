@@ -22,7 +22,7 @@ $categoriaNom = new CategoriasController();
                 <!-- -->
 
 
-<h2 class="col-12">Gestión de productos <a class="btn btn-sm btn-dark float-right" href="../Vistas/Producto/insertarProducto.php">+ Nuevo producto</a></h2>
+<h2 class="col-12">Gestión de productos <a class="btn btn-sm btn-light float-right" href="../Vistas/Producto/insertarProducto.php">+ Nuevo producto</a></h2>
 
 <div class="col-12">
             <table class="w-100 table fz-14">
@@ -71,7 +71,7 @@ $categoriaNom = new CategoriasController();
                         </a>
 
                         <!-- -->
-                        <a class="btn btn-sm btn-outline-success" href="ProductosController.php?operacio=verDetalle&producto=<?php echo $objecte->id_producto ?>">Ver detalle
+                        <a class="btn btn-sm btn-light" href="ProductosController.php?operacio=verDetalle&producto=<?php echo $objecte->id_producto ?>">Ver detalle
                         </a>
 
                         

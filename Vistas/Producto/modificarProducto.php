@@ -1,24 +1,9 @@
-<?php    
-    require "../../Controladores/SesionesController.php";
-    $objecteSessions = new SesionesController();
-
-    if (!isset($_SESSION["id_usuario"])){
-        $_SESSION["login"] = false;
-        $_SESSION["mensajeLogin"]= "<< NO LOGUEADO >>";
-        header ("location: ../../index.php");
-    }else{
-        if (isset($_SESSION["rol"]) && $_SESSION["rol"]!="Administrador"){
-            $_SESSION["Denegado"]="No tiene acceso al módulo de insertar Productos!!";
-            header ("location: ../../index.php");
-        }
-    }
-
-
-require_once "../../Controladores/CategoriasController.php";
-
+<?php
+require_once "../Controladores/SesionesController.php";
+$objecteSessio = new SesionesController();
 $title = 'Tienda'; 
 $currentPage = 'Tienda'; 
-include '../../Vistas/Header/header.php';    
+include '../Vistas/Header/header.php';    
 ?>
 <body>
 
@@ -26,7 +11,7 @@ include '../../Vistas/Header/header.php';
     <div class="container">
         <div class="row">
             
-        <?php include '../../Vistas/Header/nav-cuenta-admin.php';?>
+        <?php include '../Vistas/Header/nav-cuenta-admin.php';?>
         
             <div class="col-md-9 content">
                 
@@ -34,59 +19,156 @@ include '../../Vistas/Header/header.php';
                 
                 <!-- -->
 
-                <h2 class="col-12">Modificar producto</h2>
 
+<h2 class="col-12">Detalle de producto</h2>
+
+<div class="col-12">
+    
     <?php 
-    if (isset($_GET["id"])){
+    if (isset($_GET["producto"])){
         ?>
-            <form action="../../Controladores/ProductosController.php" method="POST">
-            <div class="two fields">
-            <div class="field">
-            <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" placeholder="nombre">
-        </div>
-        <div class="field">
-            <label for="subtitulo">subtitulo</label>
-            <input type="text" name="subtitulo" placeholder="subtitulo">
-        </div>
-        <div class="field">
-            <label for="stock">stock</label>
-            <input type="text" name="stock" placeholder="stock">
-   
-        </div>
-        <div class="field">
-            <label for="precio">precio</label>
-            <input type="text" name="precio" placeholder="precio">
-        </div>
-        <div class="field">
-            <label for="descripcion">Descripcion</label>
-            <input type="text" name="descripcion" placeholder="descripcion">
-        </div>
-        <div class="field">
-            <label for="foto1">Foto_1</label>
-            <input type="file" name="foto1">
-        </div>
-        <div class="field">
-            <label for="foto2">Foto_2</label>
-            <input type="file" name="foto2">
-        </div>
-        <div class="field">
-            <label for="foto3">Foto_3</label>
-            <input type="file" name="foto3">
-        </div>
+
+    <form action="../../Controladores/ProductosController.php" method="POST">
+
+    <div class="row">
+
+    <?php
         
-                <input type="hidden" name="id" value="<?php echo $_GET["id"]?>">
-                <input type="hidden" name="operacio" value="modifica">
-                <input type="submit" value="modifica el producto">
+        foreach($Llistat as $objecte){ 
+            ?>
+            
+            <!-- -->
+            <div class="col-md-8 mb-3">
+                <div class="input-container">
+                    <input type="text" id="nombre" name="nombre" required="required" value="<?php echo $objecte->nombre ?>">
+                    <label for="nombre" class="label">Nombre</label>
+                </div>
             </div>
-            <?php
+            <!---->
+            <div class="col-md-4 mb-3">
+              <div class="input-container disabled">
+                <div class="input">
+                    <?php echo $objecte->id_producto ?>
+                </div>
+                <span class="label sm">Identificador</span>
+              </div>
+            </div>
+            <!---->
+            <div class="col-md-12 mb-3">
+                <div class="input-container">
+                    <input type="text" id="subtitulo" name="subtitulo" required="required" value="<?php echo $objecte->subtitulo ?>">
+                    <label for="subtitulo" class="label">Subtítulo</label>
+                </div>
+            </div>
+            <!-- -->
+            <div class="col-md-4 mb-3">
+                <div class="input-container">
+                    <input type="number" id="stock" name="stock" required="required" value="<?php echo $objecte->stock ?>">
+                    <label for="stock" class="label">Stock</label>
+                </div>
+            </div>
+            <!---->
+            <div class="col-md-4 mb-3">
+                <div class="input-container">
+                    <input type="number" id="precio" name="precio" required="required" value="<?php echo $objecte->precio ?>">
+                    <label for="precio" class="label">Precio</label>
+                </div>
+            </div>
+            <!---->
+            <div class="col-md-12 mb-3">
+                <div class="input-container txt">
+                    <textarea id="descripcion" name="descripcion" required="required" rows="4"><?php echo $objecte->descripcion ?></textarea>
+                    <label for="descripcion" class="label">Descripción</label>
+                </div>
+            </div>
+
+            <!-- -->
+            
+            <div class="col-md-4 mb-3">
+                <figure class="img-container">
+                    <?php if ($objecte->foto1){
+                        echo '<img src="../Vistas/assets/img/productos/'.$objecte->foto1.'">';
+                    } else {
+                        echo '<img src="../Vistas/assets/img/no-image.jpg">';
+                    }?>
+                </figure>
+                <div class="input-container file mt-2">
+                    <label class="label" for="foto1">Foto 01</label>
+                    <input type="file" name="foto1">
+                </div>
+            </div>
+
+            <!-- -->
+            
+            <div class="col-md-4 mb-3">
+                <figure class="img-container">
+                    <?php if ($objecte->foto2){
+                        echo '<img src="../Vistas/assets/img/productos/'.$objecte->foto2.'">';
+                    } else {
+                        echo '<img src="../Vistas/assets/img/no-image.jpg">';
+                    }?>
+                </figure>
+                <div class="input-container file mt-2">
+                    <label class="label" for="foto2">Foto 02</label>
+                    <input type="file" name="foto2">
+                </div>
+            </div>
+
+            <!-- -->
+
+            <div class="col-md-4 mb-3">
+                <figure class="img-container">
+                    <?php if ($objecte->foto3){
+                        echo '<img src="../Vistas/assets/img/productos/'.$objecte->foto3.'">';
+                    } else {
+                        echo '<img src="../Vistas/assets/img/no-image.jpg">';
+                    }?>
+                </figure>
+                <div class="input-container file mt-2">
+                    <label class="label" for="foto3">Foto 03</label>
+                    <input type="file" name="foto3">
+                </div>
+            </div>
+
+            <!-- -->
+
+            
+
+
+
+            
+            
+            
+
+            <!---->
+        <div class="col-md-12 mb-3">
+            <a href="javascript:history.go(-1)" class="btn btn-outline-danger">Cancelar</a>
+            <input type="hidden" name="id" value="<?php echo $_GET["producto"]?>">
+            <input type="hidden" name="operacio" value="modifica">
+            <input type="submit" value="Modifica el producto" class="btn btn-success ml-1">
+        </div>
+            
+            </div>
+            </div>
+    
+            
+    <?php
+        }?>
+
+<?php
     }else{
         echo "NO se puede mostrar";
     }
 
     ?>
 
- <!-- -->
+    </div>
+    
+    </form>
+
+</div>
+
+                 <!-- -->
 
             </div>
         </div>
@@ -94,8 +176,9 @@ include '../../Vistas/Header/header.php';
     </div>
 </section>
     
-<?php include '../../Vistas/Footer/footer.php'; ?>
+<?php include '../Vistas/Footer/footer.php'; ?>
 
 </body>
 
 </html>
+

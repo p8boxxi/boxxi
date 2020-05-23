@@ -20,7 +20,7 @@ include '../Vistas/Header/header.php';
                 <!-- -->
 
 
-<h2 class="col-12">Detalle de producto <a class="btn btn-sm btn-dark float-right" href="../Vistas/Producto/insertarProducto.php">+ Nuevo producto</a></h2>
+<h2 class="col-12">Detalle de producto</h2>
 
 <div class="col-12">
 
@@ -81,7 +81,7 @@ include '../Vistas/Header/header.php';
             <div class="col-md-4 mb-3">
               <div class="input-container disabled">
                 <div class="input">
-                    <?php echo $objecte->precio ?> €
+                    <?php echo $objecte->precio ?> EUR
                 </div>
                 <span class="label sm">Precio</span>
               </div>

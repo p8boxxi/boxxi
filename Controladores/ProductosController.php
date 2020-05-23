@@ -104,7 +104,17 @@ class ProductosController extends Producto{
     }
 
     public function MuestraModificarProducto($id){
-        header("location: ../Vistas/Producto/modificarProducto.php?id=$id");
+
+        $Llistat = $this->retornaProducto($id);
+        if (file_exists("Vistas/Producto/modificarProducto.php")){
+            require_once "Vistas/Producto/modificarProducto.php";
+        }
+        if (file_exists("../Vistas/Producto/modificarProducto.php")){
+            require_once "../Vistas/Producto/modificarProducto.php";
+        }
+
+
+
     }
 
     public function ModificarProducte($id, $nombre, $subtitulo, $stock, $precio, $descripcion, $foto1, $foto2, $foto3){
