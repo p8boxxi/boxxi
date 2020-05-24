@@ -11,6 +11,12 @@ body {
 *******************************************************************************************************************
 ******* BARRA NAVEGACION GENERAL *************************************************************************************/
 
+.favicon{
+    background-image: url(../img/favicon.png);
+    height: 16px;
+    width: 16px;
+    display: block;
+}
 
 .container{
     width: 100%;
@@ -57,11 +63,11 @@ body {
 */
 
 .nav li:after {
-   display:block;
-   content: '';
-   border-bottom: solid 3px #FF8A00;  
-   transform: scaleX(0);  
-   transition: transform 250ms ease-in-out;
+ display:block;
+ content: '';
+ border-bottom: solid 3px #FF8A00;  
+ transform: scaleX(0);  
+ transition: transform 250ms ease-in-out;
 }
 
 .nav li:hover:after {
@@ -125,11 +131,11 @@ body {
 }
 
 .naranja li:after {
-   display:block;
-   content: '';
-   border-bottom: solid 2px white;  
-   transform: scaleX(0);  
-   transition: transform 250ms ease-in-out;
+ display:block;
+ content: '';
+ border-bottom: solid 2px white;  
+ transform: scaleX(0);  
+ transition: transform 250ms ease-in-out;
 }
 .naranja li:hover:after {
     transform: scaleX(1); 
@@ -150,6 +156,63 @@ body {
     color: black;
     font-weight: 600;
 }
+
+/*******************************************************************************************************************
+********************************************************************************************************************
+******************** INDEX ******************************************************************************/
+
+.row.content {
+    height: 250px
+}
+
+.secciones{
+  height: 180px;
+}
+
+.secciones p,
+.secciones-blau p{
+  font-size: 20px;
+}
+
+.secciones-gris{
+  background-color: #EDEDED;
+}
+.secciones-naranja{
+  background-color: #FF8A00;
+}
+
+
+.portada{
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  
+}
+.imgseccion{
+  overflow: hidden;
+  max-height: 250px;
+}
+
+.titolindex{
+  margin-top: 30px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+.btn span.icon {
+  background: url(img/) no-repeat;
+  float: left;
+  width: 10px;
+  height: 40px;
+}
+
+.slide-show img{
+    width: 250px;
+    height: auto;
+}
+
+
+
+
 
 
 /*******************************************************************************************************************
@@ -189,10 +252,10 @@ body {
 }
 
 .container-bloque ul{
-   list-style-type: none;
-   margin: 0;
-   padding: 0;
-   width: inherit;
+ list-style-type: none;
+ margin: 0;
+ padding: 0;
+ width: inherit;
 }
 
 .container-bloque li{
@@ -235,7 +298,7 @@ body {
     font-weight: 400;
     font-size: 18px;
     display: table-cell;
-     vertical-align: middle;
+    vertical-align: middle;
     width: inherit;
 }
 .tituloProducto a{
@@ -283,8 +346,8 @@ body {
     margin-bottom: 40px;
 }
 .migas a{
-   text-decoration: none;
-   color: grey;
+ text-decoration: none;
+ color: grey;
 }
 
 
@@ -536,119 +599,119 @@ input.qtyminus {
 
 /*.cesta-det{
     min-height: 650px;
-}*/
+    }*/
 
-.titol-cesta {
-    display: block;
-    width: relative;
-    min-height: 20px;
-}
-.titol-cesta h3{
-    text-align: center;
-    font-weight: 600;
-    font-size: 38px;
-}
+    .titol-cesta {
+        display: block;
+        width: relative;
+        min-height: 20px;
+    }
+    .titol-cesta h3{
+        text-align: center;
+        font-weight: 600;
+        font-size: 38px;
+    }
 
-.cistella-contingut  >div{
-    width: inherit;
-    height: relative;
-    margin: 15px 0 15px 0;
-}
-.cistella-contingut{
-    display: flex;
-  flex-wrap: wrap;
-    width: inherit;
-    height: relative;
-    padding-bottom: 120px;
-    margin: 0 auto;
-    margin-top: 20px;
-}
+    .cistella-contingut  >div{
+        width: inherit;
+        height: relative;
+        margin: 15px 0 15px 0;
+    }
+    .cistella-contingut{
+        display: flex;
+        flex-wrap: wrap;
+        width: inherit;
+        height: relative;
+        padding-bottom: 120px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
 
-.cistella-contingut ul{
-    text-align: right;
-}
+    .cistella-contingut ul{
+        text-align: right;
+    }
 
-.cistella-contingut li{
-    display: inline-block;
-    text-decoration: none;
-    margin: 20px;
-}
+    .cistella-contingut li{
+        display: inline-block;
+        text-decoration: none;
+        margin: 20px;
+    }
 
-.cistella-contingut h3{
-    text-align: center;
-    font-weight: 600;
-    margin: 25px;
-}
-.wrapper-cistella{
-    display: block;
-    width: 80%;
-    margin: 0 auto;
-    height: relative;
-    min-height: 300px;
-}
+    .cistella-contingut h3{
+        text-align: center;
+        font-weight: 600;
+        margin: 25px;
+    }
+    .wrapper-cistella{
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+        height: relative;
+        min-height: 300px;
+    }
 
-.nav-cesta{
-    display: block;
-    text-align: right;
-    text-decoration: none;
-    margin-bottom: 20px;
-}
-.nav-cesta, .nav-cesta a{
-    text-align: center;
-}
-.nav-cesta li, .bt-sec, .bt-pri{
-    margin: 5px;
-    border-radius: 20px;
-    border: none;
-    padding: 5px 10px;
-    color: white;
-}
+    .nav-cesta{
+        display: block;
+        text-align: right;
+        text-decoration: none;
+        margin-bottom: 20px;
+    }
+    .nav-cesta, .nav-cesta a{
+        text-align: center;
+    }
+    .nav-cesta li, .bt-sec, .bt-pri{
+        margin: 5px;
+        border-radius: 20px;
+        border: none;
+        padding: 5px 10px;
+        color: white;
+    }
 
 
-.producto-cesta-lista{
-    width: 90%;
-    height: 70px;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    overflow: hidden;
-}
-.producto-cesta-lista>div{
-    width: relative;
-    height: inherit;
-    margin: 0 auto;
-}
-.producto-cesta-total{
-    display: block;
-    height: relative;
-    width: 100%;
-    text-align:right;
-}
+    .producto-cesta-lista{
+        width: 90%;
+        height: 70px;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .producto-cesta-lista>div{
+        width: relative;
+        height: inherit;
+        margin: 0 auto;
+    }
+    .producto-cesta-total{
+        display: block;
+        height: relative;
+        width: 100%;
+        text-align:right;
+    }
 
-.producto-cesta-lista h4{
-    font-size: 20px;
-    font-weight: 600;
-}
-.producto-cesta-total h2{
-    padding-right: 60px;
-}
+    .producto-cesta-lista h4{
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .producto-cesta-total h2{
+        padding-right: 60px;
+    }
 
-.producto-cesta-lista .social-links i {
-  height: 30px;
-  width: 30px;
-  background-color: #ffffff;
-  background-repeat: no-repeat;
-  background-position: center center;
-  -webkit-background-size: 18px;
-  background-size: 18px;
-  display: block;
-  margin: 0 auto;
-}
-.producto-cesta-lista  i.icon-del {
-  background-image: url(../img/delete.png);
-}
+    .producto-cesta-lista .social-links i {
+      height: 30px;
+      width: 30px;
+      background-color: #ffffff;
+      background-repeat: no-repeat;
+      background-position: center center;
+      -webkit-background-size: 18px;
+      background-size: 18px;
+      display: block;
+      margin: 0 auto;
+  }
+  .producto-cesta-lista  i.icon-del {
+      background-image: url(../img/delete.png);
+  }
 
-.botones{
+  .botones{
     display: block;
     text-align: right;
     text-decoration: none;
