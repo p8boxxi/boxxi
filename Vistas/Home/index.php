@@ -1,6 +1,12 @@
 <?php     
 require_once "../../Controladores/SesionesController.php";
 $objecteSessio = new SesionesController();
+
+//GP  
+require_once "../../Controladores/SesionesController.php";
+$objecteSessio = new SesionesController();
+
+//AP
 $title = 'Index'; 
 $currentPage = 'Index'; 
 include '../../Vistas/Header/header.php';    
@@ -47,7 +53,7 @@ include '../../Vistas/Header/header.php';
                 echo "</div>";
                 echo "<script>$('#wrongModal2').modal('show');</script>";
                 unset($_SESSION["Denegado"]);
-                }
+            }
         }
     }
     
@@ -55,68 +61,116 @@ include '../../Vistas/Header/header.php';
         echo $_SESSION["mensajeResultado"];
         unset($_SESSION["mensajeResultado"]);
     }
-   
 
-   
     // echo "<br>";
     // echo "<a href='Controladores/SesionesController.php?operacion=cerrarSesion'>Salir de  La Sesion</a>";
 
     ?>
 
+    <!--portada-->
+    <div id="mycuerpo" class="container-fluid text-center" >
+        <div class="row secciones-gris">
+            <div class="col-4 "></div>
+            <div class="col-4 text-center">
+                <h1 class="titolindex text-center">CARTÓN RECICLADO</h1>
+                <p>Construye tu casa con muebles hechos de cartón. 
+                Reciclados, resistentes y ecofriendly..</p>
+            </div>
+            <div class="col-4 "></div>
+
+        </div>
+        <div class="row content" > 
+            <div class="col-sm portada" > 
+                <img src="/Vistas/assets/img/portada-01.png" class="img-responsive" >
+            </div>
+        </div>
+
+        <!--nosotros-->
+        <div  class="row ">
+            <div class="col-1 "></div>
+            <div class="col-5 ">
+                <h1 class="titolindex text-center">nosotros</h1>
+                <div class="text-left">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laboru.</p>
+                </div>
+            </div>
+            <div class="col-5 ">
+                <div class="col-sm portada" > 
+                    <img src="/Vistas/assets/img/portada-02.png" class="img-responsive" >
+                </div>
+            </div>
+            <div class="col-1 "></div>
+        </div>
+
+        <!--idea-->
+        <div class="row secciones-gris">
+            <div class="col-1 "></div>
+            <div class="col-5 ">
+                <div class="col-sm portada" > 
+                    <img src="/Vistas/assets/img/portada-03.png" class="img-responsive" >
+                </div>
+            </div>
+            <div class="col-5 ">
+                <h1 class="titolindex text-center">idea</h1>
+                <div class="text-left">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laboru.</p>
+                </div>
+            </div>
+            <div class="col-1 "></div>
+        </div>
 
 
-    <h1>Enlaces muestra [INSERTAR datos]</h1>
-    <a href="../../Vistas/Administrador/insertarAdministrador.php">Administrador</a>
-    <br>
-    <a href="../../Vistas/Categoria/insertarCategoria.php">Categorias</a>
-    <br>
-    <a href="../../Vistas/Cliente/insertarCliente.php">Clientes</a>
-    <br>
-    <a href="../../Vistas/Estado/insertarEstado.php">Estados</a>
-    <br>
-    <a href="../../Vistas/PedidoDetalle/insertarPedidoDetalle.php">Pedido-detalle</a>
-    <br>
-    <a href="../../Vistas/Producto/insertarProducto.php">Productos</a>
-    <br>
-    (<a href="../../Vistas/Usuario/insertarUsuario.php">Usuarios</a>)
-    <br>
-    <a href="../../Vistas/Pedido/insertarPedido.php">Pedidos</a>
+        <!--descubre-->
+        <div  class="row secciones-naranja">
+            <div class="col-2 "></div>
+            <div class="col-4 ">
+                <div class="row text-center">
+                    <h1 class="titolindex text-center">descubre</h1>
+                    <p>Entra en nuestra tienda para ver todas nuestras propuestas.</p>
+                    <button>tienda</button>
+                </div>
+            </div>
+            <div class="col-4 ">
+                <div class="col-sm portada" > 
+                    <img src="/Vistas/assets/img/portada-04.png" class="img-responsive" >
+                </div>    
+            </div>
+            <div class="col-1 "></div>
 
-    <h1>Enlaces muestra [MOSTRAR datos]</h1>
-    <a href="../../Controladores/AdministradoresController.php?operacio=ver">Administrador</a>
-    <br>
-    <a href="../../Controladores/CategoriasController.php?operacio=ver">Categorias</a>
-    <br>
-    <a href="../../Controladores/ClientesController.php?operacio=ver">Clientes</a>
-    <br>
-    <a href="../../Controladores/EstadosController.php?operacio=ver">Estados</a>
-    <br>
-    <a href="../../Controladores/PedidoDetallesController.php?operacio=ver">Pedido-detalle</a>
-    <br>
-    <a href="../../Controladores/ProductosController.php?operacio=ver">Productos</a>
-    <br>
-    <a href="../../Controladores/ProductosController.php?operacio=verFotos">Productos con Fotos</a>
-    <br>
-    (<a href="../../Controladores/UsuariosController.php?operacio=ver">Usuarios</a>)
-    <br>
-    <a href="../../Controladores/PedidosController.php?operacio=ver">Pedidos</a>
-    <br>
-    <a href="../../Controladores/PedidoDetallesController.php?operacio=verTODO">Pedido-detalle (TODO)</a>
+        </div>
+    </div>
 
-
-
-    <h1>Actualiza</a></h1>
-
-
-    <br>
-    <a href="../../Vistas/Categoria/modificarCategoria.php">Categorias</a>
+    <!--slider-->
+    <div class="row">          
+            <div class="col-3 "></div>
+            <div class="col-6 ">
+                <h1 class="titolindex text-center">galeria muebles</h1>
+            </div>
+            <div class="col-3 "></div>
+        <div class="row slide-show">
+            <div class="col-3 ">
+                <img src="/Vistas/assets/img/productos/ALISTON01.jpg" class="img-responsive" >
+            </div>
+            <div class="col-3 ">
+                <img src="/Vistas/assets/img/productos/ALISTON01.jpg" class="img-responsive" >
+            </div>
+            <div class="col-3 ">
+                <img src="/Vistas/assets/img/productos/ALISTON01.jpg" class="img-responsive" >
+            </div>            
+            <div class="col-3 ">
+                <img src="/Vistas/assets/img/productos/ALISTON01.jpg" class="img-responsive" >
+            </div>
+            
+        </div>
+    </div>
 
 
 
 
-    <h1><a href="../../formLoginPrueba.php">Regresar al Login</a></h1>
 
-<?php include '../../Vistas/Footer/footer.php'; ?>
+
+
+    <?php include '../../Vistas/Footer/footer.php'; ?>
 
 </body>
 
