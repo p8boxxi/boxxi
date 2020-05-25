@@ -34,97 +34,68 @@ include '../../Vistas/Header/header.php';
                 <!-- -->
 
 
-<h2 class="col-12">Añadir producto</h2>
-<div class="col-12">
+<h2 class="col-12">Nuevo producto</h2>
 <form action="../../Controladores/ProductosController.php" method="POST" enctype="multipart/form-data">
-    <div class="row">
+    <div class="six fields">
 
+    <div class="field">
+            <label for="nombre">Categoria</label>
+            <select name="categoria">
+                <option value="0">Seleccione:</option>
+                    <?php
+                        
+                        $categorias = new CategoriasController();
+                        $valoresCategorias = $categorias->selectCategorias();
+                        foreach ($valoresCategorias as $categoria){
+                            echo "<option value=$categoria->id_categoria>".$categoria->nombre."</option>";
+                        }
+                    ?>
+            </select>
+
+        </div>
+
+
+        <div class="field">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" placeholder="nombre">
+        </div>
+        <div class="field">
+            <label for="subtitulo">subtitulo</label>
+            <input type="text" name="subtitulo" placeholder="subtitulo">
+        </div>
+        <div class="field">
+            <label for="stock">stock</label>
+            <input type="text" name="stock" placeholder="stock">
+   
+        </div>
+        <div class="field">
+            <label for="precio">precio</label>
+            <input type="text" name="precio" placeholder="precio">
+        </div>
+        <div class="field">
+            <label for="descripcion">Descripcion</label>
+            <input type="text" name="descripcion" placeholder="descripcion">
+        </div>
+        <div class="field">
+            <label for="foto1">Foto_1</label>
+            <input type="file" name="foto1">
+        </div>
+        <div class="field">
+            <label for="foto2">Foto_2</label>
+            <input type="file" name="foto2">
+        </div>
+        <div class="field">
+            <label for="foto3">Foto_3</label>
+            <input type="file" name="foto3">
+        </div>
         
-        <!---->
-        <div class="col-md-12 mb-3">
-            <div class="input-container">
-                <input type="text" id="nombre" name="nombre" required="required">
-                <label for="nombre" class="label">Nombre</label>
-            </div>
-        </div>
-        <!---->
-        <div class="col-md-12 mb-3">
-            <div class="input-container">
-                <input type="text" id="subtitulo" name="subtitulo" required="required">
-                <label for="subtitulo" class="label">Subtítulo</label>
-            </div>
-        </div>
-        <!---->
-        <div class="col-md-4 mb-3">
-            <div class="input-container slct">
-                <select name="categoria">
-                    <option value="0">Seleccione:</option>
-                        <?php
-                            
-                            $categorias = new CategoriasController();
-                            $valoresCategorias = $categorias->selectCategorias();
-                            foreach ($valoresCategorias as $categoria){
-                                echo "<option value=$categoria->id_categoria>".$categoria->nombre."</option>";
-                            }
-                        ?>
-                </select>
-                <label for="categoria" class="label">Categoría</label>
-            </div>
-        </div>
-        <!---->
-        <div class="col-md-4 mb-3">
-            <div class="input-container">
-                <input type="number" id="stock" name="stock" required="required">
-                <label for="stock" class="label">Stock</label>
-            </div>
-        </div>
-        <!---->
-        <div class="col-md-4 mb-3">
-            <div class="input-container">
-                <input type="number" id="precio" name="precio" required="required">
-                <label for="precio" class="label">Precio</label>
-            </div>
-        </div>
-        <!---->
-        <div class="col-md-12 mb-3">
-            <div class="input-container txt">
-                <textarea id="descripcion" name="descripcion" required="required" rows="4"></textarea>
-                <label for="descripcion" class="label">Descripción</label>
-            </div>
-        </div>
-        <!---->
-        <div class="col-md-12 mb-3">
-            <div class="input-container file">
-                <label class="label" for="foto1">Foto 01</label>
-                <input type="file" name="foto1">
-            </div>
-        </div>
-        <!---->
-        <div class="col-md-12 mb-3">
-            <div class="input-container file">
-                <label class="label" for="foto1">Foto 02</label>
-                <input type="file" name="foto2">
-            </div>
-        </div>
-        <!---->
-        <div class="col-md-12 mb-3">
-            <div class="input-container file">
-                <label class="label" for="foto1">Foto 03</label>
-                <input type="file" name="foto3">
-            </div>
-        </div>
-        <!---->
-        <div class="col-md-12 mb-3">
-            <input type="hidden" name="operacio" value="inserta">
-            <a href="javascript:history.go(-1)" class="btn btn-outline-danger">Cancelar</a>
-            <input type="submit" value="Crear producto" class="btn btn-success ml-1">
-        </div>
+        <input type="hidden" name="operacio" value="inserta">
+        <input type="submit" value="Crea PRODUCTO">
+    </div>
 
 
   <!-- -->
-</div>
-</form>
-</div>
+
             </div>
         </div>
         

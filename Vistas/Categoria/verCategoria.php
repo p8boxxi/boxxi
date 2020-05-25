@@ -39,7 +39,7 @@ include '../Vistas/Header/header.php';
                                 <td><?php echo $objecte->id_categoria ?></td>
                                 <td><?php echo $objecte->nombre ?></td>
                                 
-                                <?php if (($objecte->id_categoria)!=0){
+                                <?php if (($objecte->id_categoria)!=1){
                                     ?>
                                     <td class='text-right'>
                                         <a class='btn btn-sm btn-outline-danger' href="CategoriasController.php?operacio=elimina&categoria=<?php echo $objecte->id_categoria ?>">Eliminar</a>

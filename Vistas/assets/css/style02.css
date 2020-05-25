@@ -142,12 +142,12 @@ font-size: 11px!important;
 /**/
 
 figure.img-container {
-position: relative;
-display: -webkit-box;
-margin: 0;
-border-radius: 5px;
-overflow: hidden;
-border: 1px solid #e2e2e2;
+position: relative;
+display: -webkit-box;
+margin: 0;
+border-radius: 5px;
+overflow: hidden;
+border: 1px solid #e2e2e2;
 }
 figure.img-container:before {
   margin-top: 80%;

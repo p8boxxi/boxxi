@@ -9,7 +9,7 @@ require_once '../Controladores/SesionesController.php';
 
 require_once '../Controladores/PedidoDetallesController.php';
 $pedido = new PedidoDetallesController();
-
+$total = 0;
 
 require_once '../Controladores/ProductosController.php';
 
@@ -65,67 +65,81 @@ $objecteSessio = new SesionesController();
             <?php 
             $i=0 ;
             $objDetalls = (array)$objDetalls;
-            foreach($objDetalls as $objecte) {
-                $prod = new ProductosController();
+            foreach($objDetalls as $objecte) {                
                 $prodinfo = $objecte->id_producto;
-                $detallsProducte = $prod->ProductoDetalleComprarInfo($prodinfo);
+                $objecteProducte = new ProductosController();
+                $infoProducte= $objecteProducte->retornaInfoProducto($prodinfo);
+                foreach ($infoProducte as $informacioProducte){
+                    ?>
+                    <div class ="producto-cesta-lista">
+                        <div class="items-prod"> 
+                            <div class= "img-referencia">                    
+                             <?php 
+                             if ($informacioProducte->foto1!=null){
+                                ?> 
+                                <img src="../Vistas/assets/img/productos/<?php echo $informacioProducte->foto1 ?>" ></img> 
+                                <?php
+                            } else{
+                             echo '<span style="width: 100; height: 100px; display:block; background-color:#e6e6e6;">Imagen no disponible</span>' ;
+                         }?> 
+                     </div>
+                 </div>
 
-                ?>
-                <div class ="producto-cesta-lista">
-                    <div class="items-prod"> 
-                        <div class= "img-referencia">                    
-                           <?php 
-                           if ($detallsProducte['foto1']!=null){
-                            ?> 
-                            <img src="../Vistas/assets/img/productos/<?php echo $detallsProducte['foto1'] ?>" ></img> 
-                            <?php
-                        } else{
-                           echo '<span style="width: 620; height: 200px; display:block; background-color:#e6e6e6;">Imagen no disponible</span>' ;
-                       }?> 
-                   </div>
-               </div>
+                 <div class="items-prod">
+                    <div class="prod-dentro">
+                        <h2><?php echo $objecte->producto;?></h2> 
+                        <p><?php echo $informacioProducte->subtitulo; ?></p>
+                    </div>
+                </div>
 
-               <div class="items-prod">
+                <div class="prod-dentro precio">
+                    <a><?php echo $objecte->precio ?>€</a>
+                </div>
                 <div class="prod-dentro">
-                    <h2><?php echo $objecte->producto;?></h2> 
-                    <p><?php echo $detallsProducte['subtitulo']; ?></p>
+                    <a><?php echo $objecte->cantidad ?></a>
+                </div>
+                <div class="prod-dentro">
+                    <a><?php echo $objecte->cantidad * $objecte->precio; $total = $total + $objecte->cantidad * $objecte->precio ?>€</a>
                 </div>
             </div>
-
-            <div class="prod-dentro precio">
-                <a><?php echo $objecte->precio ?>€</a>
-            </div>
-            <div class="prod-dentro">
-                <a><?php echo $objecte->cantidad ?></a>
-            </div>
-            <div class="prod-dentro">
-                <a><?php echo $objecte->cantidad * $objecte->precio ?>€</a>
-            </div>
-
+            <hr>
+            <?php  
+            $i++;
+        }}?> 
+    </div>
+    <div class ="producto-cesta-total">
+        <div class="total">
+            <h2>Total: <?php echo $total?> €</h2>
         </div>
-        <?php  
-        $i++;
-    }?> 
-</div>
 
-<div class ="prod-comprar">
-    <div class="items-confirmar ">
-        <form action="/Controladores/PedidosController.php" method="POST">
-            <div class="six fields">
-                <input type="hidden" name="fecha" value="<?php echo date("Y-m-d")?>"/>
-                <input id="cantidad-enviar" type="hidden" name="cantidad" value="">
-                <input type="hidden" name="precio" value="<?php echo $objecte->precio?>">
-                <input type="hidden" name="producto" value="<?php echo $objecte->id_producto?>">
+    </div>
 
-                <div class="confirmar boton-buy ">
-                    <input type="hidden" name="operacio" value="comprar"/>
-                    <input type="submit" value="Finalizar compra"/>
+    <div class ="prod-comprar">
+        <div class="items-confirmar ">
+            <form action="/Controladores/PedidosController.php" method="POST">
+                <div class="six fields">
+                    <div class="boton-buy ">
+
+                    </div>
                 </div>
+            </form>
+            <div class="boton-buy ">
+                <form action="/Controladores/PedidosController.php" method="POST">
+                    <input type="hidden" name="fecha" value="<?php echo date("Y-m-d")?>"/>
+                    <input id="cantidad-enviar" type="hidden" name="cantidad" value="">
+                    <input type="hidden" name="precio" value="<?php echo $objecte->precio?>">
+                    <input type="hidden" name="producto" value="<?php echo $objecte->id_producto?>">               
+                    <input  type="hidden" name="operacio" value="comprar"/>
+                    <input class="bt-confirmar" type="submit" value="Finalizar compra"/>
+                </form>
 
-            </div>
-        </form>
-    </div>    
-</div>
+                <form action="/Controladores/PedidosController.php" method="POST">
+                    <input  type="hidden" name="operacio" value="cancelarCompra"/>
+                    <input class="bt-comprar" type="submit" value="Cancelar"/>
+                </form>
+         </div>
+     </div>    
+ </div>
 </div>
 </div>
 

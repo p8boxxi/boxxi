@@ -20,7 +20,7 @@ require_once "../../Controladores/ProductosController.php";
             <?php if ($objecte->foto1!=null){   
 
               ?>
-              <img src="/Vistas/assets/img/productos/<?php echo $objecte->foto1 ?>" width="220" height="200"></img>
+              <img  src="/Vistas/assets/img/productos/<?php echo $objecte->foto1 ?>" width="220" height="200"></img>
               <?php
             } else{
               echo '<span style="width:220; height: 200px; display:block; background-color:#e6e6e6;">Imagen no disponible</span>' ;

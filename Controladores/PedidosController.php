@@ -110,28 +110,38 @@ class PedidosController extends Pedido{
 
 
     //AP
-public function buidaCistella(){
-    header ('location: ../Vistas/Pedido/contenidoCistella.php');
-}
+    public function buidaCistella(){
+        header ('location: ../Vistas/Pedido/contenidoCistella.php');
+    }
 
     //AP
-public function actualizaEstado($id){
-    $this->id_pedido = $id;
-    $resultado = $this->actualizaPedidoComprado();
-    if($resultado){
-        require ("../Vistas/Pedido/CompraConfirmada.php");
-    }else{
-        echo "Se ha producido un error al realizar su compra.";
+    public function actualizaEstado($id){
+        $this->id_pedido = $id;
+        $resultado = $this->actualizaPedidoComprado();
+        if($resultado){
+            require ("../Vistas/Pedido/CompraConfirmada.php");
+        }else{
+            echo "Se ha producido un error al realizar su compra.";
+        }
     }
-}
+    //AP
+    public function actualizaPedidoCancela($id){
+        $this->id_pedido = $id;
+        $resultado = $this->actualizaPedido($id, "cancelar");
+        if($resultado){
+            header ("location: ../Vistas/Home/tienda.php");
+        }else{
+            echo "Se ha producido un error al realizar su compra.";
+        }
+    }
 
     //GP
-public function eliminaProducte($idProducte){
-    if (isset($_SESSION["cistella"])){
-        $_SESSION["cistella"]->treuProducteCistella($idProducte);
-        header("location: ../Vistas/Pedido/contenidoCistella.php");
-    }       
-}
+    public function eliminaProducte($idProducte){
+        if (isset($_SESSION["cistella"])){
+            $_SESSION["cistella"]->treuProducteCistella($idProducte);
+            header("location: ../Vistas/Pedido/contenidoCistella.php");
+        }       
+    }
 
 
 }
@@ -275,6 +285,19 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
         echo "Operación No permitida";
     }
 }
+
+//AP
+if(isset($_POST["operacio"]) && $_POST["operacio"]=="cancelarCompra"){
+    $idPedido = $_SESSION["id_pedido"];
+    if (isset($_SESSION["id_pedido"]) && !empty($_SESSION["id_pedido"])){
+        $objecte = new PedidosController();
+        $objecte->actualizaPedidoCancela($idPedido);
+        unset($_SESSION['id_pedido']);
+    }else{
+        echo "Operación No permitida";
+    }
+}
+
 
 //GP 
 if(isset($_GET["accio"]) && $_GET["accio"]=="eliminaProductoCesta"){

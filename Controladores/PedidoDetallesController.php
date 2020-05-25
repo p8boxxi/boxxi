@@ -81,6 +81,8 @@ class PedidoDetallesController extends PedidoDetalle{
 
         header("location: ../Vistas/PedidoDetalle/modificarPedidoDetalle.php?id=$id"); 
     }
+
+    
     public function ModificarPedidoDetalle($id, $cantidad, $precio){
 
         $this->id_pedido_detalle = $id;
@@ -91,6 +93,8 @@ class PedidoDetallesController extends PedidoDetalle{
 
       $this->resultadoModificaPedidoDetalle($this->modificaPedidoDetalle());
     }
+
+
     public function resultadoModificaPedidoDetalle($resultat){
         if ($resultat){
             $_SESSION["mensajeResultado"]="
@@ -146,6 +150,8 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
                     $_POST["precio"]
                 );
 }
+
+
 
 
 ?>

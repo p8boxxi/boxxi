@@ -37,8 +37,8 @@ if (file_exists('/Controladores/ProductosController.php')){ require_once '/Contr
 			
 
 				<div class="confirmar boton-buy ">
-					<a href="/Vistas/Home/cliente-pedidos.php"><input type="submit" value="Ver pedidos"/></a>
-					<a href="/Vistas/Home/tienda.php"><input type="submit" value="Seguir comprando"/></a>
+					<a href="/Vistas/Home/cliente-pedidos.php"><input class="bt-confirmar" type="submit" value="Ver pedidos"/></a>
+					<a href="/Vistas/Home/tienda.php"><input class="bt-confirmar" type="submit" value="Seguir comprando"/></a>
 				</div>
 
 		</div>

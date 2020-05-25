@@ -1,9 +1,9 @@
 <?php   
 
-
-$categoriaProd = 0;
 //GP  
-require_once "../../Controladores/SesionesController.php";
+if (file_exists('/Controladores/SesionesController.php')){ require_once '/Controladores/SesionesController.php';}
+if (file_exists('../Controladores/SesionesController.php')){ require_once '../Controladores/SesionesController.php';}
+if (file_exists('../../Controladores/SesionesController.php')){ require_once '../../Controladores/SesionesController.php';}
 $objecteSessio = new SesionesController();
 
 //AP
@@ -13,14 +13,12 @@ include '../../Vistas/Header/header.php';
 include '../../Vistas/Header/navbar-tienda.php';
 
 //AP
-require_once "../../Controladores/ProductosController.php";
-if($categoriaProd == 0){
-    $objecte = new ProductosController();
-    $Llistat = $objecte->LlistaProductoHome();
-}else{
-    $objecte = new ProductosController();
-    $Llistat = $objecte->LlistaProductoHomeCategoria($categoriaProd);
-}
+if (file_exists('../../Controladores/ProductosController.php')){ require_once '../../Controladores/ProductosController.php';}
+if (file_exists('../Controladores/ProductosController.php')){ require_once '../Controladores/ProductosController.php';}
+if (file_exists('/Controladores/ProductosController.php')){ require_once '/Controladores/ProductosController.php';}
+$objecte = new ProductosController();
+$Llistat = $objecte->LlistaProductoHome();
+
 
 
 // require_once "../../Controladores/PedidosController.php";

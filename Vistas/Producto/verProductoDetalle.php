@@ -113,7 +113,7 @@ function get_option($name){
                                     <input type="hidden" name="producto" placeholder="producto" value="<?php echo $objecte->id_producto?>"/>
                                 </div>
                                 <input type="hidden" name="operacio" value="anadirApedido"/>
-                                <input type="submit" value="Comprar">
+                                <input class="bt-comprar" type="submit" value="Comprar">
                             </div>
                         </form>
 

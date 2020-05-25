@@ -20,143 +20,55 @@ include '../Vistas/Header/header.php';
                 <!-- -->
 
 
-<h2 class="col-12">Detalle de producto</h2>
+<h2 class="col-12">Gestión de productos <a class="btn btn-sm btn-light float-right" href="../Vistas/Producto/insertarProducto.php">+ Nuevo producto</a></h2>
 
 <div class="col-12">
+            <table class="w-100 table fz-14">
+        <tr>
+            <th>id_producto</th>
+            <th>id_categoria</th>
 
-    <div class="row">
+            <th>nombre</th>
+            <th>subtitulo</th>
+            <th>stock</th>
+            <th>precio</th>
+            <th>descripcion</th>
+            <th>foto1</th>
+            <th>foto2</th>
+            <th>foto3</th>
 
+            <th> ELIMINAR </th>
+            <th> MODIFICAR </th>
+        </tr>
     <?php
         
         foreach($Llistat as $objecte){ 
             ?>
-            
-            <!-- -->
-            <div class="col-md-8 mb-3">
-              <div class="input-container disabled">
-                <div class="input">
-                    <?php echo $objecte->nombre ?>
-                </div>
-                <span class="label sm">Nombre</span>
-              </div>
-            </div>
-            <!-- -->
-            <div class="col-md-4 mb-3">
-              <div class="input-container disabled">
-                <div class="input">
-                    <?php echo $objecte->id_producto ?>
-                </div>
-                <span class="label sm">Identificador</span>
-              </div>
-            </div>
-            <!-- -->
-            <div class="col-md-12 mb-3">
-              <div class="input-container disabled">
-                <div class="input">
-                    <?php echo $objecte->subtitulo ?>
-                </div>
-                <span class="label sm">Subtítulo</span>
-              </div>
-            </div>
-            <!-- -->
-            <div class="col-md-4 mb-3">
-              <div class="input-container disabled">
-                <div class="input">
-                    <?php echo $objecte->id_categoria ?>
-                </div>
-                <span class="label sm">Categoría</span>
-              </div>
-            </div>
-            <!-- -->
-            <div class="col-md-4 mb-3">
-              <div class="input-container disabled">
-                <div class="input">
-                    <?php echo $objecte->stock ?>
-                </div>
-                <span class="label sm">Stock</span>
-              </div>
-            </div>
+            <tr>
+                <td><?php echo $objecte->id_producto ?></td>
+                <td><?php echo $objecte->id_categoria ?></td>
 
-            <!-- -->
-            <div class="col-md-4 mb-3">
-              <div class="input-container disabled">
-                <div class="input">
-                    <?php echo $objecte->precio ?> EUR
-                </div>
-                <span class="label sm">Precio</span>
-              </div>
-            </div>
+                <td><?php echo $objecte->nombre ?></td>
+                <td><?php echo $objecte->subtitulo ?></td>
+                <td><?php echo $objecte->stock ?></td>
+                <td><?php echo $objecte->precio ?></td>
+                <td><?php echo $objecte->descripcion ?></td>
+                <td><?php echo $objecte->foto1 ?></td>
+                <td><?php echo $objecte->foto2 ?></td>
+                <td><?php echo $objecte->foto3 ?></td>
 
-            <!-- -->
-            <div class="col-md-12 mb-3">
-              <div class="input-container disabled">
-                <div class="input">
-                    <?php echo $objecte->descripcion ?>
-                </div>
-                <span class="label sm">Descripción</span>
-              </div>
-            </div>
-            <!-- -->
-            
-            <div class="col-md-4 mb-3">
-                <figure class="img-container">
-                    <?php if ($objecte->foto1){
-                        echo '<img src="../Vistas/assets/img/productos/'.$objecte->foto1.'">';
-                    } else {
-                        echo '<img src="../Vistas/assets/img/no-image.jpg">';
-                    }?>
-                </figure>
-            </div>
-            <!-- -->
-            
-            <div class="col-md-4 mb-3">
-                <figure class="img-container">
-                    <?php if ($objecte->foto2){
-                        echo '<img src="../Vistas/assets/img/productos/'.$objecte->foto2.'">';
-                    } else {
-                        echo '<img src="../Vistas/assets/img/no-image.jpg">';
-                    }?>
-                </figure>
-            </div>
-            <!-- -->
+                <?php if (($objecte->id_producto)!=1){    //1 es el "NULO
+                    ?>
+                    <td><a href="ProductosController.php?operacio=verdetalle&producto=<?php echo $objecte->id_producto ?>">Ver</a></td>
+                    <td><a href="ProductosController.php?operacio=eliminar&producto=<?php echo $objecte->id_producto ?>">Eliminar</a></td>
+                    <td><a href="ProductosController.php?operacio=modificar&producto=<?php echo $objecte->id_producto ?>">Modificar</a></td>
+                    <?php
+                } ?>
 
-            <div class="col-md-4 mb-3">
-                <figure class="img-container">
-                    <?php if ($objecte->foto3){
-                        echo '<img src="../Vistas/assets/img/productos/'.$objecte->foto3.'">';
-                    } else {
-                        echo '<img src="../Vistas/assets/img/no-image.jpg">';
-                    }?>
-                </figure>
-            </div>
-
-            
-
-
-
-            
-            
-            <div class="col-md-4 mb-3">
-
-            
-
-            <?php if (($objecte->id_producto)!=0){    //0 es el "NULO
-                ?>
-                <a class="btn btn-danger mr-1" href="ProductosController.php?operacio=eliminar&producto=<?php echo $objecte->id_producto ?>">Eliminar</a>
-                <a class="btn btn-success" href="ProductosController.php?operacio=modificar&producto=<?php echo $objecte->id_producto ?>">Modificar</a>
-                <?php
-            } ?>
-            
-            </div>
-            </div>
-    
-
+            </tr>
     <?php
         }?>
-
-
-    </div>
-
+    </table>
 </div>
 
                  <!-- -->

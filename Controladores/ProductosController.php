@@ -72,12 +72,7 @@ class ProductosController extends Producto{
         $Llistat = $this->retornaProductosTodos();
         require "../../Vistas/Producto/verProductoHome.php";
     }
-    public function LlistaProductoHomeCategoria($categoria){
 
-        $Llistat = $this->retornaProductosCategoria($categoria);
-        $categoriaProd= $categoria;
-        require "../../Vistas/Producto/verProductoHome.php";
-    }
 
 
 
@@ -104,17 +99,7 @@ class ProductosController extends Producto{
     }
 
     public function MuestraModificarProducto($id){
-
-        $Llistat = $this->retornaProducto($id);
-        if (file_exists("Vistas/Producto/modificarProducto.php")){
-            require_once "Vistas/Producto/modificarProducto.php";
-        }
-        if (file_exists("../Vistas/Producto/modificarProducto.php")){
-            require_once "../Vistas/Producto/modificarProducto.php";
-        }
-
-
-
+        header("location: ../Vistas/Producto/modificarProducto.php?id=$id");
     }
 
     public function ModificarProducte($id, $nombre, $subtitulo, $stock, $precio, $descripcion, $foto1, $foto2, $foto3){
@@ -152,7 +137,7 @@ class ProductosController extends Producto{
     //AP
     public function ProductoDetalleComprarInfo($producto){
         $this->id_producto = $producto;
-        $detallsProducte = $this->retornaProductoDetalle();
+        $obj = $this->retornaProductoDetalle();
     }
 
 
@@ -311,11 +296,6 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="verProductoDetalle"){
     $objecte->ProductoDetalle($_GET["producto"]);
 }
 
-//AP
-if(isset($_GET["operacio"]) && $_GET["operacio"]=="verProductoCat"){
-    $objecte = new ProductosController();
-    $objecte->LlistaProductoHomeCategoria($_GET["categoria"]);
-}
 
 
 ?>
