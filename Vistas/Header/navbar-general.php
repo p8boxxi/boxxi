@@ -67,7 +67,11 @@
             } else {
               echo "<b>".$_SESSION["nombre"]." - ".$_SESSION["rol"]."</b>";
               echo "<a class='c-999' href='../../Controladores/SesionesController.php?operacion=cerrarSesion'>Cerrar sesión</a>";
-              echo "<a href='admin.php'>Panel de control</a>";
+              if (file_exists('../../../Controladores/PedidosController.php')){ echo "<a href='../../../Controladores/PedidosController.php?operacio=ver'>Panel de control</a>";}
+              if (file_exists('../../Controladores/PedidosController.php')){ echo "<a href='../../Controladores/PedidosController.php?operacio=ver'>Panel de control</a>";}
+              if (file_exists('../Controladores/PedidosController.php')){ echo "<a href='../Controladores/PedidosController.php?operacio=ver'>Panel de control</a>";}
+              if (file_exists('/Controladores/PedidosController.php')){ echo "<a href='/Controladores/PedidosController.php?operacio=ver'>Panel de control</a>";}
+              if (file_exists('/PedidosController.php')){ echo "<a href='/PedidosController.php?operacio=ver'>Panel de control</a>";}
             }
 
             echo "</li>";

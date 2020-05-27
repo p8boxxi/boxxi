@@ -6,6 +6,7 @@
 }
 .navbar ul {
   vertical-align: middle;
+  margin-top: 15px;
 }
 .fw-600 {
   font-weight: 600;

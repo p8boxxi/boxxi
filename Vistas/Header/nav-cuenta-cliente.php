@@ -5,13 +5,13 @@
     <h3>Área de cliente</h3>
     <ul>
       <li>
-        <a href="cliente-perfil.php">Datos personales</a>
+        <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Vistas/Home/cliente-perfil.php">Datos personales</a>
       </li>
       <li>
-        <a href="cliente-password.php">Cambiar contraseña</a>
+        <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Vistas/Home/cliente-password.php">Cambiar contraseña</a>
       </li>
       <li>
-        <a href="cliente-pedidos.php">Mis pedidos</a>
+        <a href="<?php $_SERVER['DOCUMENT_ROOT'] ?>/Vistas/Home/cliente-pedidos.php">Mis pedidos</a>
       </li>
     </ul>
   </nav>

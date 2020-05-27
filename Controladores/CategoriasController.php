@@ -114,7 +114,7 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="inserta"){
 }
 
 
-if(isset($_GET["operacio"]) && $_GET["operacio"]=="ver"){
+if(isset($_GET["operacio"]) && $_GET["operacio"]=="verCategoria"){
     $Categoria = new CategoriasController();
     $Categoria->LlistaCategorias();
 }

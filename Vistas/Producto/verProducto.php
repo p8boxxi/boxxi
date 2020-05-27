@@ -73,7 +73,7 @@ $categoriaNom = new CategoriasController();
                         </a>
 
                         <!-- -->
-                        <a class="btn btn-sm btn-outline-success" href="ProductosController.php?operacio=verDetalle&producto=<?php echo $objecte->id_producto ?>">Ver detalle
+                        <a class="btn btn-sm btn-light" href="ProductosController.php?operacio=verDetalle&producto=<?php echo $objecte->id_producto ?>">Ver detalle
                         </a>
 
 
