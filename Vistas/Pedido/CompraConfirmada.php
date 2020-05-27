@@ -1,8 +1,9 @@
 <?php    
 /***  ENCABEZADO */
 
-$title = 'Tienda'; 
-$currentPage = 'Tienda'; 
+$title = 'Tienda-compra'; 
+$currentPage = 'Tienda-compra'; 
+
 if (file_exists('../Vistas/Header/header.php')){ include '../Vistas/Header/header.php';}
 if (file_exists('../Header/header.php')){ include '../Header/header.php';}
 if (file_exists('../Vistas/Header/navbar-tienda.php')){ include '../Vistas/Header/navbar-tienda.php';}

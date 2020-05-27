@@ -2,8 +2,8 @@
 
   <div class="container">
 
-    <?php if ($currentPage !== 'Tienda') {echo '
-    <ul class="nav">
+    <?php if (($currentPage !== 'Tienda') && ($currentPage !== 'Tienda-compra')) {
+      echo '<ul class="nav">
     <li class="active"><a href="#nosotros">Nosotros</a></li>
     <li><a href="#idea">Idea</a></li>
     <li><a href="#galeria">Galeria</a></li>
@@ -16,7 +16,7 @@
     if (file_exists('../index.php')){$inicio = '../index.php';}
     if (file_exists('../../index.php')){$inicio = '../../index.php';}
     
-    if ($currentPage === 'Tienda') {echo '
+    if (($currentPage === 'Tienda') || ($currentPage == 'Tienda-compra'))  {echo '
     <ul class="nav">
     <li>
     <a href="'.$inicio.'">Página de inicio</a></li>

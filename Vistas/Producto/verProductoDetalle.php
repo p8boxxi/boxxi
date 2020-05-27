@@ -1,8 +1,8 @@
 <?php    
 /***  ENCABEZADO */
 
-$title = 'Tienda'; 
-$currentPage = 'Tienda'; 
+$title = 'Tienda-compra'; 
+$currentPage = 'Tienda-compra'; 
 if (file_exists('../Vistas/Header/header.php')){ include '../Vistas/Header/header.php';}
 if (file_exists('../Header/header.php')){ include '../Header/header.php';}
 if (file_exists('../Vistas/Header/navbar-tienda.php')){ include '../Vistas/Header/navbar-tienda.php';}
@@ -38,12 +38,14 @@ function get_option($name){
 ?>
 
 <!-- Comprueba cantidad vacia
- -->
+-->
 <script>
     function validateForm() {
       var x = document.forms["myForm"]["cantidad"].value;
       if (x == "0") {
-        alert("Debes introducir una cantidad");
+
+        $("#myModal-cantidad").modal();
+        //alert("Debes introducir una cantidad");
         return false;
     }
 }
@@ -56,7 +58,7 @@ function get_option($name){
         <div class="migas"> 
             <a href="/Vistas/Home/tienda.php">Tienda</a>
             > 
-            <a href="#"><?php echo $cat->obtieneNombreDeLaCategoria($objecte->id_categoria); ?> </a>  >
+            <a ><?php echo $cat->obtieneNombreDeLaCategoria($objecte->id_categoria); ?> </a>  >
 
             <?php echo $objecte->nombre ?>
         </div> 
@@ -114,6 +116,8 @@ function get_option($name){
                                 </div>
                                 <input type="hidden" name="operacio" value="anadirApedido"/>
                                 <input class="bt-comprar" type="submit" value="Comprar">
+
+
                             </div>
                         </form>
 
@@ -128,8 +132,29 @@ function get_option($name){
             </div>
         </div>
     </div>
-    <script src="../Vistas/assets/js/botoncantidad.js"></script>
+
 <?php } ?>
+
+<!-- Modal cantidad 0 -->
+<div class="modal fade" id="myModal-cantidad" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <div class="modal-content p-4 text-center">
+            <div class="modal-header">
+              <h4 class="modal-title">Aviso</h4>
+            </div>
+            <div class="modal-body">
+            <p>Debes introducir una cantidad.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN Modal cantidad 0 -->
+
+<script src="../Vistas/assets/js/botoncantidad.js"></script>
 
 <?php include '../Vistas/Footer/footer.php'; ?>
 

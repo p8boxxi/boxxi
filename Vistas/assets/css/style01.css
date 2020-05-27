@@ -28,14 +28,15 @@ html {
 .navbar{
     display: block;
     min-height: 80px;
-    padding-top: 10px;
+    padding-top: 10px;    
+}
+
+.general{
     height: 90px;
 }
 
 
-
 .navbar a{
-
     font-weight: 600;
     color: black;
     font-size: 18px;
@@ -116,36 +117,41 @@ html {
 ******* BARRA NAVEGACION TIENDA *************************************************************************************/
 
 .nav-tienda{
-    height: 100px;
     background-color: #FF8A00;
     margin-bottom: 50px;
-
+    height: relative;
 }
+
 .naranja{
     display: block;
     margin: 0 auto;
     margin-top: 5px;
+    height: relative;
 }
+
 .naranja ul{
     height: inherit;
     width: inherit;
-    border:none;
+    border:none;    
+    margin: 0 auto;
     text-align: center;
+    margin-top: 1%;
 }
-.naranja li{
-    display: inline-block;
+
+.naranja li{    
     margin: 0 5% 0 5%;
-    border:none;
+    border: none;
+    display: inline-block;
 }
-.naranja a{
+
+.naranja a, .bt-nav-gran a{
     padding: 0;
     margin: 0 auto;
-    height: 50px;
-    display: table-cell;
-    vertical-align: middle; 
+    height: 20px;
     color: white;
     font-weight: 300;
     border:none;
+    width: relative;
 }
 
 .naranja li:after {
@@ -161,23 +167,35 @@ html {
 
 .naranja a:hover{
     text-decoration: none;
-    color: #CCCCCC;
+    color: black;
+    font-weight: 400;
 }
+
 .naranja button{
     border: none;
     background-color: #FF8A00;
     text-decoration: none;
     margin: 0px 5px;
-
+    width: relative;
 }
+
 .naranja button:active,
 .naranja button:focus{
   outline:none;
 }
+
 .active-nav a{
     color: black;
-    font-weight: 600;
+    font-weight: 700;
+    /*text-transform: uppercase;*/
 }
+
+.bt-nav-gran li{
+    width: 180px;
+}
+
+
+
 
 /*******************************************************************************************************************
 ********************************************************************************************************************
@@ -597,6 +615,25 @@ html {
     display: table-cell;
     vertical-align: middle; 
 }
+#boto-comprar{
+      border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 30px ;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.bt-lateral input[type=button]:active,
+.bt-lateral input[type=button]:focus,
+#boto-comprar input[type=button]:active,
+#boto-comprar input[type=button]:focus{
+  outline:none;
+}
 
 
 /*******************************************************************************************************************
@@ -627,11 +664,9 @@ html {
 
 .container-fotos{
     width: 550px;
-    /*    background-color: red;*/
 }
 .container-datos{
     width: 550px;
-    /*   background-color: pink;*/
 }
 .foto-grande{
     width: 100%;
@@ -660,7 +695,6 @@ html {
     margin: 0 auto; 
     padding: 0;
     border: solid 1px #ccc;
-    /*background-color: white;    */
     overflow: hidden;
     
 }
@@ -1006,6 +1040,10 @@ input.qtyminus {
 .bt-pri{
     background-color: black;
     
+}
+
+.reg{
+    margin-top: -5px;
 }
 
 

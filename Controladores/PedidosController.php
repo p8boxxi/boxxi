@@ -245,6 +245,7 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="comprar"){
         
         unset($_SESSION['carro']);
         unset($_SESSION["cistella"]);
+        unset($_SESSION["id_pedido"]);
     }else{
         echo "Operación No permitida";
         header ("location: Vistas/Pedido/contenidoCistella.php");

@@ -1,6 +1,6 @@
 <?php    
-$title = 'Tienda'; 
-$currentPage = 'Tienda'; 
+$title = 'Tienda-compra'; 
+$currentPage = 'Tienda-compra';  
 include '../Vistas/Header/header.php';    
 include '../Vistas/Header/navbar-tienda.php';  
 

@@ -3,24 +3,16 @@
 if (file_exists('../../Controladores/SesionesController.php')){ require_once '../../Controladores/SesionesController.php';}
 $objecteSessio = new SesionesController();
 
-$title = 'Tienda'; 
-$currentPage = 'Tienda'; 
+$title = 'Tienda-compra'; 
+$currentPage = 'Tienda-compra'; 
 if (file_exists('../Vistas/Header/header.php')){ include '../Vistas/Header/header.php';}
+ if (file_exists('../Header/header.php')){ include '../Header/header.php';}
 
 ?> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-      $("#registro").click(function(){
-        alert("Inicia sesion o registrate para continuar.");
-    });
-  });
-</script>
-
 
 <?php
 
-if (file_exists('../Header/header.php')){ include '../Header/header.php';}
 if (file_exists('../Vistas/Header/navbar-tienda.php')){ include '../Vistas/Header/navbar-tienda.php';}
 if (file_exists('../Header/navbar-tienda.php')){ include '../Header/navbar-tienda.php';}
 
@@ -102,7 +94,6 @@ if (isset($_SESSION["mensajeResultado"])){
 
                     if ($valorCistella!=null){?>
                         <div class ="producto-cesta-lista">
-
                             <div class="items-prod-cesta">
                                 <div class="prod-dentro">
                                     <h4>Cantidad</h4> 
@@ -175,7 +166,6 @@ if (isset($_SESSION["mensajeResultado"])){
                                 </div>
                                 <hr>
 
-
                                 <?php
                                 array_push($vectorAux, $informacioProducte->id_producto, $informacioProducte->nombre, $informacioProducte->precio);
                             }
@@ -183,7 +173,7 @@ if (isset($_SESSION["mensajeResultado"])){
                             array_push($vectorAux, $cantidad);
                             $total = $cantidad * $informacioProducte->precio + $total;
                         }
-            //array_push($vectorCistella, $vectorAux);
+                        //array_push($vectorCistella, $vectorAux);
                     }
                     $_SESSION["carro"]=$vectorAux;
                 }
@@ -212,11 +202,11 @@ if (isset($_SESSION["mensajeResultado"])){
                         }
                     }?>
                     <li><a class="bt-sec" href='../../Vistas/Home/tienda.php'>seguir comprando</a></li>
+
                     <?php if(!empty($valorCistella)){
                        if (!isset($_SESSION["login"])){?>
-
-                        <li><a href="" class="bt-pri" id="registro">Finalizar compra</a>
-                        </li>        
+                        <li><a href="" type="button reg"  class="bt-pri" id="registro" data-toggle="modal" data-target="#myModal-comprar">Finalizar compra</a></li>   
+ 
                         <?php
                     }else { ?>
 
@@ -224,15 +214,35 @@ if (isset($_SESSION["mensajeResultado"])){
                             <a class="bt-pri" href='../../Controladores/PedidosController.php?accio=creaPedido'>Finalizar compra</a>
                         </li> 
                         <?php  
-
-                    }
-                }?>
-
-            </ul>
+                        }
+                    }?>
+                </ul>
+            </div>
         </div>
+    </div>
 
+<!-- Modal registrado -->
+<div class="modal fade" id="myModal-comprar" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <div class="modal-content p-4 text-center">
+            <div class="modal-header">
+              <h4 class="modal-title">Aviso</h4>
+            </div>
+            <div class="modal-body">
+            <p>Inicia sesión o registrate para continuar.</p>
+            </div>
+
+            <a type="button" class="link"  data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Acceso de usuarios</a>
+            <a class="link" href="../../Vistas/Home/cliente-registro.php">Registrarse</a>
+            <div class="modal-footer">                
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </div>
+<!-- FIN Modal registrado -->
+
 
 </body>
 

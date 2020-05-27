@@ -46,12 +46,7 @@ require_once "../../Controladores/ProductosController.php";
 </div>
 <br>
 <script type="text/javascript">
-//   $(document).click(function(event) {
-//     var text = $(event.target).val();
-//     alert(text);
-//     text.style.display = "none";
 
-// });
 $('button').click(function(event) {
 
   var text_barra1 = document.getElementById("salon");
@@ -174,34 +169,8 @@ $('button').click(function(event) {
   var elements= "";
 }
 
-
-
-    // document.getElementsByClassName('cat-1')[0].style.visibility='hidden';
-    // document.getElementsByClassName('cat-2')[0].style.visibility='hidden';
-    // document.getElementsByClassName('cat-3')[0].style.visibility='hidden';
-    // document.getElementsByClassName('cat-4')[0].style.visibility='hidden';
-    // document.getElementsByClassName('cat-5')[0].style.visibility='hidden';
-    // document.getElementsByClassName('cat-6')[0].style.visibility='hidden';
-
-
-
-    
-    //var elements = document.getElementsByClassName(fired_button);
-    //var displayState = "none";
-
-    // for (var i = 0; i < elements.length; i++){
-    //   elements[i].style.display = displayState;
-    // }
-    //document.getElementsByClassName(fired_button)[0].style.visibility='visible';
-    //var fired_button = $(this).val();
-    //alert(fired_button);
-    //$("."+ fired_button).hide();
-    //$(this).closest(".inner-div").parent().prev('.showfullabout').fadeIn(500);
   });
-// $("button.small-about").click(function () {
-//     $(this).closest(".showfullabout").hide();
-//     $(".about-item").fadeToggle(500);
-// });
+
 </script>
 
 
