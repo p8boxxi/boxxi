@@ -156,6 +156,13 @@ function get_option($name){
 
 <script src="../Vistas/assets/js/botoncantidad.js"></script>
 
+
+<script>
+$('.foto-pequeñas img').click(function(){
+    src = $(this).attr('src');
+    $('.foto-grande img').attr('src',src)
+})
+</script>
 <?php include '../Vistas/Footer/footer.php'; ?>
 
 </body>
