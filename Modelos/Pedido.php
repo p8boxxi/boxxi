@@ -42,7 +42,7 @@ class Pedido{
             $conecta = new ConexionBD();
             $conecta->getConexionBD()->beginTransaction();
             $sentenciaSQL = "SELECT * FROM pedidos INNER JOIN estados 
-                                        ON pedidos.id_estado=estados.id_estado";
+                                        ON pedidos.id_estado=estados.id_estado ORDER BY id_pedido DESC";
             $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
             $intencio->execute();
             return $resultat = $intencio->fetchAll(PDO::FETCH_OBJ);
@@ -106,18 +106,20 @@ class Pedido{
     }
 
 
-    protected function modificaPedido($id, $fecha){
-        $fecha = explode("/",$this->fecha);
-        $fecha=$fecha[2]."-".$fecha[1]."-".$fecha[0];
-
+    protected function modificaPedido($id, $estado){
+        $this->setId_pedido($id);
+        $this->setId_estado($estado);
         try{
             $conecta = new ConexionBD();
             $conecta->getConexionBD()->beginTransaction();
             $sentenciaSQL = "UPDATE pedidos 
-                                    SET  fecha = '$fecha'
-                                    WHERE id_pedido = '$id'";
+                                    SET id_estado = :estado
+                                    WHERE id_pedido = :pedido";
             $intencio = $conecta->getConexionBD()->prepare($sentenciaSQL);
-            $intencio->execute();
+            $intencio->execute(array(
+                ":estado" => $this->getId_estado(),
+                ":pedido" => $this->getId_pedido()
+            ));
             $conecta->getConexionBD()->commit();
             return true;
         }catch(Exception $excepcio){
@@ -126,6 +128,7 @@ class Pedido{
         }
         
     }
+
 
 
 

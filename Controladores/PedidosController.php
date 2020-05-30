@@ -91,10 +91,10 @@ class PedidosController extends Pedido{
         header("location: ../Vistas/Pedido/modificarPedido.php?id=$id"); 
     }
 
-    public function ModificarPedido($id, $fecha){
+    public function ModificarPedido($id, $estado){
      $this->id_pedido = $id;
-     $this->fecha = $fecha;
-     $this->resultadoModificaPedido($this->modificaPedido($id, $fecha));
+     $this->id_estado = $estado;
+     $this->resultadoModificaPedido($this->modificaPedido($id, $estado));
  }
 
 
@@ -279,9 +279,9 @@ if(isset($_GET["operacio"]) && $_GET["operacio"]=="modificar"){
 }
 
 if(isset($_POST["operacio"]) && $_POST["operacio"]=="modifica"){
-    if (isset($_POST["id"]) && !empty($_POST["id"]) && isset($_POST["fecha"]) && !empty($_POST["fecha"])){
+    if (isset($_POST["id"]) && !empty($_POST["id"]) && isset($_POST["estado"]) && !empty($_POST["estado"])){
         $pedido = new PedidosController();
-        $pedido->ModificarPedido($_POST["id"], $_POST["fecha"]);
+        $pedido->ModificarPedido($_POST["id"], $_POST["estado"]);
     }else{
         echo "Operación No permitida";
     }

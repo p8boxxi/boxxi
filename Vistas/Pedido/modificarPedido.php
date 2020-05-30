@@ -18,18 +18,21 @@
     }
 
 
+
 $title = 'Tienda'; 
 $currentPage = 'Tienda'; 
 include '../../Vistas/Header/header.php';    
 ?>
 <body>
 
+
+
 <section class="admin">
     <div class="container">
         <div class="row">
         
         <?php include '../../Vistas/Header/nav-cuenta-admin.php';?>
-            
+        
             <!-- -->
 
             <div class="col-md-9 content">
@@ -43,16 +46,28 @@ include '../../Vistas/Header/header.php';
 
                         <?php 
             if (isset($_GET["id"])){
-                ?>
+                ?>  
+                    
                     <form action="../../Controladores/PedidosController.php" method="POST">
                         <div class="row">
-                        <h2 class="col-12">Modificar pedido</h2>
+                        <h2 class="col-12">Modificar pedido <?php echo $_GET["id"]?></h2>
 
 
                         <div class="col-md-6 mb-3">
                             <div class="input-container">
-                                <input type="text" id="fecha" name="fecha" required="required" placeholder="dd/mm/aaaa">
-                                <label for="fecha" class="label sm">Fecha</label>
+                                <label for="estado" class="label sm">Estado</label>
+                                <select name="estado">
+                                    <option value="0">Seleccione:</option>
+                                        <?php
+                                            require_once "../../Controladores/EstadosController.php";
+                                            $estados = new EstadosController();
+                                            $valoresEstados = $estados->selectEstados();
+                                            foreach ($valoresEstados as $estado){
+                                                echo "<option value=$estado->id_estado>".$estado->nombre."</option>";
+                                            };
+                                        ?>
+                                </select>
+
                             </div>
                         </div>
 

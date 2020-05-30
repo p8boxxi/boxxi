@@ -1,8 +1,24 @@
 <?php
 
-require_once "../Modelos/Estado.php";
+if (file_exists("/Modelos/Estado.php")){
+    require_once "/Modelos/Estado.php";
+}
+else if (file_exists("../Modelos/Estado.php")){
+    require_once "../Modelos/Estado.php";
+}
+else if (file_exists("../../Modelos/Estado.php")){
+   require_once "../../Modelos/Estado.php";
+}
 //GP
-require_once "../Controladores/SesionesController.php";
+if (file_exists("/Controladores/SesionesController.php")){
+    require_once "/Controladores/SesionesController.php";
+}
+else if (file_exists("../Controladores/SesionesController.php")){
+    require_once "../Controladores/SesionesController.php";
+}
+else if (file_exists("../../Controladores/SesionesController.php")){
+   require_once "../../Controladores/SesionesController.php";
+}
 $objecteSessio = new SesionesController();
 
 
@@ -48,11 +64,9 @@ class EstadosController extends Estado{
         header("location: ../index.php");
     }
 
-
-
-
-
-
+    public function selectEstados(){
+        return $this->retornaEstadosTodos();
+    }
 
 }
 
