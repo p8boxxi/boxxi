@@ -93,7 +93,10 @@ include '../../Vistas/Header/header.php';
                 <h2 class="titolseccio" >nosotros</h2>
                 <hr>
                 <div class="text-left">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laboru.</p>
+                    <p>Boxxi es un proyecto que nace tras comprobar que la sociedad ha ido creando productos en su mayoría sin pararse a pensar en el daño medioambiental que su fabricación y uso han causado.</p>
+
+                    <p>En Boxxi cuidamos la producción artesanal de artículos que respetan en todo momento el medioambiente, poniendo énfasis en los materiales utilizados para su fabricación y facilitando la no degradación del entorno ambiental una vez ha finalizado su vida útil.</p>
+
                 </div>
             </div>
             <div class="col-6 secciones-img-right" >
@@ -114,7 +117,8 @@ include '../../Vistas/Header/header.php';
                 <h2 class="titolseccio">idea</h2>
                 <hr>
                 <div class="text-right">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laboru.</p>
+                    <p>Nuestra idea de negocio es la creación de una empresa destinada al reciclaje de papel y a la fabricación de productos de cartón reciclado, principalmente mobiliario orientado a la decoración de interiores, que diseñamos nosotros mismos y así damos respuesta a las necesidades de los clientes concienciados con el respeto al medioambiente y que buscan alternativas a productos cuyos materiales y procesos de producción dañan el entorno natural. </p>
+
                 </div>
             </div>
             <div class="col-1 "></div>
