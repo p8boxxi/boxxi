@@ -3,12 +3,13 @@
 body {
     font-family: 'Poppins', sans-serif;
     /*font-family: 'Open Sans', sans-serif;*/
-    overflow-x: hidden;
+
     margin: 0;
 }
 html {
   scroll-behavior: smooth;
 }
+
 
 
 /*******************************************************************************************************************
@@ -22,17 +23,16 @@ html {
     display: block;
 }
 
-.container{
-    width: 100%;
-}
 .navbar{
     display: block;
     min-height: 80px;
     padding-top: 10px;    
+    width: 100%;
 }
 
 .general{
-    height: 90px;
+    min-height: 90px;
+    height: relative;
 }
 
 
@@ -43,23 +43,31 @@ html {
     text-decoration: none;
 }
 
+.enlaces{
+    width: 33%;
+}
 
 .logo-header{
     display: block;
-    width: 30%;
     text-align: center;
+    width: 33%;
 }
 
+.nav-derecha {
+    text-align: right;
+    display: inline-block;
+    width: 33%;
+}
 
 .tienda{
-    text-align: right;
-    width: 10%;
+    text-align: left;
+    padding-right: 10%;
 }
 
 
 .nav{
     display: block;
-    width: 30%; 
+    margin-left: 10%
 }
 
 .nav li, .nav-derecha li{
@@ -94,11 +102,7 @@ html {
     color: #FF8A00;
 }
 
-.nav-derecha {
-    text-align: right;
-    display: block;
-    width: 30%;
-}
+
 .nav-derecha a{
     font-size: 16px;
     color: #666666;
@@ -107,7 +111,9 @@ html {
 .active-tienda {
     visibility: hidden;
 }
-
+.texto-icono img{
+    margin-right: 5px;
+}
 
 
 
@@ -262,7 +268,9 @@ html {
 
 
 .secciones-l h2:first-of-type:first-letter,.secciones-r h2:first-of-type:first-letter, 
-.color h2:first-of-type:first-letter {
+.color h2:first-of-type:first-letter, .tiendaProd h1:first-of-type:first-letter, 
+.container-datos h1:first-of-type:first-letter, .tab-cesta h1:first-of-type:first-letter,  
+.tab-pedido h1:first-of-type:first-letter, .cont-finalizado h1:first-of-type:first-letter{
     color: #FF8A00;
     font-family: 'Poppins', sans-serif;
 }
@@ -516,27 +524,30 @@ html {
 }
 
 .bloque >div{
-    width: 250px;
-    height: 300px;
-    margin: 0 0px 55px 15px;   
+    width: 230px;
+    height: 320px;
+    margin: 0 0 80px 0;  
     /*    background-color: #f2f2f2;*/
 }
 
+
 .container-bloque{   
     display: table;
-    height: inherit;
-    width: inherit;
     color: black;
-    /*box-shadow: 1px 1px 5px #f2f2f2;*/
     margin: 0 auto;
     text-align: center;
+    width: inherit;
 }
 
 .container-bloque ul{
-   list-style-type: none;
-   margin: 0;
-   padding: 0;
-   width: inherit;
+
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: inherit;
+    text-align: center;
+    width: inherit;
 }
 
 .container-bloque li{
@@ -545,95 +556,42 @@ html {
     font-size: 16px;
 }
 
-.bloque img{
+.bloquefoto{        
+    width: 190px;
+    height: 200px;
+    text-align: center;
+    display: inline-block;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+
+.bloque img{    
+    width: 220px;
+    height: 200px;
     text-align: center;
     margin: 0 auto;
+    margin: 0 auto;
 }
-
-.bloquefoto{
-    width: inherit;
-    text-align: center;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-
 
 .bloque-precio a{
     color: #FF8A00;
     font-weight: 300;
 }
-.tituloProducto{
+
+li.tituloProducto {
+    margin: 0 auto;
     height: 60px;
-    text-align: center;
-    margin: 0 auto;
-    width: 100%;
-}
-
-.tituloProducto li{
-    display: inline-block;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.tituloProducto {
-    font-weight: 400;
-    font-size: 18px;
+    
+    width: inherit;
     display: table-cell;
     vertical-align: middle;
-    width: inherit;
-}
-.tituloProducto a{
-    padding: 0px 15px;
-}
-
-.boton{
-    width: 120px;
-    height: 30px;
     text-align: center;
-    border-radius: 25px ;
-    margin: 0 auto;
-    margin-top: 5px;
-    vertical-align: bottom;
+    padding: 0 15px;
 }
 
-.bt-comprar li{
-    display: inline-block;
-}
 
-.bt-comprar{
-    background-color: #cccc00;
-}
-
-.bt-comprar a{
-    width: inherit;
-    height: inherit;
-    color: white;
-    font-weight: 400;
-    text-decoration: none;
-    font-size: 16px;
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle; 
-}
-#boto-comprar{
-      border: none;
-  color: white;
-  padding: 10px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 30px ;
-  margin-bottom: 20px;
-  margin-left: 10px;
-}
-
-.bt-lateral input[type=button]:active,
-.bt-lateral input[type=button]:focus,
-#boto-comprar input[type=button]:active,
-#boto-comprar input[type=button]:focus{
-  outline:none;
-}
 
 
 /*******************************************************************************************************************
@@ -689,6 +647,7 @@ html {
     width:100%;
     margin-top: 10px;
     overflow: hidden;
+
 }
 .foto-pequeñas >div{
     width: 30%;
@@ -701,6 +660,7 @@ html {
 .foto-pequeñas img{
     width: 170px;
     height: auto;
+    cursor: pointer;
 }
 
 .container-datos{
@@ -734,26 +694,8 @@ html {
 }
 
 
-.boton-buy input[type=submit] {
-  /*background-color: #cccc00;*/ /* Green */
-  border: none;
-  color: white;
-  padding: 10px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 30px ;
-  margin-bottom: 20px;
-  margin-left: 10px;
-}
-.boton-buy input[type=submit]:active,
-.boton-buy input[type=submit]:focus{
-  outline:none;
-}
 
-
-/***************  SNIPET BOTON **************************/
+/******* SNIPET BOTON **************************************************************************/
 #myform {
     display: block;
     text-align: left;
@@ -803,53 +745,183 @@ input.qtyminus {
 }
 
 
+
+
+/******* TABLAS ******************************************************************************/
+.tab-cesta table, .tab-pedido table {
+    border-top: 2px solid white;
+}
+
+.tab-cesta tfoot h2{
+    padding-right: 20px;
+}
+
+.tab-cesta h1, .tab-pedido h1 {
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+td.centrado{
+    text-align: center;
+}
+a.t{
+    font-weight: 600;
+}
+a.sub{
+    font-weight: 300;
+}
+
+
+
+/******* BOTONES ******************************************************************************/
+
+/**TIENDA**/
+.boton{
+    width: 130px;
+    height: 40px;
+    text-align: center;
+    border-radius: 25px ;
+    margin: 0 auto;
+    margin-top: 5px;
+    vertical-align: bottom;
+}
+
+.boton a, .boton button{
+    text-decoration: none;
+    color: white;
+}
+
+.bt-comprar li{
+    display: inline-block;
+}
+
+.bt-comprar{
+    background-color: #cccc00;
+}
+
+.bt-comprar a{
+    width: inherit;
+    height: inherit;
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle; 
+}
+
+.bt-comprar:hover{
+    background-color: #999900;
+}
+
+.boton button:active,
+.boton button:focus,
+.bt-lateral input[type=button]:active,
+.bt-lateral input[type=button]:focus,
+#boto-comprar input[type=button]:active,
+#boto-comprar input[type=button]:focus{
+  outline:none;
+}
+
+
+
+/**PRODUCTO DETALLE**/
+
+.boton-buy input[type=submit] {
+  /*background-color: #cccc00;*/ /* Green */
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 30px ;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+
+.boton-buy input[type=submit]:active,
+.boton-buy input[type=submit]:focus{
+  outline:none;
+}
+
+/**PROCESO COMPRA**/
+
+.bt-sec, .bt-pri{
+    margin: 5px;
+    border-radius: 20px;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+}
+
+
+.botones a, .botones input{
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 14px;
+}
+.botones a:hover, .boton-buy input[type=submit]:hover{
+    color: white;
+    font-weight: 400;
+}
+
+
+.bt-sec{
+    background-color: #cccc00;
+    margin-bottom: 10px; 
+}
+
+.bt-sec:hover{
+  background-color: #999900;  
+}
+
+
+.bt-pri{
+    background-color: black;
+}
+
+.bt-pri:hover{
+    background-color: #333333;
+}
+
+.z a:hover{
+    color: white;
+}
+
+.boto{
+    margin-top: 30px;
+    text-align: right;
+}
+
+.botonera{
+    margin-bottom: 50px;
+}
+
+.botonera input[type=submit]:active,
+.botonera input[type=submit]:focus{
+  outline:none;
+}
+
+
+/*******************************************************************************************************************
+*******************************************************************************************************************
+******* CONTENIDO CESTA ******************************************************************************/
+
+.det{
+    min-height: 650px;
+}
+
+
+
 /*******************************************************************************************************************
 *******************************************************************************************************************
 ******* FINALIZAR PEDIDO ******************************************************************************************/
 
-
-.prod-comprar  >div{
-    width: inherit;
-    height: relative;
-    margin: 15px 0 15px 0;
-}
-.prod-comprar{
-    width: inherit;
-    height: relative;
-    padding-bottom: 40px;
-}
-.prod-comprar h1{
-    font-weight: 600;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.producto-cesta{
-    width: 80%;
-    height: 150px;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    overflow: hidden;
-
-}
-.producto-cesta>div{
-    width: relative;
-    height: inherit;
-    margin-right: 50px;
-}
-
-
-.items-prod{
-    width: relative;
-    height: relative;
-    display: inline-block;
-}
-.prod-dentro{
-    width: 200px;
-    text-align: center;
-    padding-top: 20px;
-}
 
 .img-referencia{
     display: block;
@@ -861,191 +933,6 @@ input.qtyminus {
     width: 100px;
     height: auto;
 }
-
-
-.items-prod p, .items-prod h2{
-    text-align: left;
-}
-.items-prod h2{
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400; 
-    font-size: 20px;
-}
-.items-prod h3{
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600; 
-    font-size: 20px;
-}
-.items-prod p{
-    font-size: 12px;
-}
-
-.items-confirmar{
-    text-align: right;
-}
-
-.bt-confirmar {
-    background-color: black;
-}
-
-.divisor{
-    border: solid 0.5px #DEDEDE; 
-    width: 100%;
-    margin-top: -20px;
-}
-
-
-
-/*******************************************************************************************************************
-*******************************************************************************************************************
-******* CONTENIDO CESTA ******************************************************************************/
-
-/*.cesta-det{
-    min-height: 650px;
-    }*/
-
-    .titol-cesta {
-        display: block;
-        width: relative;
-        min-height: 20px;
-    }
-    .titol-cesta h3{
-        text-align: center;
-        font-weight: 600;
-        font-size: 38px;
-    }
-
-    .cistella-contingut  >div{
-        width: inherit;
-        height: relative;
-        margin: 15px 0 15px 0;
-    }
-    .cistella-contingut{
-        display: flex;
-        flex-wrap: wrap;
-        width: inherit;
-        height: relative;
-        padding-bottom: 120px;
-        margin: 0 auto;
-        margin-top: 20px;
-    }
-
-    .cistella-contingut ul{
-        text-align: right;
-    }
-
-    .cistella-contingut li{
-        display: inline-block;
-        text-decoration: none;
-        margin: 20px;
-    }
-
-    .cistella-contingut h3{
-        text-align: center;
-        font-weight: 600;
-        margin: 25px;
-    }
-    .wrapper-cistella{
-        display: block;
-        width: 80%;
-        margin: 0 auto;
-        height: relative;
-        min-height: 300px;
-    }
-
-    .nav-cesta{
-        display: block;
-        text-align: right;
-        text-decoration: none;
-        margin-bottom: 20px;
-    }
-    .nav-cesta, .nav-cesta a{
-        text-align: center;
-    }
-    .nav-cesta li, .bt-sec, .bt-pri{
-        margin: 5px;
-        border-radius: 20px;
-        border: none;
-        padding: 5px 10px;
-        color: white;
-    }
-
-
-    .producto-cesta-lista{
-        width: 90%;
-        height: relative;
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 auto;
-        overflow: hidden;
-    }
-    .producto-cesta-lista>div{
-        width: relative;
-        height: inherit;
-        margin: 0 auto;
-    }
-    .producto-cesta-total{
-        display: block;
-        height: relative;
-        width: 100%;
-        text-align:right;
-    }
-
-    .producto-cesta-lista h4{
-        font-size: 20px;
-        font-weight: 600;
-    }
-    .producto-cesta-total h2{
-        padding-right: 60px;
-    }
-
-    .producto-cesta-lista .social-links i {
-      height: 30px;
-      width: 30px;
-      background-color: #ffffff;
-      background-repeat: no-repeat;
-      background-position: center center;
-      -webkit-background-size: 18px;
-      background-size: 18px;
-      display: block;
-      margin: 0 auto;
-  }
-  .producto-cesta-lista  i.icon-del {
-      background-image: url(../img/delete.png);
-  }
-
-  .botones{
-    display: block;
-    text-align: right;
-    text-decoration: none;
-    margin-bottom: 20px;
-}
-
-.botones a{
-    width: inherit;
-    height: inherit;
-    color: white;
-    font-weight: 400;
-    text-decoration: none;
-    font-size: 16px;
-    text-align: center;
-    display: table-cell;
-    vertical-align: middle; 
-    padding: 8px 12px;
-}
-.bt-sec{
-    background-color: #cccc00;
-    
-}
-.bt-pri{
-    background-color: black;
-    
-}
-
-.reg{
-    margin-top: -5px;
-}
-
 
 
 
@@ -1063,7 +950,7 @@ input.qtyminus {
     margin: 0 auto;
     margin-bottom: 80px;
 }
-.cont-finalizado h2{
+.cont-finalizado h1{
     text-align: center;
     max-width: 400px;
     margin: 0 auto;    

@@ -6,7 +6,7 @@ $objecteSessio = new SesionesController();
 $title = 'Tienda-compra'; 
 $currentPage = 'Tienda-compra'; 
 if (file_exists('../Vistas/Header/header.php')){ include '../Vistas/Header/header.php';}
- if (file_exists('../Header/header.php')){ include '../Header/header.php';}
+if (file_exists('../Header/header.php')){ include '../Header/header.php';}
 
 ?> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -73,180 +73,185 @@ if (isset($_SESSION["mensajeResultado"])){
 
 
 <body>
-    <div class="container cesta-det"> 
-        <div class="titol-cesta">
-            <h3>cesta</h3>                
-        </div>
+    <div class="container det"> 
 
-        <div class='cistella-contingut'>
-            <div class="wrapper-cistella">
+        <div class="row tab-cesta">
+
+            <h1 class="col-12 text-center">cesta</h1> 
+
+            <table class="table">
+
                 <?php
                 if (isset($_SESSION["cistella"])){  
 
                     $valorCistella = $_SESSION["cistella"]->mostraProductesCistella();
-                    if(empty($valorCistella)){
-                        echo'<div style="text-align:center; margin-top:50px;" >Aun no tienes nada en tu cesta</div>';
-                    }
                     
-                    $vectorAux = array();
-                    $vector = array();
-                    $total = 0;
+                    if(empty($valorCistella)){
+                        echo'
+                        <thead>
+                        <tr>
+                        <th class="text-center">Aun no tienes nada en tu cesta</th>
+                        </tr>
+                        </thead>'
+                        ;}
 
-                    if ($valorCistella!=null){?>
-                        <div class ="producto-cesta-lista">
-                            <div class="items-prod-cesta">
-                                <div class="prod-dentro">
-                                    <h4>Cantidad</h4> 
-                                </div>
-                            </div>
+                        $vectorAux = array();
+                        $vector = array();
+                        $total = 0;
 
-                            <div class="items-prod-cesta">
-                                <div class="prod-dentro">
-                                    <h4>Producto</h4> 
-                                </div>
-                            </div>
-                            <div class="items-prod-cesta">
-                                <div class="prod-dentro">
-                                    <h4>Precio</h4>
-                                </div>
-                            </div>
-                            <div class="items-prod-cesta">
-                                <div class="prod-dentro">
-                                    <h4>Precio total</h4>
-                                </div>
-                            </div>
-                            <div class="items-prod-cesta">
-                                <div class="prod-dentro">
-                                    <h4></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
+                        if ($valorCistella!=null){
+                            ?>
 
-                        <?php
-                        $index = 0;
-                        for ($i=0;$i<count($valorCistella["idProducte"], COUNT_RECURSIVE);$i++){
-                            $cantidad = $valorCistella["quantitatProducte"][$i];
-                            $index = $i;
+                            <thead>
+                                <tr>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Precio total</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
 
-                            $objecteProducte = new ProductosController();
-                            $infoProducte= $objecteProducte->retornaInfoProducto($valorCistella["idProducte"][$i]);
-
-                            
-                            foreach ($infoProducte as $informacioProducte){?>
-                                <div class ="producto-cesta-lista">
-
-                                    <div class="items-prod-cesta">
-                                        <div class="prod-dentro">
-                                            <a><?php echo $cantidad;?></a> 
-                                        </div>
-                                    </div>
-
-                                    <div class="items-prod-cesta">
-                                        <div class="prod-dentro">
-                                            <a><?php echo $informacioProducte->nombre;?></a> 
-                                        </div>
-                                    </div>
-
-                                    <div class="prod-dentro precio">
-                                        <a><?php echo $informacioProducte->precio ?>€</a>
-                                    </div>
-
-                                    <div class="prod-dentro precio">
-                                        <a><?php echo $informacioProducte->precio * $cantidad ?>€</a>
-                                    </div>
-
-                                    <div class="prod-dentro precio">
-                                        <ul class="social-links">
-                                            <a id="id" href="../../Controladores/PedidosController.php?accio=eliminaProductoCesta&id=<?php echo $informacioProducte->id_producto;?>" >
-                                                <i class="icon-del"></i>
-                                            </a>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <hr>
+                            <tbody>
 
                                 <?php
-                                array_push($vectorAux, $informacioProducte->id_producto, $informacioProducte->nombre, $informacioProducte->precio);
-                            }
+                                $index = 0;
 
-                            array_push($vectorAux, $cantidad);
-                            $total = $cantidad * $informacioProducte->precio + $total;
+                                for ($i=0;$i<count($valorCistella["idProducte"], COUNT_RECURSIVE);$i++){
+
+                                    $cantidad = $valorCistella["quantitatProducte"][$i];
+                                    $index = $i;
+
+                                    $objecteProducte = new ProductosController();
+                                    $infoProducte= $objecteProducte->retornaInfoProducto($valorCistella["idProducte"][$i]);
+
+
+                                    foreach ($infoProducte as $informacioProducte){
+                                        ?>
+                                        <tr>                                    
+                                            <td><?php echo $cantidad;?></td>
+                                            <td><?php echo $informacioProducte->nombre;?></td>
+                                            <td><?php echo $informacioProducte->precio;?>€</td>
+                                            <td><?php echo $informacioProducte->precio * $cantidad ?>€</td>
+                                            <td> 
+                                                <a id="id" class="icon-del" href="../../Controladores/PedidosController.php?accio=eliminaProductoCesta&id=<?php echo $informacioProducte->id_producto;?>">
+                                                        <svg class="bi bi-x-circle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#212529" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.146-3.146a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z"/>
+                                                        </svg>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <?php
+                                        array_push($vectorAux, $informacioProducte->id_producto, $informacioProducte->nombre, $informacioProducte->precio);
+                                    }
+
+                                    array_push($vectorAux, $cantidad);
+                                    $total = $cantidad * $informacioProducte->precio + $total;
+                                }?>
+
+                            </tbody>
+                            
+                            <?php
+                            //array_push($vectorCistella, $vectorAux);
                         }
-                        //array_push($vectorCistella, $vectorAux);
+                        $_SESSION["carro"]=$vectorAux;
                     }
-                    $_SESSION["carro"]=$vectorAux;
-                }
-                ?>
-                <?php if(!empty($valorCistella)){?>
-                    <div class ="producto-cesta-total">
-                        <div class="total">
-                            <h2>Total: <?php echo $total?> €</h2>
-                        </div>
 
-                    </div>
+
+                    if(!empty($valorCistella)){
+                        ?>
+                        <tfoot >                        
+                            <tr>
+                                <th class="text-right" colspan="5" ><h2>Total: <?php echo $total?> €</h2></th>
+                            </tr>                            
+                        </tfoot>
+
                     <?php 
-                }?>
-            </div>
+                    }?>
 
-            <div class="nav-cesta">
-                <ul class="botones">
+            </table>
+        </div>
 
-                    <?php if (isset($_SESSION["cistella"])){
+
+        <div class="row botonera">
+            <div class="col-12 botones text-right " >
+                <div class="text-right boto">
+                    <?php 
+                    if (isset($_SESSION["cistella"])){
 
                         $valorCistella = $_SESSION["cistella"]->mostraProductesCistella();
-                        if(!empty($valorCistella)){
+                        if(!empty($valorCistella)){                        
+                        ?>
+                            
+                            <a class="bt-sec" href="../../Controladores/PedidosController.php?operacio=vaciarCesta"> vaciar cesta</a>
 
-                            echo
-                            '<li><a class="bt-sec" href="../../Controladores/PedidosController.php?operacio=vaciarCesta"> vaciar cesta</a></li>';
+                        <?php
                         }
                     }?>
-                    <li><a class="bt-sec" href='../../Vistas/Home/tienda.php'>seguir comprando</a></li>
 
-                    <?php if(!empty($valorCistella)){
-                       if (!isset($_SESSION["login"])){?>
-                        <li><a href="" type="button reg"  class="bt-pri" id="registro" data-toggle="modal" data-target="#myModal-comprar">Finalizar compra</a></li>   
- 
+                    <a class="bt-sec" href='../../Vistas/Home/tienda.php'>seguir comprando</a>
+                    
+                </div>
+
+                <div class="text-right boto z"> 
+                    <?php 
+                    if(!empty($valorCistella)){
+                        if (!isset($_SESSION["login"])){
+                    ?>
+                            <a href="" type="button reg"  class="bt-pri" id="registro" data-toggle="modal" data-target="#myModal-comprar">Finalizar compra</a>
+
                         <?php
-                    }else { ?>
-
-                        <li>
+                        } else { 
+                        ?>
                             <a class="bt-pri" href='../../Controladores/PedidosController.php?accio=creaPedido'>Finalizar compra</a>
-                        </li> 
+
                         <?php  
                         }
                     }?>
-                </ul>
+                </div>
+                
             </div>
+
         </div>
+
+
     </div>
+
+
 
 <!-- Modal registrado -->
 <div class="modal fade" id="myModal-comprar" tabindex="-1" role="dialog" aria-hidden="true">
+
     <div class="modal-dialog">
 
         <div class="modal-content p-4 text-center">
             <div class="modal-header">
-              <h4 class="modal-title">Aviso</h4>
+                <h4 class="modal-title">Aviso</h4>
             </div>
+
             <div class="modal-body">
-            <p>Inicia sesión o registrate para continuar.</p>
+                <p>Inicia sesión o registrate para continuar.</p>
             </div>
 
             <a type="button" class="link"  data-toggle="modal" data-dismiss="modal" data-target="#loginModal">Acceso de usuarios</a>
             <a class="link" href="../../Vistas/Home/cliente-registro.php">Registrarse</a>
+            
             <div class="modal-footer">                
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
+
         </div>
+
     </div>
+
 </div>
 <!-- FIN Modal registrado -->
-
-
-</body>
 
 <?php 
 if (file_exists('../Vistas/Footer/footer.php')){ include '../Vistas/Footer/footer.php';}
 if (file_exists('../Footer/footer.php')){ include '../Footer/footer.php';}
 ?>
+
+</body>
+</html>

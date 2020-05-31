@@ -28,7 +28,7 @@ if (file_exists('/Controladores/ProductosController.php')){ require_once '/Contr
 	<div class="container cesta-fin"> 
 		<div class="cont-finalizado">
 
-			<h2>Compra realizada!</h2>
+			<h1>Compra realizada!</h1>
 			<p> Tu compra se ha realizado con exito, comprueba tu email para obtener todos los detalles del pedido. Te informaremos cuando el pedido salga de nuestras instalaciones.
 			</p>
 			<h5>¡GRACIAS POR CONFIAR EN BOXXI!	</h5>
@@ -38,8 +38,8 @@ if (file_exists('/Controladores/ProductosController.php')){ require_once '/Contr
 			
 
 				<div class="confirmar boton-buy ">
-					<a href="/Vistas/Home/cliente-pedidos.php"><input class="bt-confirmar" type="submit" value="Ver pedidos"/></a>
-					<a href="/Vistas/Home/tienda.php"><input class="bt-confirmar" type="submit" value="Seguir comprando"/></a>
+					<a href="/Vistas/Home/cliente-pedidos.php"><input class="bt-pri" type="submit" value="Ver pedidos"/></a>
+					<a href="/Vistas/Home/tienda.php"><input class="bt-pri" type="submit" value="Seguir comprando"/></a>
 				</div>
 
 		</div>
@@ -52,6 +52,7 @@ if (file_exists('/Controladores/ProductosController.php')){ require_once '/Contr
 
 <?php 
 /***  PIE */
-include '../Vistas/Footer/footer.php'; 
+if (file_exists('../Vistas/Footer/footer.php')){ include '../Vistas/Footer/footer.php';}
+if (file_exists('../Footer/footer.php')){ include '../Footer/footer.php';}
 
 ?>

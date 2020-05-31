@@ -32,15 +32,6 @@ class PedidosController extends Pedido{
         } 
     }
 
-    // //AP
-    // public function leeInfoPedidoComprar($cliente, $estado, $producto){
-    //     // $this->id_cliente = $_SESSION["id_usuario"];
-    //     // $this->id_estado = $estado;
-    //     // //$this->fecha = $fecha;
-    //     // $this->id_producto = $producto;
-    //     $this->resultadoRegistraPedidoComprar($this->registraPedido($cliente, $estado), $producto);
-    // }
-
     //AP
     public function leeInfoPedidoComprar($idPedido){
         $this->id_pedido = $idPedido;
@@ -212,18 +203,20 @@ if(isset($_GET["accio"]) && $_GET["accio"]=="creaPedido"){
 
             }
             if ($valorRetornat[0] == true){     
-               $pedidodetalle = new PedidoDetallesController();
-               $pedidodetalle->leeInfoPedidoDetalleId($idPedido);
-           }else{
+             $pedidodetalle = new PedidoDetallesController();
+             $pedidodetalle->leeInfoPedidoDetalleId($idPedido);
+         }else{
             require "../Vistas/Pedido/NoInsertado.php";
         } 
     }   
+    $_SESSION["actualizar"] = "no";
 }else{
     if (isset($_SESSION["id_pedido"])){
         require "PedidoDetallesController.php";
         $pedidodetalle = new PedidoDetallesController();
         $pedidodetalle->leeInfoPedidoDetalleId($_SESSION["id_pedido"]);
     }
+    $_SESSION["actualizar"] = "no";
 }
 
 
@@ -239,17 +232,26 @@ if(isset($_POST["operacio"]) && $_POST["operacio"]=="comprar"){
     $cliente = $_SESSION["id_usuario"];
     $idPedido = $_SESSION["id_pedido"];
 
-    if (isset($_SESSION["id_usuario"]) && !empty($_SESSION["id_usuario"])){
+    if ( $_SESSION["actualizar"] == "si"){
+        header ("location: /Vistas/Pedido/CompraConfirmada.php");
+    }else{
+
+     if (isset($_SESSION["id_usuario"]) && !empty($_SESSION["id_usuario"])){
         $objecte = new PedidosController();
         $resultado = $objecte->actualizaEstado($idPedido);
         
         unset($_SESSION['carro']);
         unset($_SESSION["cistella"]);
         unset($_SESSION["id_pedido"]);
+        $_SESSION["actualizar"] = "si";
+        
     }else{
         echo "Operación No permitida";
         header ("location: Vistas/Pedido/contenidoCistella.php");
-    }
+    } 
+}
+
+
 }
 
 

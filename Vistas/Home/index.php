@@ -1,27 +1,27 @@
-<?php     
+<?php
 require_once "../../Controladores/SesionesController.php";
 $objecteSessio = new SesionesController();
 
-//GP  
+//GP
 require_once "../../Controladores/SesionesController.php";
 $objecteSessio = new SesionesController();
 
 //AP
-$title = 'Index'; 
-$currentPage = 'Index'; 
-include '../../Vistas/Header/header.php';    
+$title = 'Index';
+$currentPage = 'Index';
+include '../../Vistas/Header/header.php';
 ?>
 
 <body>
 
-    <?php  
+    <?php
 
     //GP
     // if(!empty($_SESSION["id_usuario"])){
     //             echo "eres el usuario con ID: ".$_SESSION["id_usuario"];
     //             echo "<br>";
     //             echo "eres ".$_SESSION["rol"];
-    // }  
+    // }
 
     if (isset($_SESSION["login"])){
 
@@ -56,7 +56,7 @@ include '../../Vistas/Header/header.php';
             }
         }
     }
-    
+
     if (isset($_SESSION["mensajeResultado"])){
         echo $_SESSION["mensajeResultado"];
         unset($_SESSION["mensajeResultado"]);
@@ -74,14 +74,14 @@ include '../../Vistas/Header/header.php';
             <div class="col-4 text-center titol">
                 <h1 class=" text-center titolindex">CARTÓN RECICLADO</h1>
                 <hr>
-                <p>Construye tu casa con muebles hechos de cartón. 
+                <p>Construye tu casa con muebles hechos de cartón.
                 Reciclados, resistentes y ecofriendly.</p>
             </div>
             <div class="col-4 "></div>
 
         </div>
-        <div class="row secciones-gris" > 
-            <div class="col-sm portada" > 
+        <div class="row secciones-gris" >
+            <div class="col-sm portada" >
                 <img src="/Vistas/assets/img/portada-01.png" class="img-responsive" >
             </div>
         </div>
@@ -100,7 +100,7 @@ include '../../Vistas/Header/header.php';
                 </div>
             </div>
             <div class="col-6 secciones-img-right" >
-                <div class="col-sm " > 
+                <div class="col-sm " >
                     <img src="/Vistas/assets/img/portada-02.png" class="img-responsive" style="width: 900px; height:auto;" >
                 </div>
             </div>
@@ -109,7 +109,7 @@ include '../../Vistas/Header/header.php';
         <!--idea--><!-- "/Vistas/assets/img/productos/ALISTON01.jpg -->
         <div id="idea" class="row fila secciones-gris" style="background-color: #fcfaf8;">
             <div class="col-6  text-right">
-                <div class="col-sm secciones-img-left" > 
+                <div class="col-sm secciones-img-left" >
                     <img src="/Vistas/assets/img/portada-03.jpg" class="img-responsive" >
                 </div>
             </div>
@@ -128,7 +128,7 @@ include '../../Vistas/Header/header.php';
         <!--descubre-->
         <div id="descubre" class="row fila secciones-naranja">
             <div class="col-2 ">
-                <div class="col-sm secciones-img-graf" > 
+                <div class="col-sm secciones-img-graf" >
                     <img src="/Vistas/assets/img/portada-grafismo-01.png" class="img-responsive" >
                 </div>
             </div>
@@ -137,20 +137,20 @@ include '../../Vistas/Header/header.php';
                 <div class="text-center parrafo-b">
                     <p >Entra en nuestra tienda para ver todas nuestras propuestas.</p>
                 </div>
-                <div class="bt-default " >
-                    <button>
+                <div class="boton">
+                    <button class="bt-sec">
                         <a href="/Vistas/Home/tienda.php">Tienda</a>
-                    </button>                
+                    </button>
 
                 </div>
             </div>
             <div class="col-4 ">
-                <div class="col-sm secciones-img-middle" > 
+                <div class="col-sm secciones-img-middle" >
                     <img src="/Vistas/assets/img/portada-04.png" class="img-responsive" >
-                </div>    
+                </div>
             </div>
             <div class="col-2 ">
-                <div class="col-sm secciones-img-graf girada" > 
+                <div class="col-sm secciones-img-graf girada" >
                     <img src="/Vistas/assets/img/portada-grafismo-01.png" class="img-responsive" >
                 </div>
             </div>
@@ -159,7 +159,7 @@ include '../../Vistas/Header/header.php';
 
 
         <!--slider-->
-        <div id="galeria" class=" fila">          
+        <div id="galeria" class=" fila">
             <div class="row fila" >
 
                 <div class="col-3 "></div>

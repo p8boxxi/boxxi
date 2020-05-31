@@ -115,7 +115,7 @@ function get_option($name){
                                     <input type="hidden" name="producto" placeholder="producto" value="<?php echo $objecte->id_producto?>"/>
                                 </div>
                                 <input type="hidden" name="operacio" value="anadirApedido"/>
-                                <input class="bt-comprar" type="submit" value="Comprar">
+                                <input class=" bt-sec" type="submit" value="Comprar">
 
 
                             </div>
@@ -156,13 +156,13 @@ function get_option($name){
 
 <script src="../Vistas/assets/js/botoncantidad.js"></script>
 
-
 <script>
 $('.foto-pequeñas img').click(function(){
     src = $(this).attr('src');
     $('.foto-grande img').attr('src',src)
 })
 </script>
+
 <?php include '../Vistas/Footer/footer.php'; ?>
 
 </body>
